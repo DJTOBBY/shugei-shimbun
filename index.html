@@ -1,5 +1,6 @@
 <title>手芸新聞 — バックナンバー</title>
 <meta name="description" content="手芸新聞のバックナンバー一覧。">
+<link rel="alternate" type="application/rss+xml" title="手芸新聞 RSS" href="https://djtobby.github.io/shugei-shimbun/feed.xml">
 <style>
   :root {
     --paper: #ece9e0; --ink: #1a1a1a; --ink-soft: #4a473e;
@@ -33,6 +34,11 @@
   .issue-card .issue-date { font-family: var(--font-mincho); font-weight: 700; font-size: 1.15rem; margin: 0.2em 0 0.5em; }
   .issue-card .issue-top { font-size: 0.9rem; line-height: 1.7; }
   .issue-card .issue-top .badge { font-size: 0.62rem; letter-spacing: 0.05em; border: 1px solid var(--ink-soft); color: var(--ink-soft); padding: 0.1em 0.5em; margin-right: 0.5em; }
+  .subscribe-box { border: 1px solid var(--rule-soft); padding: 1.1rem 1.3rem; margin-bottom: 2rem; font-size: 0.86rem; line-height: 1.8; }
+  .subscribe-box .feed-url { font-family: monospace; font-size: 0.8rem; background: rgba(0,0,0,0.04); padding: 0.5em 0.7em; word-break: break-all; }
+  .subscribe-box .subscribe-links { display: flex; gap: 1.2em; flex-wrap: wrap; }
+  .subscribe-box .subscribe-links a { font-weight: 700; }
+  .subscribe-box .hint { font-size: 0.76rem; color: var(--ink-soft); }
   footer { margin-top: 2rem; font-size: 0.72rem; color: var(--ink-soft); border-top: 1px solid var(--rule-soft); padding-top: 0.8em; }
 </style>
 
@@ -50,6 +56,17 @@
     <p class="sub">SHUGEI SHIMBUN — バックナンバー</p>
   </div>
   <div class="rule"></div>
+
+  <h2>新号のお知らせを受け取る</h2>
+  <div class="subscribe-box">
+    <p>新しい号が出るたびにお知らせを受け取りたい場合は、以下のRSSフィードのURLを、無料のメール通知サービスに登録してください。メールアドレスの登録・配信はすべてサービス側が行うため、こちらでは個人情報を一切お預かりしません。</p>
+    <p class="feed-url"><a href="feed.xml">https://djtobby.github.io/shugei-shimbun/feed.xml</a></p>
+    <p class="subscribe-links">
+      <a href="https://follow.it/" target="_blank" rel="noopener">Follow.it で登録 →</a>
+      <a href="https://blogtrottr.com/" target="_blank" rel="noopener">Blogtrottr で登録 →</a>
+    </p>
+    <p class="hint">どちらも、上記フィードURLを貼り付けてメールアドレスを入力するだけで、新号公開時に自動でメールが届くようになります。RSSリーダー（Feedlyなど）でも同じURLを使って購読できます。</p>
+  </div>
 
   <h2>号一覧</h2>
   <ul class="issue-list">
