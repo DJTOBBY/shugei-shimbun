@@ -1,0 +1,73 @@
+<title>手芸新聞 — バックナンバー</title>
+<meta name="description" content="手芸新聞のバックナンバー一覧。">
+<style>
+  :root {
+    --paper: #ece9e0; --ink: #1a1a1a; --ink-soft: #4a473e;
+    --rule: #1a1a1a; --rule-soft: #8a8677; --shu: #b7301f; --link: #33445e;
+    --font-mincho: "Hiragino Mincho ProN", "YuMincho", "Yu Mincho", "Noto Serif JP", "Times New Roman", serif;
+    --font-gothic: "Hiragino Kaku Gothic ProN", "YuGothic", "Yu Gothic", "Noto Sans JP", "Helvetica Neue", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --paper: #17181a; --ink: #e7e4d9; --ink-soft: #b0ad9f; --rule: #cfccc0; --rule-soft: #55534a; --shu: #e07a63; --link: #9db2d6; }
+  }
+  :root[data-theme="dark"] { --paper: #17181a; --ink: #e7e4d9; --ink-soft: #b0ad9f; --rule: #cfccc0; --rule-soft: #55534a; --shu: #e07a63; --link: #9db2d6; }
+  :root[data-theme="light"] { --paper: #ece9e0; --ink: #1a1a1a; --ink-soft: #4a473e; --rule: #1a1a1a; --rule-soft: #8a8677; --shu: #b7301f; --link: #33445e; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-gothic); }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 2.4rem 1.2rem 4rem; }
+  .masthead { text-align: center; margin-bottom: 0.6rem; }
+  .masthead .emblem { display: flex; justify-content: center; margin-bottom: 0.4rem; }
+  .masthead .emblem svg { width: 30px; height: 30px; overflow: visible; fill: none; stroke: var(--ink-soft); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .masthead h1 { font-family: var(--font-mincho); font-weight: 700; font-size: clamp(2.2rem, 6vw, 3rem); letter-spacing: 0.1em; margin: 0; }
+  .masthead .sub { font-size: 0.64rem; letter-spacing: 0.3em; color: var(--ink-soft); text-transform: uppercase; margin-top: 0.3em; }
+  .rule { border-top: 4px solid var(--rule); border-bottom: 1px solid var(--rule); height: 6px; margin: 0.9rem 0 1.6rem; }
+  h2 { font-family: var(--font-mincho); font-size: 1.05rem; border-bottom: 3px double var(--ink); padding-bottom: 0.3em; margin: 0 0 1.2rem; }
+  .issue-list { list-style: none; margin: 0; padding: 0; }
+  .issue-card {
+    display: block; text-decoration: none; color: inherit;
+    border: 1px solid var(--rule-soft); padding: 1.1rem 1.3rem; margin-bottom: 1rem;
+    transition: border-color 0.15s;
+  }
+  .issue-card:hover { border-color: var(--ink); }
+  .issue-card .issue-no { font-size: 0.68rem; color: var(--ink-soft); letter-spacing: 0.08em; }
+  .issue-card .issue-date { font-family: var(--font-mincho); font-weight: 700; font-size: 1.15rem; margin: 0.2em 0 0.5em; }
+  .issue-card .issue-top { font-size: 0.9rem; line-height: 1.7; }
+  .issue-card .issue-top .badge { font-size: 0.62rem; letter-spacing: 0.05em; border: 1px solid var(--ink-soft); color: var(--ink-soft); padding: 0.1em 0.5em; margin-right: 0.5em; }
+  footer { margin-top: 2rem; font-size: 0.72rem; color: var(--ink-soft); border-top: 1px solid var(--rule-soft); padding-top: 0.8em; }
+</style>
+
+<div class="wrap">
+  <div class="masthead">
+    <div class="emblem">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="34" />
+        <line x1="38" y1="28" x2="62" y2="72" />
+        <circle cx="38" cy="26" r="4" />
+        <path d="M38,28 C22,42 30,58 48,60" />
+      </svg>
+    </div>
+    <h1>手芸新聞</h1>
+    <p class="sub">SHUGEI SHIMBUN — バックナンバー</p>
+  </div>
+  <div class="rule"></div>
+
+  <h2>号一覧</h2>
+  <ul class="issue-list">
+    <li>
+      <a class="issue-card" href="issues/2026-07-20.html">
+        <div class="issue-no">試作第2号</div>
+        <div class="issue-date">2026年7月20日（月）</div>
+        <div class="issue-top"><span class="badge">NEWS</span>刺繍アートフェスティバル、130作品の投票が佳境（本日最終日）／ユザワヤ新店舗2店オープン／かぎ針編み新シリーズ8月創刊予告</div>
+      </a>
+    </li>
+    <li>
+      <a class="issue-card" href="issues/2026-07-18.html">
+        <div class="issue-no">試作第1号</div>
+        <div class="issue-date">2026年7月18日（土）</div>
+        <div class="issue-top"><span class="badge">NEWS</span>Cohana新作ニードルマインダー／手しごとマーケット熊本開幕／日本ホビーショー第50回の節目　ほか全12面</div>
+      </a>
+    </li>
+  </ul>
+
+  <footer>手芸新聞は個人が試作しているデジタル新聞です。実在の刊行物・法人ではありません。各号の内容は公開情報を編集部が要約・構成したものです。編集長は<a href="https://chatgpt.com/g/g-6a5dbec4971481919d12695b6ee3df51-shou-yun-xin-wen-bian-ji-chang" target="_blank" rel="noopener">ChatGPTのカスタムGPTとして構築されたAI人格</a>で、実在の人物ではありません。新しい号を作成した際は、このページにもリンクを追加してください。</footer>
+</div>
