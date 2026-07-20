@@ -188,106 +188,87 @@
     color: var(--ink-soft);
   }
 
-  /* ---------------- vertical article columns ---------------- */
-  .page-body {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: flex-start;
-    gap: 1rem;
-    overflow-x: auto;
-    padding-bottom: 0.3rem;
-  }
+  /* ---------------- newspaper article grid (横書き) ---------------- */
+  .page-body { margin: 0; }
   .news-row + .news-row {
-    margin-top: 0.75rem;
-    padding-top: 0.7rem;
-    border-top: 1px solid var(--rule-soft);
+    margin-top: 1.6rem;
+    padding-top: 1.4rem;
+    border-top: 3px double var(--rule);
   }
-  .piece { flex: 0 0 auto; max-width: 100%; }
-  .piece .vwrap {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: flex-start;
-    gap: 0.4em;
+  .news-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 0 2rem;
+    align-items: start;
   }
-  .headline-col {
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    font-family: var(--font-mincho);
+  .news-grid .lead-col { border-right: 1px solid var(--rule-soft); padding-right: 2rem; }
+  .news-grid .side-col { display: flex; flex-direction: column; gap: 1.4rem; }
+  .more-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.4rem 2rem;
+  }
+  .more-grid + .more-grid,
+  .news-grid + .more-grid { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid var(--rule-soft); }
+
+  article.lead, article.brief { max-width: 100%; }
+  article.brief + article.brief { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid var(--rule-soft); }
+  article.story + article.story { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid var(--rule-soft); }
+
+  .kicker {
+    display: block;
+    font-family: var(--font-gothic);
+    font-size: 0.76rem;
     font-weight: 700;
+    color: var(--link);
+    margin: 0.2em 0 0.3em;
   }
-  .headline-col .kicker {
-    font-size: 0.62em;
-    font-weight: 500;
-    color: var(--ink-soft);
-    letter-spacing: 0.02em;
+  .fuku-midashi { font-size: 0.7em; font-weight: 500; color: var(--ink-soft); display: block; margin-top: 0.3em; }
+
+  article.lead h2, article.story h2 {
+    font-family: var(--font-mincho); font-weight: 700; font-size: 1.62rem; line-height: 1.4;
+    margin: 0 0 0.6em; text-wrap: balance;
   }
-  .body-col {
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    font-size: 16px;
-    line-height: 1.5;
+  article.brief h3 {
+    font-family: var(--font-mincho); font-weight: 700; font-size: 1.1rem; line-height: 1.45;
+    margin: 0 0 0.5em; text-wrap: balance;
   }
-  .piece.lead .headline-col { height: 320px; font-size: 1.58rem; line-height: 1.25; }
-  .piece.lead .body-col { height: 600px; font-size: 18px; }
-  .piece.secondary .headline-col { height: 260px; font-size: 1.22rem; line-height: 1.3; }
-  .piece.secondary .body-col { height: 460px; font-size: 17px; }
-  .piece.brief .headline-col { height: 220px; font-size: 1.08rem; line-height: 1.3; }
-  .piece.brief .body-col { height: 380px; font-size: 16px; }
+  article.story { max-width: 100%; }
 
   /* ---------------- newspaper cut illustrations ---------------- */
-  .illustration {
-    flex: 0 0 auto;
-    width: 90px;
+  .lede-media, .thumb {
     border: 1px solid var(--rule);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.45em;
-    padding: 0.4em;
     background-image: radial-gradient(circle, var(--ink-soft) 1px, transparent 1.3px);
     background-size: 6px 6px;
-    background-position: center;
   }
-  .illustration svg {
-    width: 50px;
-    height: 50px;
-    overflow: visible;
-    fill: none;
-    stroke: var(--ink);
-    stroke-width: 2.2;
-    stroke-linejoin: round;
-    stroke-linecap: round;
+  .lede-media {
+    float: left; width: 170px; margin: 0 1.3rem 0.7rem 0; padding: 0.6em;
   }
-  .illustration .cap {
-    writing-mode: horizontal-tb;
-    font-size: 0.58rem;
-    color: var(--ink-soft);
-    text-align: center;
-    line-height: 1.35;
+  .thumb {
+    float: right; width: 84px; height: 84px; margin: 0 0 0.6em 0.9em;
+    display: flex; align-items: center; justify-content: center; flex: 0 0 auto;
   }
-  .piece.lead .illustration { height: 320px; }
-  .piece.secondary .illustration { height: 260px; }
-  .piece.brief .illustration { height: 220px; }
+  .lede-media svg, .thumb svg {
+    width: 100%; height: auto; overflow: visible;
+    fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linejoin: round; stroke-linecap: round;
+  }
+  .thumb svg { width: 70%; height: 70%; }
+  .lede-media .cap { display: block; font-size: 0.64rem; color: var(--ink-soft); text-align: center; line-height: 1.35; margin-top: 0.4em; }
 
   .lead-char {
-    font-size: 1.7em;
-    font-weight: 700;
-    font-family: var(--font-mincho);
+    font-family: var(--font-mincho); font-weight: 700; font-size: 2.5em; float: left;
+    line-height: 0.85; margin: 0.03em 0.09em 0 0; color: var(--ink);
   }
 
+  .body p, .col-excerpt p { font-size: 1rem; line-height: 1.85; margin: 0 0 1em; color: var(--ink); }
+  article.brief .body p, article.brief p { font-size: 0.9rem; line-height: 1.75; color: var(--ink-soft); margin: 0 0 0.7em; }
+  .body { clear: none; }
+  .body::after { content: ""; display: table; clear: both; }
+
   .pull-quote {
-    flex: 0 0 auto;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    font-family: var(--font-mincho);
-    font-weight: 700;
-    font-size: 1.1rem;
-    line-height: 1.75;
-    border-left: 3px double var(--rule);
-    border-right: 3px double var(--rule);
-    padding: 0 0.6em;
-    color: var(--ink);
+    font-family: var(--font-mincho); font-weight: 700; font-size: 1.15rem; line-height: 1.6;
+    border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    padding: 0.6em 0; margin: 1em 0; color: var(--ink); clear: both;
   }
   .pull-quote::before { content: "「"; color: var(--ink-soft); }
   .pull-quote::after { content: "」"; color: var(--ink-soft); }
@@ -315,12 +296,12 @@
   }
 
   .source-line {
+    clear: both;
     margin: 0.5em 0 0;
-    font-size: 0.68rem;
+    font-size: 0.72rem;
     color: var(--ink-soft);
     border-top: 1px dotted var(--rule-soft);
     padding-top: 0.35em;
-    max-width: 30em;
   }
   .source-line a { color: var(--ink-soft); text-underline-offset: 2px; }
   .source-line a + a::before { content: " ／ "; }
@@ -335,42 +316,35 @@
   }
 
   /* ---------------- editorial column ---------------- */
+  .opinion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2rem; align-items: start; }
   .column-box {
-    flex: 0 0 auto;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    height: 900px;
-    border-left: 1px solid var(--rule-soft);
-    border-right: 1px solid var(--rule-soft);
-    padding: 0 0.5em;
+    border: 1px solid var(--rule-soft);
+    padding: 1.1rem 1.3rem;
   }
   .column-box .col-icon {
-    writing-mode: horizontal-tb;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     margin-bottom: 0.5em;
   }
   .column-box .col-icon svg {
-    width: 42px; height: 42px; overflow: visible;
+    width: 38px; height: 38px; overflow: visible;
     fill: none; stroke: var(--ink); stroke-width: 2.2;
     stroke-linejoin: round; stroke-linecap: round;
   }
   .column-box .col-title {
     font-family: var(--font-mincho);
     font-weight: 700;
-    font-size: 1.02rem;
+    font-size: 1.1rem;
   }
   .column-box .col-byline {
-    writing-mode: horizontal-tb;
-    font-size: 0.58rem;
+    font-size: 0.66rem;
     color: var(--ink-soft);
     margin-top: 0.3em;
   }
-  .column-box .col-body { font-size: 12.8px; line-height: 1.6; margin-top: 0.6em; color: var(--ink-soft); }
+  .column-box .col-body { font-size: 0.88rem; line-height: 1.8; margin-top: 0.7em; color: var(--ink-soft); }
+  .column-box .col-body p { margin: 0 0 0.8em; }
 
   .editors-note {
-    flex: 0 0 auto;
-    max-width: 20em;
     font-size: 0.78rem;
     line-height: 1.75;
     color: var(--ink-soft);
@@ -527,21 +501,16 @@
   .fuku-midashi { font-size: 0.6em; font-weight: 500; color: var(--ink-soft); display: block; margin-top: 0.35em; }
 
   .why-matters {
-    flex: 0 0 auto;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    height: 640px;
-    border-left: 1px dashed var(--rule-soft);
-    padding: 0 0.5em;
-    font-size: 13px;
-    line-height: 1.65;
+    border: 1px solid var(--rule-soft);
+    padding: 1rem 1.2rem;
+    font-size: 0.82rem;
+    line-height: 1.7;
   }
-  .why-matters h4 { writing-mode: horizontal-tb; font-family: var(--font-mincho); font-size: 0.72rem; color: var(--ink-soft); margin: 0 0 0.4em; }
+  .why-matters h4 { font-family: var(--font-mincho); font-size: 0.84rem; color: var(--ink-soft); margin: 0 0 0.6em; border-bottom: 1px solid var(--rule-soft); padding-bottom: 0.4em; }
   .why-matters ul { margin: 0; padding: 0; list-style: none; }
-  .why-matters li { margin-bottom: 0.5em; }
+  .why-matters li { margin-bottom: 0.6em; }
   .why-matters li::before { content: "・"; }
   .read-more-btn {
-    writing-mode: horizontal-tb;
     display: inline-block;
     margin-top: 0.6em;
     font-size: 0.66rem;
@@ -619,30 +588,26 @@
   .weekday-serial .feature-label { font-weight: 700; color: var(--ink); letter-spacing: 0.05em; }
 
   /* ---- chief editor / editorial / feature teaser boxes ---- */
+  .op-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2rem; align-items: start; }
   .op-box {
-    flex: 0 0 auto;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    height: 1400px;
-    border-left: 1px solid var(--rule-soft);
-    border-right: 1px solid var(--rule-soft);
-    padding: 0 0.5em;
+    border: 1px solid var(--rule-soft);
+    padding: 1.2rem 1.4rem;
   }
-  .op-box.feature-box { height: 1600px; }
-  .op-box .col-title-row { writing-mode: horizontal-tb; display: flex; flex-direction: column; align-items: center; gap: 0.3em; margin-bottom: 0.5em; }
-  .op-box .col-title { font-family: var(--font-mincho); font-weight: 700; font-size: 1.08rem; writing-mode: vertical-rl; }
-  .op-box .col-subtitle { font-size: 0.8em; color: var(--ink-soft); writing-mode: vertical-rl; margin-top: 0.4em; }
-  .op-box .col-byline { writing-mode: horizontal-tb; font-size: 0.6rem; color: var(--ink-soft); margin-top: 0.3em; }
-  .op-box .col-excerpt { font-size: 13.5px; line-height: 1.65; margin-top: 0.6em; }
+  .op-box.feature-box { grid-column: 1 / -1; border-color: var(--ink); }
+  .op-box .col-title-row { display: flex; align-items: center; margin-bottom: 0.6em; }
+  .op-box .col-title { font-family: var(--font-mincho); font-weight: 700; font-size: 1.22rem; line-height: 1.5; }
+  .op-box .col-subtitle { font-size: 0.85em; color: var(--ink-soft); margin-top: 0.4em; }
+  .op-box .col-byline { font-size: 0.72rem; color: var(--ink-soft); margin-top: 0.3em; }
+  .op-box .col-excerpt { font-size: 0.94rem; line-height: 1.9; margin-top: 0.8em; }
+  .op-box .col-excerpt p { margin: 0 0 1em; }
   .op-box .read-more {
-    writing-mode: horizontal-tb;
     display: inline-block;
     margin-top: 0.6em;
-    font-size: 0.66rem;
+    font-size: 0.72rem;
     background: none;
     border: 1px solid var(--ink-soft);
     color: var(--ink-soft);
-    padding: 0.3em 0.7em;
+    padding: 0.35em 0.8em;
     cursor: pointer;
     font-family: var(--font-gothic);
   }
@@ -727,9 +692,9 @@
   /* ---- chief-editor column generator ---- */
 
   @media (max-width: 720px) {
-    .op-row { flex-direction: column; overflow-x: visible; }
-    .op-box { height: auto; width: 100%; max-width: 100%; writing-mode: horizontal-tb; border-left: none; border-right: none; border-top: 1px solid var(--rule-soft); padding: 0.8em 0; }
-    .op-box .col-title, .op-box .col-subtitle { writing-mode: horizontal-tb; }
+    .op-row, .opinion-grid, .news-grid { grid-template-columns: 1fr; }
+    .news-grid .lead-col { border-right: none; padding-right: 0; border-bottom: 1px solid var(--rule-soft); padding-bottom: 1.2rem; margin-bottom: 0.4rem; }
+    .more-grid { grid-template-columns: 1fr; }
     .subnews-list, .category-grid, .mini-grid { grid-template-columns: 1fr; }
   }
 
@@ -790,56 +755,58 @@
     <div class="weekday-serial" id="weekday-serial"></div>
 
     <p class="section-heading">一面トップ <span class="en">TOP STORY</span></p>
-    <div class="page-body news-row">
-      <article class="piece lead">
-        <div class="vwrap">
-          <div class="illustration">
-            <svg viewBox="0 0 100 100">
-              <circle cx="50" cy="48" r="34" stroke-width="3" />
-              <circle cx="50" cy="48" r="34" stroke-width="0.8" stroke-dasharray="1 2.5" opacity="0.6" />
-              <circle cx="50" cy="48" r="27" stroke-width="1.6" />
-              <rect x="46" y="10" width="8" height="7" rx="1.5" stroke-width="1.4" />
-              <line x1="50" y1="10" x2="50" y2="4" stroke-width="1.4" />
-              <g stroke-width="0.5" opacity="0.55">
-                <line x1="28" y1="35" x2="45" y2="18" />
-                <line x1="28" y1="45" x2="55" y2="18" />
-                <line x1="30" y1="58" x2="65" y2="23" />
-                <line x1="35" y1="68" x2="72" y2="31" />
-                <line x1="45" y1="73" x2="76" y2="42" />
-                <line x1="57" y1="74" x2="75" y2="56" />
-              </g>
-              <g stroke-width="1.6">
-                <circle cx="50" cy="46" r="3.2" fill="var(--ink)" stroke="none" />
-                <path d="M50,46 Q42,38 46,30" />
-                <path d="M50,46 Q60,40 62,30" />
-                <path d="M50,46 Q40,50 32,48" />
-                <path d="M50,46 Q42,58 44,66" />
-                <path d="M50,46 Q60,56 58,66" />
-              </g>
-              <g stroke-width="1.3" opacity="0.85">
-                <line x1="34" y1="60" x2="37" y2="62" />
-                <line x1="40" y1="63" x2="43" y2="65" />
-                <line x1="60" y1="62" x2="63" y2="60" />
-                <line x1="65" y1="58" x2="68" y2="56" />
-              </g>
-              <line x1="78" y1="12" x2="58" y2="32" stroke-width="1.6" />
-              <circle cx="79" cy="11" r="1.6" stroke-width="1.2" />
-              <path d="M79,11 C86,16 90,22 88,30 C86,37 80,38 76,34" stroke-width="1" opacity="0.75" />
-            </svg>
-            <span class="cap">刺繍アートフェスティバル（イメージ）</span>
-          </div>
-          <div class="headline-col">
+    <div class="news-row">
+      <div class="news-grid">
+        <div class="lead-col">
+          <article class="lead">
             <span class="type-badge" data-type="NEWS">NEWS</span>
-            <span class="kicker">【催事・本日最終日】</span>刺繍アートフェスティバル、<span class="tcy">130</span>作品の投票が佳境
-            <span class="fuku-midashi">結果発表は明日、グランプリの行方は</span>
-          </div>
-          <div class="pull-quote" style="height:320px;">刺繍の未来をつなぐ</div>
-          <div class="body-col" style="height:690px;">
-            <span class="lead-char">刺</span>繍作品の公募コンテスト・展示会「刺繍アートフェスティバル<span class="tcy">20</span><span class="tcy">26</span>」（主催：株式会社ブーケ）が、東京・ヒルトン東京地下<span class="tcy">1</span>階のヒルトピアアートスクエアで<span class="tcy">7</span>月<span class="tcy">16</span>日から本日<span class="tcy">20</span>日まで開催されている。入場は無料。フランス刺繍、白糸刺繍、スモッキング、自由作品など、年齢・経験・国籍を問わず公募した作品<span class="tcy">130</span>点余りが会場に並び、刺繍キットや手芸資材の販売、パフォーマンスも行われた。
-            コンテストの公募期間は<span class="tcy">20</span><span class="tcy">25</span>年<span class="tcy">9</span>月<span class="tcy">20</span>日から<span class="tcy">11</span>月<span class="tcy">20</span>日で、出品料は<span class="tcy">49</span>50円。作品写真による一次審査を経て、最終的には来場者投票でグランプリが決まる方式が採られており、結果発表は明<span class="tcy">21</span>日となっている。プロ・アマ・国籍を問わない間口の広さは、原宿の刺繍専門店「PATCH&amp;PLAY」の作家拡大策（本紙前号既報）とも重なる、刺繍というジャンルへの参入路の多様化を映す動きといえる。
-            会場のヒルトピアアートスクエアは新宿駅・都庁前駅から地下道で直結し、徒歩2分とアクセスも良い。無料で入場でき本日が最終日となるため、都内在住・在勤の読者は仕事帰りに立ち寄れる最後のチャンスとなる。
-            <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000000011.000154768.html" target="_blank" rel="noopener">株式会社ブーケプレスリリース（PR TIMES）</a><a href="https://embroidery-art-fes.com/2026contest" target="_blank" rel="noopener">刺繍アートフェスティバル公式</a></p>
-          </div>
+            <div class="kicker">【催事・本日最終日】</div>
+            <h2>刺繍アートフェスティバル、<span class="tcy">130</span>作品の投票が佳境<span class="fuku-midashi">結果発表は明日、グランプリの行方は</span></h2>
+            <div class="lede-media">
+              <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="48" r="34" stroke-width="3" />
+                <circle cx="50" cy="48" r="34" stroke-width="0.8" stroke-dasharray="1 2.5" opacity="0.6" />
+                <circle cx="50" cy="48" r="27" stroke-width="1.6" />
+                <rect x="46" y="10" width="8" height="7" rx="1.5" stroke-width="1.4" />
+                <line x1="50" y1="10" x2="50" y2="4" stroke-width="1.4" />
+                <g stroke-width="0.5" opacity="0.55">
+                  <line x1="28" y1="35" x2="45" y2="18" />
+                  <line x1="28" y1="45" x2="55" y2="18" />
+                  <line x1="30" y1="58" x2="65" y2="23" />
+                  <line x1="35" y1="68" x2="72" y2="31" />
+                  <line x1="45" y1="73" x2="76" y2="42" />
+                  <line x1="57" y1="74" x2="75" y2="56" />
+                </g>
+                <g stroke-width="1.6">
+                  <circle cx="50" cy="46" r="3.2" fill="var(--ink)" stroke="none" />
+                  <path d="M50,46 Q42,38 46,30" />
+                  <path d="M50,46 Q60,40 62,30" />
+                  <path d="M50,46 Q40,50 32,48" />
+                  <path d="M50,46 Q42,58 44,66" />
+                  <path d="M50,46 Q60,56 58,66" />
+                </g>
+                <g stroke-width="1.3" opacity="0.85">
+                  <line x1="34" y1="60" x2="37" y2="62" />
+                  <line x1="40" y1="63" x2="43" y2="65" />
+                  <line x1="60" y1="62" x2="63" y2="60" />
+                  <line x1="65" y1="58" x2="68" y2="56" />
+                </g>
+                <line x1="78" y1="12" x2="58" y2="32" stroke-width="1.6" />
+                <circle cx="79" cy="11" r="1.6" stroke-width="1.2" />
+                <path d="M79,11 C86,16 90,22 88,30 C86,37 80,38 76,34" stroke-width="1" opacity="0.75" />
+              </svg>
+              <span class="cap">刺繍アートフェスティバル（イメージ）</span>
+            </div>
+            <div class="body">
+              <p><span class="lead-char">刺</span>繍作品の公募コンテスト・展示会「刺繍アートフェスティバル<span class="tcy">20</span><span class="tcy">26</span>」（主催：株式会社ブーケ）が、東京・ヒルトン東京地下<span class="tcy">1</span>階のヒルトピアアートスクエアで<span class="tcy">7</span>月<span class="tcy">16</span>日から本日<span class="tcy">20</span>日まで開催されている。入場は無料。フランス刺繍、白糸刺繍、スモッキング、自由作品など、年齢・経験・国籍を問わず公募した作品<span class="tcy">130</span>点余りが会場に並び、刺繍キットや手芸資材の販売、パフォーマンスも行われた。</p>
+              <p class="pull-quote">刺繍の未来をつなぐ</p>
+              <p>コンテストの公募期間は<span class="tcy">20</span><span class="tcy">25</span>年<span class="tcy">9</span>月<span class="tcy">20</span>日から<span class="tcy">11</span>月<span class="tcy">20</span>日で、出品料は<span class="tcy">49</span>50円。作品写真による一次審査を経て、最終的には来場者投票でグランプリが決まる方式が採られており、結果発表は明<span class="tcy">21</span>日となっている。プロ・アマ・国籍を問わない間口の広さは、原宿の刺繍専門店「PATCH&amp;PLAY」の作家拡大策（本紙前号既報）とも重なる、刺繍というジャンルへの参入路の多様化を映す動きといえる。</p>
+              <p>会場のヒルトピアアートスクエアは新宿駅・都庁前駅から地下道で直結し、徒歩2分とアクセスも良い。無料で入場でき本日が最終日となるため、都内在住・在勤の読者は仕事帰りに立ち寄れる最後のチャンスとなる。</p>
+              <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000000011.000154768.html" target="_blank" rel="noopener">株式会社ブーケプレスリリース（PR TIMES）</a><a href="https://embroidery-art-fes.com/2026contest" target="_blank" rel="noopener">刺繍アートフェスティバル公式</a></p>
+            </div>
+          </article>
+        </div>
+        <div class="side-col">
           <div class="why-matters">
             <h4>なぜ重要か</h4>
             <ul>
@@ -849,7 +816,7 @@
             <button type="button" class="read-more-btn" data-article-id="front-lead-kumiko">続きを読む（詳細）</button>
           </div>
         </div>
-      </article>
+      </div>
     </div>
 
     <p class="section-heading">一面サブニュース <span class="en">SUB STORIES</span></p>
@@ -876,128 +843,119 @@
       </li>
     </ul>
 
-    <div class="page-body news-row" id="sn-kumamoto">
-      <article class="piece secondary">
-        <div class="vwrap">
-          <div class="illustration" style="height:260px;">
-            <svg viewBox="0 0 100 100">
-              <rect x="16" y="38" width="68" height="46" stroke-width="2" />
-              <path d="M12,38 L20,26 L80,26 L88,38 Z" stroke-width="2" />
-              <path d="M12,38 Q16,42 20,38 Q24,42 28,38 Q32,42 36,38 Q40,42 44,38 Q48,42 52,38 Q56,42 60,38 Q64,42 68,38 Q72,42 76,38 Q80,42 84,38 Q86,42 88,38" stroke-width="1.3" />
-              <g stroke-width="0.9" opacity="0.7">
-                <line x1="22" y1="27" x2="18" y2="37" />
-                <line x1="30" y1="27" x2="26" y2="37" />
-                <line x1="38" y1="27" x2="34" y2="37" />
-                <line x1="46" y1="27" x2="42" y2="37" />
-                <line x1="54" y1="27" x2="50" y2="37" />
-                <line x1="62" y1="27" x2="58" y2="37" />
-                <line x1="70" y1="27" x2="66" y2="37" />
-                <line x1="78" y1="27" x2="74" y2="37" />
-              </g>
-              <rect x="42" y="60" width="16" height="24" stroke-width="1.6" />
-              <circle cx="54" cy="72" r="1.1" fill="var(--ink)" stroke="none" />
-              <rect x="22" y="48" width="16" height="16" stroke-width="1.5" />
-              <g stroke-width="0.5" opacity="0.6">
-                <line x1="22" y1="56" x2="30" y2="48" />
-                <line x1="22" y1="61" x2="35" y2="48" />
-                <line x1="25" y1="64" x2="38" y2="51" />
-                <line x1="30" y1="64" x2="38" y2="56" />
-              </g>
-              <rect x="62" y="48" width="16" height="16" stroke-width="1.5" />
-              <g stroke-width="0.5" opacity="0.6">
-                <line x1="62" y1="56" x2="70" y2="48" />
-                <line x1="62" y1="61" x2="75" y2="48" />
-                <line x1="65" y1="64" x2="78" y2="51" />
-                <line x1="70" y1="64" x2="78" y2="56" />
-              </g>
-              <rect x="34" y="14" width="32" height="10" rx="1" stroke-width="1.6" />
-              <line x1="40" y1="14" x2="40" y2="9" stroke-width="1" />
-              <line x1="60" y1="14" x2="60" y2="9" stroke-width="1" />
-              <line x1="40" y1="9" x2="60" y2="9" stroke-width="1" />
-              <line x1="10" y1="84" x2="90" y2="84" stroke-width="1.4" />
-            </svg>
-            <span class="cap">新店舗の外観（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:260px;">
-            <span class="type-badge" data-type="NEWS">NEWS</span>
-            <span class="kicker">【小売・開店】</span>ユザワヤ、新店舗<span class="tcy">2</span>店を今夏相次いでオープン
-          </div>
-          <div class="body-col" style="height:600px;">
-            手作りホビー専門店「ユザワヤ」は<span class="tcy">20</span><span class="tcy">26</span>年<span class="tcy">5</span>月<span class="tcy">15</span>日、京都府の「イオンモール京都五条」に新店舗をオープンした。生地、洋裁用品、服飾雑貨、ミシン、毛糸、手芸材料に加え、推し活材料まで幅広い品ぞろえを揃える。続く<span class="tcy">6</span>月<span class="tcy">5</span>日には、岩手県盛岡市の「パルクアベニュー・カワトク」にも新店舗が開業した。
-            大型商業施設のリニューアルやテナント刷新の波に乗る形で、地方都市への出店を続けている点が特徴的だ。ネット通販が手芸資材調達の選択肢として定着する一方、実際に生地や毛糸の質感を確かめたいという需要は根強く、大手専門店の実店舗網が地方でも維持・拡大されている実情がうかがえる。
-            <p class="source-line">出典：<a href="https://www.atpress.ne.jp/news/596301" target="_blank" rel="noopener">ユザワヤ商事株式会社プレスリリース（アットプレス）</a><a href="https://www.kawatoku.com/topics/about/topics_202605yuzawaya" target="_blank" rel="noopener">パルクアベニュー・カワトク</a></p>
-          </div>
+    <div class="news-row" id="sn-kumamoto">
+      <article class="story">
+        <span class="type-badge" data-type="NEWS">NEWS</span>
+        <div class="kicker">【小売・開店】</div>
+        <h2>ユザワヤ、新店舗<span class="tcy">2</span>店を今夏相次いでオープン</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <rect x="16" y="38" width="68" height="46" stroke-width="2" />
+            <path d="M12,38 L20,26 L80,26 L88,38 Z" stroke-width="2" />
+            <path d="M12,38 Q16,42 20,38 Q24,42 28,38 Q32,42 36,38 Q40,42 44,38 Q48,42 52,38 Q56,42 60,38 Q64,42 68,38 Q72,42 76,38 Q80,42 84,38 Q86,42 88,38" stroke-width="1.3" />
+            <g stroke-width="0.9" opacity="0.7">
+              <line x1="22" y1="27" x2="18" y2="37" />
+              <line x1="30" y1="27" x2="26" y2="37" />
+              <line x1="38" y1="27" x2="34" y2="37" />
+              <line x1="46" y1="27" x2="42" y2="37" />
+              <line x1="54" y1="27" x2="50" y2="37" />
+              <line x1="62" y1="27" x2="58" y2="37" />
+              <line x1="70" y1="27" x2="66" y2="37" />
+              <line x1="78" y1="27" x2="74" y2="37" />
+            </g>
+            <rect x="42" y="60" width="16" height="24" stroke-width="1.6" />
+            <circle cx="54" cy="72" r="1.1" fill="var(--ink)" stroke="none" />
+            <rect x="22" y="48" width="16" height="16" stroke-width="1.5" />
+            <g stroke-width="0.5" opacity="0.6">
+              <line x1="22" y1="56" x2="30" y2="48" />
+              <line x1="22" y1="61" x2="35" y2="48" />
+              <line x1="25" y1="64" x2="38" y2="51" />
+              <line x1="30" y1="64" x2="38" y2="56" />
+            </g>
+            <rect x="62" y="48" width="16" height="16" stroke-width="1.5" />
+            <g stroke-width="0.5" opacity="0.6">
+              <line x1="62" y1="56" x2="70" y2="48" />
+              <line x1="62" y1="61" x2="75" y2="48" />
+              <line x1="65" y1="64" x2="78" y2="51" />
+              <line x1="70" y1="64" x2="78" y2="56" />
+            </g>
+            <rect x="34" y="14" width="32" height="10" rx="1" stroke-width="1.6" />
+            <line x1="40" y1="14" x2="40" y2="9" stroke-width="1" />
+            <line x1="60" y1="14" x2="60" y2="9" stroke-width="1" />
+            <line x1="40" y1="9" x2="60" y2="9" stroke-width="1" />
+            <line x1="10" y1="84" x2="90" y2="84" stroke-width="1.4" />
+          </svg>
+          <span class="cap">新店舗の外観（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>手作りホビー専門店「ユザワヤ」は<span class="tcy">20</span><span class="tcy">26</span>年<span class="tcy">5</span>月<span class="tcy">15</span>日、京都府の「イオンモール京都五条」に新店舗をオープンした。生地、洋裁用品、服飾雑貨、ミシン、毛糸、手芸材料に加え、推し活材料まで幅広い品ぞろえを揃える。続く<span class="tcy">6</span>月<span class="tcy">5</span>日には、岩手県盛岡市の「パルクアベニュー・カワトク」にも新店舗が開業した。</p>
+          <p>大型商業施設のリニューアルやテナント刷新の波に乗る形で、地方都市への出店を続けている点が特徴的だ。ネット通販が手芸資材調達の選択肢として定着する一方、実際に生地や毛糸の質感を確かめたいという需要は根強く、大手専門店の実店舗網が地方でも維持・拡大されている実情がうかがえる。</p>
+          <p class="source-line">出典：<a href="https://www.atpress.ne.jp/news/596301" target="_blank" rel="noopener">ユザワヤ商事株式会社プレスリリース（アットプレス）</a><a href="https://www.kawatoku.com/topics/about/topics_202605yuzawaya" target="_blank" rel="noopener">パルクアベニュー・カワトク</a></p>
         </div>
       </article>
     </div>
 
-    <div class="page-body news-row" id="sn-hobbyshow">
-      <article class="piece brief">
-        <div class="vwrap">
-          <div class="illustration" style="height:260px;">
-            <svg viewBox="0 0 100 100">
-              <path d="M10,28 L48,22 L48,80 L10,86 Z" stroke-width="1.8" />
-              <path d="M90,28 L52,22 L52,80 L90,86 Z" stroke-width="1.8" />
-              <line x1="48" y1="22" x2="52" y2="22" stroke-width="1.6" />
-              <line x1="48" y1="80" x2="52" y2="80" stroke-width="1.6" />
-              <g stroke-width="1" opacity="0.75">
-                <line x1="16" y1="38" x2="42" y2="35" />
-                <line x1="16" y1="45" x2="42" y2="42" />
-                <line x1="16" y1="52" x2="36" y2="49" />
-              </g>
-              <g stroke-width="1.3">
-                <circle cx="29" cy="68" r="11" />
-                <path d="M29,57 v22 M18,68 h22 M21,61 l16,14 M37,61 l-16,14" stroke-width="0.7" opacity="0.7" />
-              </g>
-              <g stroke-width="1.4">
-                <rect x="60" y="34" width="26" height="26" transform="rotate(3 73 47)" />
-                <rect x="65" y="39" width="16" height="16" transform="rotate(3 73 47)" stroke-width="0.9" />
-                <circle cx="73" cy="47" r="3" stroke-width="0.9" />
-              </g>
-              <circle cx="50" cy="90" r="9" stroke-width="1.6" />
-              <path d="M42,86 Q50,82 58,86" stroke-width="0.8" opacity="0.7" />
-              <path d="M43,93 Q50,97 57,93" stroke-width="0.8" opacity="0.7" />
-              <path d="M45,84 Q54,90 46,96" stroke-width="0.8" opacity="0.7" />
-              <line x1="58" y1="83" x2="72" y2="72" stroke-width="1.4" />
-              <path d="M72,72 q3,-3 1,-5 q-2,-2 -5,1" stroke-width="1.4" />
-            </svg>
-            <span class="cap">かぎ針編みの新シリーズ（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:260px;">
-            <span class="type-badge" data-type="NEWS">NEWS</span>
-            <span class="kicker">【新刊・予告】</span>かぎ針編み新シリーズ、<span class="tcy">8</span>月<span class="tcy">25</span>日創刊へ
-          </div>
-          <div class="body-col" style="height:600px;">
-            株式会社デアゴスティーニ・ジャパンは、隔週刊「色とモチーフをたのしむかぎ針編み」を<span class="tcy">8</span>月<span class="tcy">25</span>日に創刊すると発表した。創刊号は特別価格<span class="tcy">38</span>0円（税込）、第<span class="tcy">2</span>号以降は<span class="tcy">13</span>99円（税込）。トルコのニット作家が手がけたオリジナルパターンとスタイリッシュな配色が特徴で、トルコタイルを思わせるモチーフの大判マルチカバー（<span class="tcy">16</span>2cm×<span class="tcy">22</span>4cm）やクッションカバーのほか、グラニーバッグやティーマットなど計<span class="tcy">4</span>種の小物も制作できる。
-            各号に糸やかぎ針などの道具が付属し、写真と動画による解説付きで初心者でも取り組みやすい構成。全<span class="tcy">10</span>0号の購読終了時にはオリジナルのブロッキングボードが贈られる。パートワーク形式のシリーズは、単発の書籍と異なり長期にわたって読者をつなぎ止める設計であり、かぎ針編みブームの裾野をどこまで広げられるかが注目される。
-            <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000000207.000021190.html" target="_blank" rel="noopener">株式会社デアゴスティーニ・ジャパンプレスリリース（PR TIMES）</a></p>
-          </div>
+    <div class="news-row" id="sn-hobbyshow">
+      <article class="story">
+        <span class="type-badge" data-type="NEWS">NEWS</span>
+        <div class="kicker">【新刊・予告】</div>
+        <h2>かぎ針編み新シリーズ、<span class="tcy">8</span>月<span class="tcy">25</span>日創刊へ</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <path d="M10,28 L48,22 L48,80 L10,86 Z" stroke-width="1.8" />
+            <path d="M90,28 L52,22 L52,80 L90,86 Z" stroke-width="1.8" />
+            <line x1="48" y1="22" x2="52" y2="22" stroke-width="1.6" />
+            <line x1="48" y1="80" x2="52" y2="80" stroke-width="1.6" />
+            <g stroke-width="1" opacity="0.75">
+              <line x1="16" y1="38" x2="42" y2="35" />
+              <line x1="16" y1="45" x2="42" y2="42" />
+              <line x1="16" y1="52" x2="36" y2="49" />
+            </g>
+            <g stroke-width="1.3">
+              <circle cx="29" cy="68" r="11" />
+              <path d="M29,57 v22 M18,68 h22 M21,61 l16,14 M37,61 l-16,14" stroke-width="0.7" opacity="0.7" />
+            </g>
+            <g stroke-width="1.4">
+              <rect x="60" y="34" width="26" height="26" transform="rotate(3 73 47)" />
+              <rect x="65" y="39" width="16" height="16" transform="rotate(3 73 47)" stroke-width="0.9" />
+              <circle cx="73" cy="47" r="3" stroke-width="0.9" />
+            </g>
+            <circle cx="50" cy="90" r="9" stroke-width="1.6" />
+            <path d="M42,86 Q50,82 58,86" stroke-width="0.8" opacity="0.7" />
+            <path d="M43,93 Q50,97 57,93" stroke-width="0.8" opacity="0.7" />
+            <path d="M45,84 Q54,90 46,96" stroke-width="0.8" opacity="0.7" />
+            <line x1="58" y1="83" x2="72" y2="72" stroke-width="1.4" />
+            <path d="M72,72 q3,-3 1,-5 q-2,-2 -5,1" stroke-width="1.4" />
+          </svg>
+          <span class="cap">かぎ針編みの新シリーズ（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>株式会社デアゴスティーニ・ジャパンは、隔週刊「色とモチーフをたのしむかぎ針編み」を<span class="tcy">8</span>月<span class="tcy">25</span>日に創刊すると発表した。創刊号は特別価格<span class="tcy">38</span>0円（税込）、第<span class="tcy">2</span>号以降は<span class="tcy">13</span>99円（税込）。トルコのニット作家が手がけたオリジナルパターンとスタイリッシュな配色が特徴で、トルコタイルを思わせるモチーフの大判マルチカバー（<span class="tcy">16</span>2cm×<span class="tcy">22</span>4cm）やクッションカバーのほか、グラニーバッグやティーマットなど計<span class="tcy">4</span>種の小物も制作できる。</p>
+          <p>各号に糸やかぎ針などの道具が付属し、写真と動画による解説付きで初心者でも取り組みやすい構成。全<span class="tcy">10</span>0号の購読終了時にはオリジナルのブロッキングボードが贈られる。パートワーク形式のシリーズは、単発の書籍と異なり長期にわたって読者をつなぎ止める設計であり、かぎ針編みブームの裾野をどこまで広げられるかが注目される。</p>
+          <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000000207.000021190.html" target="_blank" rel="noopener">株式会社デアゴスティーニ・ジャパンプレスリリース（PR TIMES）</a></p>
         </div>
       </article>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece secondary">
-        <div class="vwrap">
-          <div class="illustration" style="height:280px;">
-            <svg viewBox="0 0 100 100">
-              <rect x="15" y="30" width="70" height="55" rx="4" />
-              <circle cx="35" cy="55" r="8" />
-              <circle cx="65" cy="55" r="8" />
-              <line x1="35" y1="63" x2="35" y2="75" stroke-width="1.2" />
-              <line x1="65" y1="63" x2="65" y2="75" stroke-width="1.2" />
-            </svg>
-            <span class="cap">東京ビッグサイトの人だかり（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:280px;">
-            <span class="type-badge" data-type="NEWS">NEWS</span>
-            <span class="kicker">【催事・開催済】</span>「HandMade In Japan Fes'」に全国<span class="tcy">3000</span>名
-          </div>
-          <div class="body-col" style="height:335px;">
-            ハンドメイド作品の通販サイトを運営する株式会社クリーマは<span class="tcy">7</span>月<span class="tcy">11</span>日・<span class="tcy">12</span>日の両日、「HandMade In Japan Fes'<span class="tcy">20</span><span class="tcy">26</span>」を東京ビッグサイト西<span class="tcy">1</span>・<span class="tcy">2</span>ホールで開催した。全国から延べ<span class="tcy">3000</span>名のクリエイターが出展し、<span class="tcy">70</span>種類のワークショップを展開する、通算<span class="tcy">19</span>回目となる国内最大級のクラフトイベントとなった。
-            前売券は<span class="tcy">1</span>日券<span class="tcy">13</span>00円、両日券<span class="tcy">2</span>000円で、小学生以下は無料。「<span class="tcy">5</span>cm×<span class="tcy">5</span>cmの世界」をテーマにした展示企画のほか、巨大ガチャや音楽ライブ、お笑いステージなど物販以外のコンテンツも充実させ、前回は「コロナ禍以降で最大の来場者数を記録した」という。作家が直接来場者と接する場として、即売会形式のイベントが年々規模を拡大している実情がうかがえる。
-            <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000000275.000018086.html" target="_blank" rel="noopener">株式会社クリーマプレスリリース（PR TIMES）</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <span class="type-badge" data-type="NEWS">NEWS</span>
+        <div class="kicker">【催事・開催済】</div>
+        <h2>「HandMade In Japan Fes'」に全国<span class="tcy">3000</span>名</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <rect x="15" y="30" width="70" height="55" rx="4" />
+            <circle cx="35" cy="55" r="8" />
+            <circle cx="65" cy="55" r="8" />
+            <line x1="35" y1="63" x2="35" y2="75" stroke-width="1.2" />
+            <line x1="65" y1="63" x2="65" y2="75" stroke-width="1.2" />
+          </svg>
+          <span class="cap">東京ビッグサイトの人だかり（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>ハンドメイド作品の通販サイトを運営する株式会社クリーマは<span class="tcy">7</span>月<span class="tcy">11</span>日・<span class="tcy">12</span>日の両日、「HandMade In Japan Fes'<span class="tcy">20</span><span class="tcy">26</span>」を東京ビッグサイト西<span class="tcy">1</span>・<span class="tcy">2</span>ホールで開催した。全国から延べ<span class="tcy">3000</span>名のクリエイターが出展し、<span class="tcy">70</span>種類のワークショップを展開する、通算<span class="tcy">19</span>回目となる国内最大級のクラフトイベントとなった。</p>
+          <p>前売券は<span class="tcy">1</span>日券<span class="tcy">13</span>00円、両日券<span class="tcy">2</span>000円で、小学生以下は無料。「<span class="tcy">5</span>cm×<span class="tcy">5</span>cmの世界」をテーマにした展示企画のほか、巨大ガチャや音楽ライブ、お笑いステージなど物販以外のコンテンツも充実させ、前回は「コロナ禍以降で最大の来場者数を記録した」という。作家が直接来場者と接する場として、即売会形式のイベントが年々規模を拡大している実情がうかがえる。</p>
+          <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000000275.000018086.html" target="_blank" rel="noopener">株式会社クリーマプレスリリース（PR TIMES）</a></p>
         </div>
       </article>
     </div>
@@ -1022,11 +980,11 @@
         <div class="col-title">手芸の向こう側　第<span class="tcy">1</span>回<br>「手芸は『暇な人の趣味』ではない」</div>
         <div class="col-byline">編集長</div>
         <div class="col-excerpt">
-          取材のたびに、判で押したように同じ言葉を投げかけられる。「手芸なんて、暇な人がやることでしょう」。悪気はないのだろう。世間話のつもりで言われることがほとんどだ。それでも、この一言を聞くたびに、editorとして何か言葉を返したくなる自分がいる。
-          今号で報じた組子細工のニードルマインダーも、熊本で開幕した手しごとマーケットの一点物も、突き詰めれば「暇な人の手すさび」ではない。何年もかけて磨かれた技術の結晶であり、その技術を身につけるまでの時間そのものが、すでに大きなコストである。にもかかわらず、値付けの場面になると、その技術は「趣味の延長」として値切られがちだ。
-          編集長としてこれまで多くの作り手を見てきた実感として、この構造にはそろそろ疑問を投げかけたい。なぜ手で作られたものは、機械で作られたものより「安くて当然」だと思われがちなのか。材料費だけを積み上げて価格を決め、自分の作業時間をゼロ円で計算してしまう作り手を、私は何人も見てきた。
-          手を動かすことは、暇つぶしではない。技術であり、時間であり、生活の一部を賭けた選択でもある。「暇な人の趣味」という言い方そのものが、その選択の重みを軽く見せてしまっているのではないか、と私は思う。
-          読者のみなさん、とりわけ日々何かを作っている作家や教室運営者のみなさんに、あえて問いかけたい。あなたが値段をつけるとき、自分の時間にはいくらの値をつけているだろうか。今号の紙面に並んだ一つひとつの品物を眺めながら、そんなことを考えてもらえたら、編集長としてこれほど嬉しいことはない。
+          <p>取材のたびに、判で押したように同じ言葉を投げかけられる。「手芸なんて、暇な人がやることでしょう」。悪気はないのだろう。世間話のつもりで言われることがほとんどだ。それでも、この一言を聞くたびに、editorとして何か言葉を返したくなる自分がいる。</p>
+          <p>今号で報じた組子細工のニードルマインダーも、熊本で開幕した手しごとマーケットの一点物も、突き詰めれば「暇な人の手すさび」ではない。何年もかけて磨かれた技術の結晶であり、その技術を身につけるまでの時間そのものが、すでに大きなコストである。にもかかわらず、値付けの場面になると、その技術は「趣味の延長」として値切られがちだ。</p>
+          <p>編集長としてこれまで多くの作り手を見てきた実感として、この構造にはそろそろ疑問を投げかけたい。なぜ手で作られたものは、機械で作られたものより「安くて当然」だと思われがちなのか。材料費だけを積み上げて価格を決め、自分の作業時間をゼロ円で計算してしまう作り手を、私は何人も見てきた。</p>
+          <p>手を動かすことは、暇つぶしではない。技術であり、時間であり、生活の一部を賭けた選択でもある。「暇な人の趣味」という言い方そのものが、その選択の重みを軽く見せてしまっているのではないか、と私は思う。</p>
+          <p>読者のみなさん、とりわけ日々何かを作っている作家や教室運営者のみなさんに、あえて問いかけたい。あなたが値段をつけるとき、自分の時間にはいくらの値をつけているだろうか。今号の紙面に並んだ一つひとつの品物を眺めながら、そんなことを考えてもらえたら、編集長としてこれほど嬉しいことはない。</p>
         </div>
         <button type="button" class="read-more" data-article-id="col-chief-editor-001">続きを読む（関連記事・タグなど）</button>
       </div>
@@ -1038,11 +996,11 @@
         <div class="col-title">編集部はこう見る<br>「AI時代に、手で作る価値はむしろ高くなる」</div>
         <div class="col-byline">AI編集部による分析・論説</div>
         <div class="col-excerpt">
-          【論点】生成AIによって文章や画像を大量かつ瞬時に作れるようになった今、手で仕上げる工芸品・手芸品の価値はどうなるのか。編集部の論点はここにある。
-          【背景】本紙5面で報じた通り、調査会社IMARC Groupの推計では、世界の手工芸品市場は<span class="tcy">20</span><span class="tcy">25</span>年時点で<span class="tcy">98</span><span class="tcy">6.9</span>億米ドル規模、<span class="tcy">20</span><span class="tcy">34</span>年には<span class="tcy">2</span>0<span class="tcy">38.0</span>億米ドルへ拡大する見通しで、この間の年平均成長率（CAGR）は8.39％にのぼるとされる。機械生産では再現できない一点物への需要が、成長を牽引する要因のひとつに挙げられている。
-          【業界への影響】メーカーにとっては、量産品との差別化がこれまで以上に商品価値の軸になりうる。作家にとっては、AIで代替されにくい「一点物である」という価値をどう伝えるかが問われる。小売・教室にとっても、体験や物語を含めた価値提案が求められる方向に向かうと考えられる。
-          【編集部の見解（現時点での推測）】複製が容易になるほど、複製できないものの価値は相対的に際立つ、というのが編集部の見立てである。ただしこれは価格動向の実証データに基づくものではなく、現時点での仮説にとどまる。
-          【今後の注目点】写真撮影の補助や商品説明文の作成にAIを活用する作家が増えているとの指摘も出ている（5面既報）。手仕事の「作る過程」にAIがどこまで入り込み、どこからが人の手に委ねられ続けるのか、引き続き注視したい。
+          <p>【論点】生成AIによって文章や画像を大量かつ瞬時に作れるようになった今、手で仕上げる工芸品・手芸品の価値はどうなるのか。編集部の論点はここにある。</p>
+          <p>【背景】本紙5面で報じた通り、調査会社IMARC Groupの推計では、世界の手工芸品市場は<span class="tcy">20</span><span class="tcy">25</span>年時点で<span class="tcy">98</span><span class="tcy">6.9</span>億米ドル規模、<span class="tcy">20</span><span class="tcy">34</span>年には<span class="tcy">2</span>0<span class="tcy">38.0</span>億米ドルへ拡大する見通しで、この間の年平均成長率（CAGR）は8.39％にのぼるとされる。機械生産では再現できない一点物への需要が、成長を牽引する要因のひとつに挙げられている。</p>
+          <p>【業界への影響】メーカーにとっては、量産品との差別化がこれまで以上に商品価値の軸になりうる。作家にとっては、AIで代替されにくい「一点物である」という価値をどう伝えるかが問われる。小売・教室にとっても、体験や物語を含めた価値提案が求められる方向に向かうと考えられる。</p>
+          <p>【編集部の見解（現時点での推測）】複製が容易になるほど、複製できないものの価値は相対的に際立つ、というのが編集部の見立てである。ただしこれは価格動向の実証データに基づくものではなく、現時点での仮説にとどまる。</p>
+          <p>【今後の注目点】写真撮影の補助や商品説明文の作成にAIを活用する作家が増えているとの指摘も出ている（5面既報）。手仕事の「作る過程」にAIがどこまで入り込み、どこからが人の手に委ねられ続けるのか、引き続き注視したい。</p>
         </div>
         <button type="button" class="read-more" data-article-id="editorial-001">続きを読む（関連記事・タグなど）</button>
       </div>
@@ -1057,13 +1015,13 @@
         <div class="col-title">全国から手芸店が消えている。<br>その先に何が残るのか</div>
         <div class="col-byline">編集部（特集班）</div>
         <div class="col-excerpt">
-          【何が起きているか】地方都市の商店街を歩くと、シャッターが下りたままの手芸店に出会うことが増えた、という声を耳にすることがある。個人経営の手芸店が減っているという実感は、業界の内外でしばしば語られるテーマだ。
-          【背景】小売業全体で個人店の閉店が続いているのは、手芸店に限った話ではない。経営者の高齢化や後継者不在、郊外型の大型店舗やECサイトへの購買シフトは、多くの業種で共通して指摘される要因である。本特集は試作原稿のため、手芸店に特化した閉店件数などの統計は今後の取材で確認する。
-          【メーカーへの影響】店頭という販路が減れば、メーカーにとっては商品の実物を手に取ってもらう機会が減ることを意味する。オンライン販促や展示会出展への比重が、これまで以上に高まる可能性がある。
-          【作家への影響】地域の手芸店は、作家にとって材料の調達先であると同時に、作品を委託販売する場でもあった。その機能が失われれば、作家はオンライン直販や催事出店など、別の販路を自ら開拓する必要に迫られる。
-          【小売・教室への影響】店舗を構える小売店にとっては、単なる物販だけでなく、教室や交流の場としての機能を強化することが、生き残りの鍵になるとの見方もある。
-          【編集部の見方（現時点での推測）】本紙が今号で報じた手しごとマーケットのような催事型の販売や、ユザワヤ芸術学院・ヴォーグ学園のような教室事業の活況を見る限り、店舗という「箱」は減っても、手仕事の担い手や需要そのものが消えているわけではないのではないか、というのが編集部の見立てである。流通の形が変わりつつある、という理解の方が実態に近いのかもしれない。
-          【今後確認すべきこと】実際の手芸店の閉店・開業件数の統計、後継者問題の実態調査、地域差の有無など。今後の取材でこれらを確認し、続報を予定している。
+          <p>【何が起きているか】地方都市の商店街を歩くと、シャッターが下りたままの手芸店に出会うことが増えた、という声を耳にすることがある。個人経営の手芸店が減っているという実感は、業界の内外でしばしば語られるテーマだ。</p>
+          <p>【背景】小売業全体で個人店の閉店が続いているのは、手芸店に限った話ではない。経営者の高齢化や後継者不在、郊外型の大型店舗やECサイトへの購買シフトは、多くの業種で共通して指摘される要因である。本特集は試作原稿のため、手芸店に特化した閉店件数などの統計は今後の取材で確認する。</p>
+          <p>【メーカーへの影響】店頭という販路が減れば、メーカーにとっては商品の実物を手に取ってもらう機会が減ることを意味する。オンライン販促や展示会出展への比重が、これまで以上に高まる可能性がある。</p>
+          <p>【作家への影響】地域の手芸店は、作家にとって材料の調達先であると同時に、作品を委託販売する場でもあった。その機能が失われれば、作家はオンライン直販や催事出店など、別の販路を自ら開拓する必要に迫られる。</p>
+          <p>【小売・教室への影響】店舗を構える小売店にとっては、単なる物販だけでなく、教室や交流の場としての機能を強化することが、生き残りの鍵になるとの見方もある。</p>
+          <p>【編集部の見方（現時点での推測）】本紙が今号で報じた手しごとマーケットのような催事型の販売や、ユザワヤ芸術学院・ヴォーグ学園のような教室事業の活況を見る限り、店舗という「箱」は減っても、手仕事の担い手や需要そのものが消えているわけではないのではないか、というのが編集部の見立てである。流通の形が変わりつつある、という理解の方が実態に近いのかもしれない。</p>
+          <p>【今後確認すべきこと】実際の手芸店の閉店・開業件数の統計、後継者問題の実態調査、地域差の有無など。今後の取材でこれらを確認し、続報を予定している。</p>
         </div>
         <button type="button" class="read-more" data-article-id="feature-001">続きを読む（関連記事・タグなど）</button>
       </div>
@@ -1206,135 +1164,120 @@
       <span class="folio-mark">ホビー・キルト面</span>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece lead">
-        <div class="vwrap">
-          <div class="illustration">
-            <svg viewBox="0 0 100 100">
-              <circle cx="50" cy="60" r="22" />
-              <path d="M30,60 Q50,45 70,60" />
-              <path d="M32,48 Q50,60 68,72" />
-              <line x1="35" y1="20" x2="65" y2="75" />
-              <line x1="65" y1="20" x2="35" y2="75" />
-              <line x1="58" y1="66" x2="64" y2="72" stroke-width="1" />
-              <line x1="54" y1="70" x2="60" y2="76" stroke-width="1" />
-              <line x1="50" y1="74" x2="56" y2="80" stroke-width="1" />
-            </svg>
-            <span class="cap">編み針と毛糸（イメージ）</span>
-          </div>
-          <div class="headline-col">
-            <span class="kicker">【50周年記念企画】</span>凪と編むニットMEET UP、日本ホビーショーで開催
-          </div>
-          <div class="body-col" style="height:620px;">
-            一般社団法人日本ホビー協会は、第<span class="tcy">50</span>回日本ホビーショー（<span class="tcy">5</span>月<span class="tcy">8</span>〜<span class="tcy">10</span>日、東京ビッグサイト東<span class="tcy">7</span>ホール）の開催に合わせ、大規模な編み物イベント「Nagi's Knits　凪と編むニットMEET UP！」を初日の<span class="tcy">5</span>月<span class="tcy">8</span>日<span class="tcy">15</span>時から<span class="tcy">16</span>時<span class="tcy">50</span>分まで、会場内の特設ステージで実施した。定員は<span class="tcy">96</span>名。参加者は「教わる」のではなく「一緒に手を動かす」形式で、凪さんと同じテーブルを囲みながら編み物を楽しんだ。
-            凪（Nagi's Knits）は神戸出身のニットデザイナー。音楽や古着カルチャーに影響を受け、伝統的な編み模様や技法を現代のスタイルに落とし込んだ作品を発表しており、国際的な編み物プラットフォーム「Ravelry」や自身のサイトで公開するパターンは国内外のニッターから支持を集めている。チケットは<span class="tcy">500</span>円（税込、別途ホビーショー入場券が必要）で、<span class="tcy">50</span>周年の記念企画として位置づけられた。
-            <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000000020.000129372.html" target="_blank" rel="noopener">日本ホビー協会プレスリリース（PR TIMES）</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <div class="kicker">【50周年記念企画】</div>
+        <h2>凪と編むニットMEET UP、日本ホビーショーで開催</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="60" r="22" />
+            <path d="M30,60 Q50,45 70,60" />
+            <path d="M32,48 Q50,60 68,72" />
+            <line x1="35" y1="20" x2="65" y2="75" />
+            <line x1="65" y1="20" x2="35" y2="75" />
+            <line x1="58" y1="66" x2="64" y2="72" stroke-width="1" />
+            <line x1="54" y1="70" x2="60" y2="76" stroke-width="1" />
+            <line x1="50" y1="74" x2="56" y2="80" stroke-width="1" />
+          </svg>
+          <span class="cap">編み針と毛糸（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>一般社団法人日本ホビー協会は、第<span class="tcy">50</span>回日本ホビーショー（<span class="tcy">5</span>月<span class="tcy">8</span>〜<span class="tcy">10</span>日、東京ビッグサイト東<span class="tcy">7</span>ホール）の開催に合わせ、大規模な編み物イベント「Nagi's Knits　凪と編むニットMEET UP！」を初日の<span class="tcy">5</span>月<span class="tcy">8</span>日<span class="tcy">15</span>時から<span class="tcy">16</span>時<span class="tcy">50</span>分まで、会場内の特設ステージで実施した。定員は<span class="tcy">96</span>名。参加者は「教わる」のではなく「一緒に手を動かす」形式で、凪さんと同じテーブルを囲みながら編み物を楽しんだ。</p>
+          <p>凪（Nagi's Knits）は神戸出身のニットデザイナー。音楽や古着カルチャーに影響を受け、伝統的な編み模様や技法を現代のスタイルに落とし込んだ作品を発表しており、国際的な編み物プラットフォーム「Ravelry」や自身のサイトで公開するパターンは国内外のニッターから支持を集めている。チケットは<span class="tcy">500</span>円（税込、別途ホビーショー入場券が必要）で、<span class="tcy">50</span>周年の記念企画として位置づけられた。</p>
+          <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000000020.000129372.html" target="_blank" rel="noopener">日本ホビー協会プレスリリース（PR TIMES）</a></p>
         </div>
       </article>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece brief">
-        <div class="vwrap">
-          <div class="illustration" style="height:260px;">
-            <svg viewBox="0 0 100 100">
-              <ellipse cx="50" cy="50" rx="30" ry="22" />
-              <path d="M22,42 Q50,30 78,42" />
-              <path d="M22,50 Q50,38 78,50" />
-              <path d="M22,58 Q50,46 78,58" />
-            </svg>
-            <span class="cap">提供された毛糸（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:260px;">
-            <span class="kicker">【協賛】</span>編み物業界<span class="tcy">8</span>社が糸・道具を提供
-          </div>
-          <div class="body-col" style="height:207px;">
-            「凪と編むニットMEET UP！」には、amirisu、オリムパス製絲、クロバー、D&Mトレーディング（KnitPro）、ディー・エム・シー（DMC）、内藤商事、ハマナカ、マラブリコの編み物関連<span class="tcy">8</span>社が糸や道具を提供した。参加者はこれらの製品を実際に手に取りながら編み物を楽しむことができ、メーカー各社にとっても自社製品を体験してもらう機会となった。
-            国内の毛糸・編み物道具メーカーが1つのイベントにこれだけの規模で顔をそろえるのは珍しく、競合関係にあるはずの各社が編み物人口の裾野拡大という共通の目的のもとに協力した形だ。参加者にとっても、ふだん店頭で個別に手に取る機会の少ない複数ブランドの糸を、一度に比較しながら試せる貴重な場になったとみられる。
-            <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000000020.000129372.html" target="_blank" rel="noopener">日本ホビー協会プレスリリース（PR TIMES）</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <div class="kicker">【協賛】</div>
+        <h2>編み物業界<span class="tcy">8</span>社が糸・道具を提供</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <ellipse cx="50" cy="50" rx="30" ry="22" />
+            <path d="M22,42 Q50,30 78,42" />
+            <path d="M22,50 Q50,38 78,50" />
+            <path d="M22,58 Q50,46 78,58" />
+          </svg>
+          <span class="cap">提供された毛糸（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>「凪と編むニットMEET UP！」には、amirisu、オリムパス製絲、クロバー、D&Mトレーディング（KnitPro）、ディー・エム・シー（DMC）、内藤商事、ハマナカ、マラブリコの編み物関連<span class="tcy">8</span>社が糸や道具を提供した。参加者はこれらの製品を実際に手に取りながら編み物を楽しむことができ、メーカー各社にとっても自社製品を体験してもらう機会となった。</p>
+          <p>国内の毛糸・編み物道具メーカーが1つのイベントにこれだけの規模で顔をそろえるのは珍しく、競合関係にあるはずの各社が編み物人口の裾野拡大という共通の目的のもとに協力した形だ。参加者にとっても、ふだん店頭で個別に手に取る機会の少ない複数ブランドの糸を、一度に比較しながら試せる貴重な場になったとみられる。</p>
+          <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000000020.000129372.html" target="_blank" rel="noopener">日本ホビー協会プレスリリース（PR TIMES）</a></p>
         </div>
       </article>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece secondary">
-        <div class="vwrap">
-          <div class="illustration" style="height:280px;">
-            <svg viewBox="0 0 100 100">
-              <rect x="15" y="15" width="70" height="70" />
-              <line x1="15" y1="15" x2="85" y2="85" />
-              <line x1="85" y1="15" x2="15" y2="85" />
-              <line x1="50" y1="15" x2="50" y2="85" />
-              <line x1="15" y1="50" x2="85" y2="50" />
-              <line x1="18" y1="18" x2="22" y2="18" stroke-width="1" />
-              <line x1="18" y1="22" x2="26" y2="22" stroke-width="1" />
-              <line x1="55" y1="55" x2="65" y2="55" stroke-width="1" />
-              <line x1="55" y1="60" x2="70" y2="60" stroke-width="1" />
-            </svg>
-            <span class="cap">ピースワークの図案（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:280px;">
-            <span class="kicker">【コンテスト】</span>キルトジャパンコンテスト<span class="tcy">20</span><span class="tcy">26</span>、部門詳細決まる
-          </div>
-          <div class="body-col" style="height:222px;">
-            月刊誌「キルトジャパン」が主催するコンテストの<span class="tcy">20</span><span class="tcy">26</span>年度募集要項が明らかになった。審査員は斉藤謠子、笹倉幸子、キルトジャパン編集部の各氏。部門はミニタペストリーをテーマ「私の好きなもの」で募るA部門（サイズ<span class="tcy">80</span>×<span class="tcy">80</span>cm以内）と、テーマ自由の袋ものを募るB部門（縦・横・高さの合計<span class="tcy">120</span>cm以内）の2部門となっている。
-            入賞・入選作品は<span class="tcy">11</span>月<span class="tcy">19</span>日から<span class="tcy">21</span>日にかけてクラフティングアートギャラリーで展示され、上位入賞・協賛社賞受賞作品は<span class="tcy">12</span>月<span class="tcy">4</span>日発売の「キルトジャパン<span class="tcy">20</span><span class="tcy">27</span>年<span class="tcy">1</span>月号」誌面で発表される。A部門のミニタペストリーとB部門の袋ものという組み合わせは、壁面に飾る作品と実用品という異なる楽しみ方を両立させる狙いとみられる。
-            <p class="source-line">出典：<a href="https://www.tezukuritown.com/nv/c/cquiltjp/" target="_blank" rel="noopener">キルトジャパンweb</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <div class="kicker">【コンテスト】</div>
+        <h2>キルトジャパンコンテスト<span class="tcy">20</span><span class="tcy">26</span>、部門詳細決まる</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <rect x="15" y="15" width="70" height="70" />
+            <line x1="15" y1="15" x2="85" y2="85" />
+            <line x1="85" y1="15" x2="15" y2="85" />
+            <line x1="50" y1="15" x2="50" y2="85" />
+            <line x1="15" y1="50" x2="85" y2="50" />
+            <line x1="18" y1="18" x2="22" y2="18" stroke-width="1" />
+            <line x1="18" y1="22" x2="26" y2="22" stroke-width="1" />
+            <line x1="55" y1="55" x2="65" y2="55" stroke-width="1" />
+            <line x1="55" y1="60" x2="70" y2="60" stroke-width="1" />
+          </svg>
+          <span class="cap">ピースワークの図案（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>月刊誌「キルトジャパン」が主催するコンテストの<span class="tcy">20</span><span class="tcy">26</span>年度募集要項が明らかになった。審査員は斉藤謠子、笹倉幸子、キルトジャパン編集部の各氏。部門はミニタペストリーをテーマ「私の好きなもの」で募るA部門（サイズ<span class="tcy">80</span>×<span class="tcy">80</span>cm以内）と、テーマ自由の袋ものを募るB部門（縦・横・高さの合計<span class="tcy">120</span>cm以内）の2部門となっている。</p>
+          <p>入賞・入選作品は<span class="tcy">11</span>月<span class="tcy">19</span>日から<span class="tcy">21</span>日にかけてクラフティングアートギャラリーで展示され、上位入賞・協賛社賞受賞作品は<span class="tcy">12</span>月<span class="tcy">4</span>日発売の「キルトジャパン<span class="tcy">20</span><span class="tcy">27</span>年<span class="tcy">1</span>月号」誌面で発表される。A部門のミニタペストリーとB部門の袋ものという組み合わせは、壁面に飾る作品と実用品という異なる楽しみ方を両立させる狙いとみられる。</p>
+          <p class="source-line">出典：<a href="https://www.tezukuritown.com/nv/c/cquiltjp/" target="_blank" rel="noopener">キルトジャパンweb</a></p>
         </div>
       </article>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece secondary">
-        <div class="vwrap">
-          <div class="illustration" style="height:280px;">
-            <svg viewBox="0 0 100 100">
-              <ellipse cx="50" cy="55" rx="28" ry="20" />
-              <path d="M25,45 Q50,35 75,45" />
-              <circle cx="35" cy="20" r="4" />
-              <circle cx="50" cy="14" r="4" />
-              <circle cx="65" cy="20" r="4" />
-              <line x1="35" y1="24" x2="42" y2="42" stroke-width="1" />
-              <line x1="50" y1="18" x2="50" y2="40" stroke-width="1" />
-              <line x1="65" y1="24" x2="58" y2="42" stroke-width="1" />
-            </svg>
-            <span class="cap">毛糸と国際コラボ（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:280px;">
-            <span class="type-badge" data-type="NEWS">NEWS</span>
-            <span class="kicker">【50周年記念企画】</span>創業<span class="tcy">80</span>余年のハマナカ、韓国ブランドと共演
-          </div>
-          <div class="body-col" style="height:340px;">
-            毛糸・手芸材料メーカーのハマナカ株式会社は、第<span class="tcy">50</span>回日本ホビーショーで「次世代へのコラボレーション」を掲げ、創業<span class="tcy">80</span>余年の老舗らしからぬ布陣を組んだ。春夏新商品「コトン」「コトンチャンキー」「アンダリヤソフト」に加え、<span class="tcy">25</span>周年を迎える「ウォッシュコットン」の限定カラーを展示販売したほか、韓国の人気手芸ブランド「LINEA（リネア）」と韓国の編み物インフルエンサー「Mongchi」氏を招いた国際色豊かな企画も披露した。
-            会場では監修者による手編み教室のほか、学校法人情報大学（京都コンピュータ学院・京都情報大学院大学）の学生チームが、デジタル技術と伝統的な編み物を融合させた映像・スライドを制作する産学連携プロジェクトも披露された。手芸人アイパー滝沢氏による「ゆびあみ」のライブ体験ステージも人気を集めたという。
-            老舗メーカーが海外ブランドやデジタル世代の学生と手を組む姿は、50回という節目を「守る」だけでなく「開く」方向に使おうとする姿勢の表れともいえる。
-            <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000000013.000026137.html" target="_blank" rel="noopener">ハマナカ株式会社プレスリリース（PR TIMES）</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <span class="type-badge" data-type="NEWS">NEWS</span>
+        <div class="kicker">【50周年記念企画】</div>
+        <h2>創業<span class="tcy">80</span>余年のハマナカ、韓国ブランドと共演</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <ellipse cx="50" cy="55" rx="28" ry="20" />
+            <path d="M25,45 Q50,35 75,45" />
+            <circle cx="35" cy="20" r="4" />
+            <circle cx="50" cy="14" r="4" />
+            <circle cx="65" cy="20" r="4" />
+            <line x1="35" y1="24" x2="42" y2="42" stroke-width="1" />
+            <line x1="50" y1="18" x2="50" y2="40" stroke-width="1" />
+            <line x1="65" y1="24" x2="58" y2="42" stroke-width="1" />
+          </svg>
+          <span class="cap">毛糸と国際コラボ（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>毛糸・手芸材料メーカーのハマナカ株式会社は、第<span class="tcy">50</span>回日本ホビーショーで「次世代へのコラボレーション」を掲げ、創業<span class="tcy">80</span>余年の老舗らしからぬ布陣を組んだ。春夏新商品「コトン」「コトンチャンキー」「アンダリヤソフト」に加え、<span class="tcy">25</span>周年を迎える「ウォッシュコットン」の限定カラーを展示販売したほか、韓国の人気手芸ブランド「LINEA（リネア）」と韓国の編み物インフルエンサー「Mongchi」氏を招いた国際色豊かな企画も披露した。</p>
+          <p>会場では監修者による手編み教室のほか、学校法人情報大学（京都コンピュータ学院・京都情報大学院大学）の学生チームが、デジタル技術と伝統的な編み物を融合させた映像・スライドを制作する産学連携プロジェクトも披露された。手芸人アイパー滝沢氏による「ゆびあみ」のライブ体験ステージも人気を集めたという。</p>
+          <p>老舗メーカーが海外ブランドやデジタル世代の学生と手を組む姿は、50回という節目を「守る」だけでなく「開く」方向に使おうとする姿勢の表れともいえる。</p>
+          <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000000013.000026137.html" target="_blank" rel="noopener">ハマナカ株式会社プレスリリース（PR TIMES）</a></p>
         </div>
       </article>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece brief">
-        <div class="vwrap">
-          <div class="illustration" style="height:240px;">
-            <svg viewBox="0 0 100 100">
-              <circle cx="50" cy="50" r="30" />
-              <path d="M50,20 A30,30 0 0,1 80,50" stroke-width="3" />
-              <circle cx="80" cy="50" r="4" />
-            </svg>
-            <span class="cap">百日百夜の編み物企画（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:240px;">
-            <span class="kicker">【催事・開催中】</span>フェリシモ「編み物フェスタ」、3年連続開催
-          </div>
-          <div class="body-col" style="height:255px;">
-            通信販売のフェリシモが手がける「クチュリエ」は、「百日百夜、編んで結う」をテーマにした「編み物フェスタ」を<span class="tcy">11</span>月<span class="tcy">3</span>日（手編みの日）から<span class="tcy">2026</span>年<span class="tcy">2</span>月<span class="tcy">10</span>日（ニットの日）まで、約<span class="tcy">100</span>日間にわたり実施した。大きな反響を受け今回で第<span class="tcy">3</span>回目となる。参加者が共通の編み図で一緒にかぎ針編みをする無料企画「編み物CAL」や、本紙既報のニットデザイナー・凪（Nagi's Knits）氏とのコラボキット販売なども展開した。
-            <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000004111.000012759.html" target="_blank" rel="noopener">株式会社フェリシモプレスリリース（PR TIMES）</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <div class="kicker">【催事・開催中】</div>
+        <h2>フェリシモ「編み物フェスタ」、3年連続開催</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="30" />
+            <path d="M50,20 A30,30 0 0,1 80,50" stroke-width="3" />
+            <circle cx="80" cy="50" r="4" />
+          </svg>
+          <span class="cap">百日百夜の編み物企画（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>通信販売のフェリシモが手がける「クチュリエ」は、「百日百夜、編んで結う」をテーマにした「編み物フェスタ」を<span class="tcy">11</span>月<span class="tcy">3</span>日（手編みの日）から<span class="tcy">2026</span>年<span class="tcy">2</span>月<span class="tcy">10</span>日（ニットの日）まで、約<span class="tcy">100</span>日間にわたり実施した。大きな反響を受け今回で第<span class="tcy">3</span>回目となる。参加者が共通の編み図で一緒にかぎ針編みをする無料企画「編み物CAL」や、本紙既報のニットデザイナー・凪（Nagi's Knits）氏とのコラボキット販売なども展開した。</p>
+          <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000004111.000012759.html" target="_blank" rel="noopener">株式会社フェリシモプレスリリース（PR TIMES）</a></p>
         </div>
       </article>
     </div>
@@ -1350,125 +1293,110 @@
       <span class="folio-mark">市場・企業動向面</span>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece lead">
-        <div class="vwrap">
-          <div class="illustration">
-            <svg viewBox="0 0 100 100">
-              <rect x="14" y="18" width="72" height="46" rx="6" />
-              <polygon points="42,32 42,50 58,41" />
-              <polyline points="14,84 34,74 54,79 86,58" />
-            </svg>
-            <span class="cap">動画で伝える手仕事（イメージ）</span>
-          </div>
-          <div class="headline-col">
-            <span class="kicker">【トレンド】</span>世界の手工芸品市場、<span class="tcy">20</span><span class="tcy">34</span>年に<span class="tcy">2</span>兆ドル規模へ
-          </div>
-          <div class="body-col" style="height:392px;">
-            調査会社IMARC Groupのレポートによると、世界の手工芸品市場は<span class="tcy">20</span><span class="tcy">25</span>年時点で<span class="tcy">98</span><span class="tcy">69</span>億米ドル規模と推計され、<span class="tcy">20</span><span class="tcy">34</span>年には2兆<span class="tcy">38</span>0億米ドルへ拡大する見通しだという。この間の年平均成長率（CAGR）は8.39％にのぼる。成長を牽引する要因として、機械生産では再現できない一点物への需要、Eコマースの普及による職人の販路拡大、天然素材や低炭素な生産への関心の高まりが挙げられている。
-            このほか、政府による助成や研修・展示会支援、可処分所得の増加に伴う高級品志向、観光需要に伴う土産物としての手工芸品消費、文化イベントや祭りの増加、SNSを通じた作り手の発信力向上なども追い風とされる。ハンドメイド販売を手がける個人ブロガーの間では、写真撮影の補助や商品説明文の作成にAIを活用する作家が増えているとの指摘や、静止画から短尺動画へと訴求の軸が移りつつあるとの見方も出ている。
-            製品カテゴリー別では木工品、アートメタル製品、織物、刺繍、ジュエリー、陶器など10のカテゴリーに分類されており、流通チャネルも量販店やデパートに加え、独立系の専門店やオンラインストアが並立している。
-            <p class="source-line">出典：<a href="https://www.gii.co.jp/report/imarc1941228-handicrafts-market-report-by-product-type.html" target="_blank" rel="noopener">手工芸品市場調査（IMARC Group／gii.co.jp）</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <div class="kicker">【トレンド】</div>
+        <h2>世界の手工芸品市場、<span class="tcy">20</span><span class="tcy">34</span>年に<span class="tcy">2</span>兆ドル規模へ</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <rect x="14" y="18" width="72" height="46" rx="6" />
+            <polygon points="42,32 42,50 58,41" />
+            <polyline points="14,84 34,74 54,79 86,58" />
+          </svg>
+          <span class="cap">動画で伝える手仕事（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>調査会社IMARC Groupのレポートによると、世界の手工芸品市場は<span class="tcy">20</span><span class="tcy">25</span>年時点で<span class="tcy">98</span><span class="tcy">69</span>億米ドル規模と推計され、<span class="tcy">20</span><span class="tcy">34</span>年には2兆<span class="tcy">38</span>0億米ドルへ拡大する見通しだという。この間の年平均成長率（CAGR）は8.39％にのぼる。成長を牽引する要因として、機械生産では再現できない一点物への需要、Eコマースの普及による職人の販路拡大、天然素材や低炭素な生産への関心の高まりが挙げられている。</p>
+          <p>このほか、政府による助成や研修・展示会支援、可処分所得の増加に伴う高級品志向、観光需要に伴う土産物としての手工芸品消費、文化イベントや祭りの増加、SNSを通じた作り手の発信力向上なども追い風とされる。ハンドメイド販売を手がける個人ブロガーの間では、写真撮影の補助や商品説明文の作成にAIを活用する作家が増えているとの指摘や、静止画から短尺動画へと訴求の軸が移りつつあるとの見方も出ている。</p>
+          <p>製品カテゴリー別では木工品、アートメタル製品、織物、刺繍、ジュエリー、陶器など10のカテゴリーに分類されており、流通チャネルも量販店やデパートに加え、独立系の専門店やオンラインストアが並立している。</p>
+          <p class="source-line">出典：<a href="https://www.gii.co.jp/report/imarc1941228-handicrafts-market-report-by-product-type.html" target="_blank" rel="noopener">手工芸品市場調査（IMARC Group／gii.co.jp）</a></p>
         </div>
       </article>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece secondary">
-        <div class="vwrap">
-          <div class="illustration" style="height:280px;">
-            <svg viewBox="0 0 100 100">
-              <line x1="15" y1="85" x2="90" y2="85" />
-              <rect x="25" y="55" width="12" height="30" />
-              <rect x="44" y="40" width="12" height="45" />
-              <rect x="63" y="25" width="12" height="60" />
-            </svg>
-            <span class="cap">拡大する国内EC市場（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:280px;">
-            <span class="kicker">【国内市場】</span>手芸・日用品雑貨のEC市場、単価上昇で拡大
-          </div>
-          <div class="body-col" style="height:195px;">
-            ECデータ分析を手がける株式会社Nintの調査によると、<span class="tcy">20</span><span class="tcy">25</span>年<span class="tcy">11</span>月から<span class="tcy">20</span><span class="tcy">26</span>年<span class="tcy">1</span>月にかけての国内における日用品雑貨・文房具・手芸のEC市場は、売上高が約<span class="tcy">48</span><span class="tcy">3</span>億<span class="tcy">1</span>千万円（前年同期比5.4％増）となった。販売数量は約<span class="tcy">31</span>06万点で前年同期比1.6％減となったが、平均単価が約<span class="tcy">15</span><span class="tcy">55</span>円（同7.2％増）まで上昇したことが、売上全体を押し上げた。
-            数量が減る一方で単価が伸びるという構図は、消費者が機能性や付加価値を重視する傾向を映しているとみられる。量販店の廉価品と専門店の高付加価値品という二極化が、EC上でも進んでいる可能性がある。
-            <p class="source-line">出典：<a href="https://www.nint.jp/blog/ec-daily-necessities-market-review/" target="_blank" rel="noopener">Nint EC市場レポート</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <div class="kicker">【国内市場】</div>
+        <h2>手芸・日用品雑貨のEC市場、単価上昇で拡大</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <line x1="15" y1="85" x2="90" y2="85" />
+            <rect x="25" y="55" width="12" height="30" />
+            <rect x="44" y="40" width="12" height="45" />
+            <rect x="63" y="25" width="12" height="60" />
+          </svg>
+          <span class="cap">拡大する国内EC市場（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>ECデータ分析を手がける株式会社Nintの調査によると、<span class="tcy">20</span><span class="tcy">25</span>年<span class="tcy">11</span>月から<span class="tcy">20</span><span class="tcy">26</span>年<span class="tcy">1</span>月にかけての国内における日用品雑貨・文房具・手芸のEC市場は、売上高が約<span class="tcy">48</span><span class="tcy">3</span>億<span class="tcy">1</span>千万円（前年同期比5.4％増）となった。販売数量は約<span class="tcy">31</span>06万点で前年同期比1.6％減となったが、平均単価が約<span class="tcy">15</span><span class="tcy">55</span>円（同7.2％増）まで上昇したことが、売上全体を押し上げた。</p>
+          <p>数量が減る一方で単価が伸びるという構図は、消費者が機能性や付加価値を重視する傾向を映しているとみられる。量販店の廉価品と専門店の高付加価値品という二極化が、EC上でも進んでいる可能性がある。</p>
+          <p class="source-line">出典：<a href="https://www.nint.jp/blog/ec-daily-necessities-market-review/" target="_blank" rel="noopener">Nint EC市場レポート</a></p>
         </div>
       </article>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece secondary">
-        <div class="vwrap">
-          <div class="illustration" style="height:280px;">
-            <svg viewBox="0 0 100 100">
-              <line x1="15" y1="85" x2="90" y2="85" />
-              <line x1="15" y1="85" x2="15" y2="15" />
-              <polyline points="20,70 38,55 55,60 72,35 85,25" />
-            </svg>
-            <span class="cap">決算に見る底力（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:280px;">
-            <span class="kicker">【企業動向】</span>服飾資材・手芸雑貨大手の決算に見る業界の底力
-          </div>
-          <div class="body-col" style="height:196px;">
-            服飾資材・アクセサリー卸で最大手のモリトは、<span class="tcy">20</span><span class="tcy">24</span>年<span class="tcy">11</span>月期の連結売上高が<span class="tcy">48</span><span class="tcy">5</span>億<span class="tcy">37</span>00万円（前期比横ばい）、営業利益は<span class="tcy">28</span>億<span class="tcy">68</span>00万円（同16.4％増）となった。手芸雑貨やインテリア雑貨などを扱う清原は、<span class="tcy">20</span><span class="tcy">24</span>年<span class="tcy">5</span>月期の売上高が<span class="tcy">21</span><span class="tcy">9</span>億円。両社の決算は、個人の手仕事を支える資材・卸売業界が、派手さはなくとも着実な基盤を保っていることを示している。
-            服飾資材・服飾雑貨卸業という業態は、消費者から見えにくい存在でありながら、手芸店の店頭に並ぶボタンやテープ、リボンといった細かな資材の多くを実質的に支えている。
-            <p class="source-line">出典：<a href="https://strainer.jp/tags/handicrafts" target="_blank" rel="noopener">手芸・ハンドメイド売上高ランキング（ストレイナー）</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <div class="kicker">【企業動向】</div>
+        <h2>服飾資材・手芸雑貨大手の決算に見る業界の底力</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <line x1="15" y1="85" x2="90" y2="85" />
+            <line x1="15" y1="85" x2="15" y2="15" />
+            <polyline points="20,70 38,55 55,60 72,35 85,25" />
+          </svg>
+          <span class="cap">決算に見る底力（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>服飾資材・アクセサリー卸で最大手のモリトは、<span class="tcy">20</span><span class="tcy">24</span>年<span class="tcy">11</span>月期の連結売上高が<span class="tcy">48</span><span class="tcy">5</span>億<span class="tcy">37</span>00万円（前期比横ばい）、営業利益は<span class="tcy">28</span>億<span class="tcy">68</span>00万円（同16.4％増）となった。手芸雑貨やインテリア雑貨などを扱う清原は、<span class="tcy">20</span><span class="tcy">24</span>年<span class="tcy">5</span>月期の売上高が<span class="tcy">21</span><span class="tcy">9</span>億円。両社の決算は、個人の手仕事を支える資材・卸売業界が、派手さはなくとも着実な基盤を保っていることを示している。</p>
+          <p>服飾資材・服飾雑貨卸業という業態は、消費者から見えにくい存在でありながら、手芸店の店頭に並ぶボタンやテープ、リボンといった細かな資材の多くを実質的に支えている。</p>
+          <p class="source-line">出典：<a href="https://strainer.jp/tags/handicrafts" target="_blank" rel="noopener">手芸・ハンドメイド売上高ランキング（ストレイナー）</a></p>
         </div>
       </article>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece secondary">
-        <div class="vwrap">
-          <div class="illustration" style="height:280px;">
-            <svg viewBox="0 0 100 100">
-              <circle cx="50" cy="50" r="32" />
-              <circle cx="50" cy="50" r="18" stroke-dasharray="4 3" />
-              <text x="50" y="56" text-anchor="middle" font-size="14" font-family="serif" stroke="none" fill="var(--ink)">￥</text>
-            </svg>
-            <span class="cap">顕在市場と潜在市場（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:280px;">
-            <span class="kicker">【市場調査】</span>ハンドメイド市場「潜在3000億円超」の試算
-          </div>
-          <div class="body-col" style="height:330px;">
-            サンクチュアリ出版・星野書房は<span class="tcy">5</span>月<span class="tcy">25</span>日、書籍『マチ針を使わずに既製服のように縫えるソーイングの教科書』を発売した。発売前重版が決まった同書の紹介文では、Creemaの成長可能性資料を引用する形で、国内ハンドメイドマーケットプレイスの「顕在市場」を約<span class="tcy">40</span>0億円、「潜在市場」を約<span class="tcy">30</span><span class="tcy">30</span>億円と試算している。
-            顕在市場と潜在市場の差が大きいのは、「何年やっても部屋着レベルから卒業できない」といった悩みを抱え、実際には仕立てを楽しみたいのに踏み出せていない層が相応にいることを示唆しているという。同書はマチ針を使わない独自の技法で、初心者でも既製服のような仕上がりを目指せるとしている。
-            市場調査そのものを目的にした発表ではなく書籍プロモーションの一環という位置づけだが、ハンドメイド業界の潜在需要を考えるうえでの一つの参考値として紹介する。
-            <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000000016.000146524.html" target="_blank" rel="noopener">星野書房プレスリリース（PR TIMES）</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <div class="kicker">【市場調査】</div>
+        <h2>ハンドメイド市場「潜在3000億円超」の試算</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="32" />
+            <circle cx="50" cy="50" r="18" stroke-dasharray="4 3" />
+            <text x="50" y="56" text-anchor="middle" font-size="14" font-family="serif" stroke="none" fill="var(--ink)">￥</text>
+          </svg>
+          <span class="cap">顕在市場と潜在市場（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>サンクチュアリ出版・星野書房は<span class="tcy">5</span>月<span class="tcy">25</span>日、書籍『マチ針を使わずに既製服のように縫えるソーイングの教科書』を発売した。発売前重版が決まった同書の紹介文では、Creemaの成長可能性資料を引用する形で、国内ハンドメイドマーケットプレイスの「顕在市場」を約<span class="tcy">40</span>0億円、「潜在市場」を約<span class="tcy">30</span><span class="tcy">30</span>億円と試算している。</p>
+          <p>顕在市場と潜在市場の差が大きいのは、「何年やっても部屋着レベルから卒業できない」といった悩みを抱え、実際には仕立てを楽しみたいのに踏み出せていない層が相応にいることを示唆しているという。同書はマチ針を使わない独自の技法で、初心者でも既製服のような仕上がりを目指せるとしている。</p>
+          <p>市場調査そのものを目的にした発表ではなく書籍プロモーションの一環という位置づけだが、ハンドメイド業界の潜在需要を考えるうえでの一つの参考値として紹介する。</p>
+          <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000000016.000146524.html" target="_blank" rel="noopener">星野書房プレスリリース（PR TIMES）</a></p>
         </div>
       </article>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece secondary">
-        <div class="vwrap">
-          <div class="illustration" style="height:280px;">
-            <svg viewBox="0 0 100 100">
-              <line x1="15" y1="85" x2="90" y2="85" stroke-width="1.4" />
-              <line x1="15" y1="85" x2="15" y2="15" stroke-width="1.4" />
-              <rect x="24" y="60" width="12" height="25" stroke-width="1.6" />
-              <rect x="42" y="48" width="12" height="37" stroke-width="1.6" />
-              <rect x="60" y="30" width="12" height="55" stroke-width="1.6" />
-              <path d="M20,58 L30,50 L48,44 L66,26" stroke-width="1.2" opacity="0.7" />
-              <polygon points="66,26 74,28 68,34" stroke-width="1" />
-            </svg>
-            <span class="cap">4期連続最高益（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:280px;">
-            <span class="type-badge" data-type="NEWS">NEWS</span>
-            <span class="kicker">【企業動向】</span>中川政七商店、売上高<span class="tcy">100</span>億円突破
-          </div>
-          <div class="body-col" style="height:600px;">
-            工芸品専門店を展開する株式会社中川政七商店は、<span class="tcy">20</span><span class="tcy">26</span>年<span class="tcy">2</span>月期の売上高が<span class="tcy">10</span>3億<span class="tcy">2</span>千万円（前期比<span class="tcy">12</span>％増）となり、初めて<span class="tcy">10</span>0億円を突破、<span class="tcy">4</span>期連続で過去最高業績を更新したと発表した。あわせて、資本・人材・経営支援を組み合わせた新事業「工芸メーカーへの成長投資」を始動する。
-            第一弾として、福井県の漆器メーカー・漆琳堂に<span class="tcy">10</span>％未満を出資。製造背景の拡張や人材採用の支援に加え、東京・大阪など都市圏での共同店舗開発を進め、<span class="tcy">20</span><span class="tcy">27</span>年度中の出店を目指すという。小売企業が単なる仕入れ先ではなく、産地メーカーに直接資本を入れて販路開拓まで伴走する取り組みは、本紙が繰り返し報じてきた「産地とマーケットをつなぐ」動きの、企業レベルでの実践例といえる。
-            <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000000089.000016802.html" target="_blank" rel="noopener">株式会社中川政七商店プレスリリース（PR TIMES）</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <span class="type-badge" data-type="NEWS">NEWS</span>
+        <div class="kicker">【企業動向】</div>
+        <h2>中川政七商店、売上高<span class="tcy">100</span>億円突破</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <line x1="15" y1="85" x2="90" y2="85" stroke-width="1.4" />
+            <line x1="15" y1="85" x2="15" y2="15" stroke-width="1.4" />
+            <rect x="24" y="60" width="12" height="25" stroke-width="1.6" />
+            <rect x="42" y="48" width="12" height="37" stroke-width="1.6" />
+            <rect x="60" y="30" width="12" height="55" stroke-width="1.6" />
+            <path d="M20,58 L30,50 L48,44 L66,26" stroke-width="1.2" opacity="0.7" />
+            <polygon points="66,26 74,28 68,34" stroke-width="1" />
+          </svg>
+          <span class="cap">4期連続最高益（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>工芸品専門店を展開する株式会社中川政七商店は、<span class="tcy">20</span><span class="tcy">26</span>年<span class="tcy">2</span>月期の売上高が<span class="tcy">10</span>3億<span class="tcy">2</span>千万円（前期比<span class="tcy">12</span>％増）となり、初めて<span class="tcy">10</span>0億円を突破、<span class="tcy">4</span>期連続で過去最高業績を更新したと発表した。あわせて、資本・人材・経営支援を組み合わせた新事業「工芸メーカーへの成長投資」を始動する。</p>
+          <p>第一弾として、福井県の漆器メーカー・漆琳堂に<span class="tcy">10</span>％未満を出資。製造背景の拡張や人材採用の支援に加え、東京・大阪など都市圏での共同店舗開発を進め、<span class="tcy">20</span><span class="tcy">27</span>年度中の出店を目指すという。小売企業が単なる仕入れ先ではなく、産地メーカーに直接資本を入れて販路開拓まで伴走する取り組みは、本紙が繰り返し報じてきた「産地とマーケットをつなぐ」動きの、企業レベルでの実践例といえる。</p>
+          <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000000089.000016802.html" target="_blank" rel="noopener">株式会社中川政七商店プレスリリース（PR TIMES）</a></p>
         </div>
       </article>
     </div>
@@ -1484,126 +1412,111 @@
       <span class="folio-mark">催事予告・教室動向面</span>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece secondary">
-        <div class="vwrap">
-          <div class="illustration" style="height:280px;">
-            <svg viewBox="0 0 100 100">
-              <circle cx="50" cy="45" r="30" />
-              <ellipse cx="50" cy="45" rx="12" ry="30" />
-              <line x1="20" y1="45" x2="80" y2="45" />
-              <line x1="25" y1="28" x2="75" y2="28" />
-              <line x1="25" y1="62" x2="75" y2="62" />
-            </svg>
-            <span class="cap">世界のキルトが集う（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:280px;">
-            <span class="kicker">【予告】</span>ワールドキルトフェスティバル、<span class="tcy">11</span>月に横浜で
-          </div>
-          <div class="body-col" style="height:400px;">
-            一般社団法人日本キルト協会は、「ワールドキルトフェスティバル<span class="tcy">20</span><span class="tcy">26</span> in YOKOHAMA」を<span class="tcy">11</span>月<span class="tcy">10</span>日から<span class="tcy">12</span>日まで、パシフィコ横浜ホールAで開催する。世界各国のキルト作品展示のほか、ワークショップやマーケットブースも用意される見通し。同時開催の「ワールドキルトアワード<span class="tcy">20</span><span class="tcy">26</span>」は国内外の作家によるキルト作品を対象としたコンテストで、こちらも会場での展示が予定されている。
-            国内のキルトジャパンコンテストが国内作家を対象とした親しみやすい規模のコンテストであるのに対し、ワールドキルトフェスティバルは海外作家も交えた国際色の強いイベントという位置づけになる。
-            <p class="source-line">出典：<a href="https://japan-quilt.com/news.php" target="_blank" rel="noopener">WORLD QUILT FESTIVAL 2026</a><a href="https://japan-quilt.com/" target="_blank" rel="noopener">日本キルト協会</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <div class="kicker">【予告】</div>
+        <h2>ワールドキルトフェスティバル、<span class="tcy">11</span>月に横浜で</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="45" r="30" />
+            <ellipse cx="50" cy="45" rx="12" ry="30" />
+            <line x1="20" y1="45" x2="80" y2="45" />
+            <line x1="25" y1="28" x2="75" y2="28" />
+            <line x1="25" y1="62" x2="75" y2="62" />
+          </svg>
+          <span class="cap">世界のキルトが集う（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>一般社団法人日本キルト協会は、「ワールドキルトフェスティバル<span class="tcy">20</span><span class="tcy">26</span> in YOKOHAMA」を<span class="tcy">11</span>月<span class="tcy">10</span>日から<span class="tcy">12</span>日まで、パシフィコ横浜ホールAで開催する。世界各国のキルト作品展示のほか、ワークショップやマーケットブースも用意される見通し。同時開催の「ワールドキルトアワード<span class="tcy">20</span><span class="tcy">26</span>」は国内外の作家によるキルト作品を対象としたコンテストで、こちらも会場での展示が予定されている。</p>
+          <p>国内のキルトジャパンコンテストが国内作家を対象とした親しみやすい規模のコンテストであるのに対し、ワールドキルトフェスティバルは海外作家も交えた国際色の強いイベントという位置づけになる。</p>
+          <p class="source-line">出典：<a href="https://japan-quilt.com/news.php" target="_blank" rel="noopener">WORLD QUILT FESTIVAL 2026</a><a href="https://japan-quilt.com/" target="_blank" rel="noopener">日本キルト協会</a></p>
         </div>
       </article>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece secondary">
-        <div class="vwrap">
-          <div class="illustration" style="height:280px;">
-            <svg viewBox="0 0 100 100">
-              <path d="M50,30 L15,40 L15,78 L50,68 Z" />
-              <path d="M50,30 L85,40 L85,78 L50,68 Z" />
-              <line x1="60" y1="75" x2="88" y2="20" />
-              <polygon points="88,20 94,26 88,32" />
-            </svg>
-            <span class="cap">学びの場（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:280px;">
-            <span class="kicker">【教室・スクール】</span>夏休み講座に動き、ユザワヤ芸術学院・ヴォーグ学園
-          </div>
-          <div class="body-col" style="height:650px;">
-            ホビー材料専門店を運営するユザワヤの「ユザワヤ芸術学院」は<span class="tcy">7</span>月<span class="tcy">6</span>日、<span class="tcy">8</span>月講習の案内を公開した。「夏休みの宿題に作ってみませんか」を切り口に、親子や学生層を意識した体験講座を打ち出している。
-            一方、ヴォーグ学園は<span class="tcy">20</span><span class="tcy">26</span>年の春から夏にかけて、つまみ細工・和の手芸、かご・バッグ・ポーチ、ドール・ミニチュア、ビーズ・アクセサリー、レースなど幅広いジャンルの定期講座・短期集中講座を開設。単発の体験レッスンも用意し、初めての受講者が趣味として定着させやすい導線を整えている。
-            両校に共通するのは、まず短時間・低価格の体験講座で「作る楽しさ」を味わってもらい、そこから定期講座や資格取得講座へ誘導するという設計だ。
-            <p class="source-line">出典：<a href="https://gakuin.yuzawaya.co.jp/" target="_blank" rel="noopener">ユザワヤ芸術学院</a><a href="https://www.voguegakuen.com/" target="_blank" rel="noopener">ヴォーグ学園</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <div class="kicker">【教室・スクール】</div>
+        <h2>夏休み講座に動き、ユザワヤ芸術学院・ヴォーグ学園</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <path d="M50,30 L15,40 L15,78 L50,68 Z" />
+            <path d="M50,30 L85,40 L85,78 L50,68 Z" />
+            <line x1="60" y1="75" x2="88" y2="20" />
+            <polygon points="88,20 94,26 88,32" />
+          </svg>
+          <span class="cap">学びの場（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>ホビー材料専門店を運営するユザワヤの「ユザワヤ芸術学院」は<span class="tcy">7</span>月<span class="tcy">6</span>日、<span class="tcy">8</span>月講習の案内を公開した。「夏休みの宿題に作ってみませんか」を切り口に、親子や学生層を意識した体験講座を打ち出している。</p>
+          <p>一方、ヴォーグ学園は<span class="tcy">20</span><span class="tcy">26</span>年の春から夏にかけて、つまみ細工・和の手芸、かご・バッグ・ポーチ、ドール・ミニチュア、ビーズ・アクセサリー、レースなど幅広いジャンルの定期講座・短期集中講座を開設。単発の体験レッスンも用意し、初めての受講者が趣味として定着させやすい導線を整えている。</p>
+          <p>両校に共通するのは、まず短時間・低価格の体験講座で「作る楽しさ」を味わってもらい、そこから定期講座や資格取得講座へ誘導するという設計だ。</p>
+          <p class="source-line">出典：<a href="https://gakuin.yuzawaya.co.jp/" target="_blank" rel="noopener">ユザワヤ芸術学院</a><a href="https://www.voguegakuen.com/" target="_blank" rel="noopener">ヴォーグ学園</a></p>
         </div>
       </article>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece secondary">
-        <div class="vwrap">
-          <div class="illustration" style="height:280px;">
-            <svg viewBox="0 0 100 100">
-              <rect x="15" y="35" width="70" height="50" />
-              <polygon points="15,35 50,12 85,35" />
-              <line x1="35" y1="60" x2="65" y2="60" stroke-width="1.2" />
-              <line x1="35" y1="70" x2="58" y2="70" stroke-width="1.2" />
-            </svg>
-            <span class="cap">百貨店の手芸催事（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:280px;">
-            <span class="kicker">【催事・振り返り】</span>「三越手芸」約<span class="tcy">100</span>ブランドが日本橋に集結
-          </div>
-          <div class="body-col" style="height:283px;">
-            株式会社三越伊勢丹ホールディングスは<span class="tcy">2</span>月<span class="tcy">25</span>日から<span class="tcy">3</span>月<span class="tcy">2</span>日まで、日本橋三越本店本館<span class="tcy">7</span>階催物会場で「三越手芸」を開催した。「特別な出会い、没頭する幸せな時間。」をテーマに、作家・ブランド約<span class="tcy">100</span>が集結し、一点物の作品展示から刺繍糸・キットなどの素材販売、ニット作家とブランドのコラボ商品まで幅広く展開した。
-            会期中には布小物作家の下田直子氏や、本紙<span class="tcy">4</span>面既報のニットデザイナー・凪（Nagi's Knits）氏らによる特別ワークショップも実施され、初心者の「始める」から経験者の「深める」までを後押しする構成だった。百貨店という場での大型手芸催事は、通販・催事場中心の販路とは異なる客層に手芸の魅力を届ける機会になっているとみられる。
-            <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000003034.000008372.html" target="_blank" rel="noopener">三越伊勢丹ホールディングスプレスリリース（PR TIMES）</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <div class="kicker">【催事・振り返り】</div>
+        <h2>「三越手芸」約<span class="tcy">100</span>ブランドが日本橋に集結</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <rect x="15" y="35" width="70" height="50" />
+            <polygon points="15,35 50,12 85,35" />
+            <line x1="35" y1="60" x2="65" y2="60" stroke-width="1.2" />
+            <line x1="35" y1="70" x2="58" y2="70" stroke-width="1.2" />
+          </svg>
+          <span class="cap">百貨店の手芸催事（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>株式会社三越伊勢丹ホールディングスは<span class="tcy">2</span>月<span class="tcy">25</span>日から<span class="tcy">3</span>月<span class="tcy">2</span>日まで、日本橋三越本店本館<span class="tcy">7</span>階催物会場で「三越手芸」を開催した。「特別な出会い、没頭する幸せな時間。」をテーマに、作家・ブランド約<span class="tcy">100</span>が集結し、一点物の作品展示から刺繍糸・キットなどの素材販売、ニット作家とブランドのコラボ商品まで幅広く展開した。</p>
+          <p>会期中には布小物作家の下田直子氏や、本紙<span class="tcy">4</span>面既報のニットデザイナー・凪（Nagi's Knits）氏らによる特別ワークショップも実施され、初心者の「始める」から経験者の「深める」までを後押しする構成だった。百貨店という場での大型手芸催事は、通販・催事場中心の販路とは異なる客層に手芸の魅力を届ける機会になっているとみられる。</p>
+          <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000003034.000008372.html" target="_blank" rel="noopener">三越伊勢丹ホールディングスプレスリリース（PR TIMES）</a></p>
         </div>
       </article>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece brief">
-        <div class="vwrap">
-          <div class="illustration" style="height:260px;">
-            <svg viewBox="0 0 100 100">
-              <rect x="20" y="40" width="60" height="15" />
-              <rect x="20" y="55" width="60" height="15" />
-              <line x1="30" y1="40" x2="30" y2="70" stroke-width="1" />
-              <line x1="50" y1="40" x2="50" y2="70" stroke-width="1" />
-              <line x1="70" y1="40" x2="70" y2="70" stroke-width="1" />
-              <path d="M20,40 Q50,25 80,40" stroke-width="1.2" />
-            </svg>
-            <span class="cap">竹籠づくり体験（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:260px;">
-            <span class="kicker">【教室・体験】</span>大丸京都、職人直伝の「粋活」を月<span class="tcy">4</span>回開催
-          </div>
-          <div class="body-col" style="height:283px;">
-            大丸京都店は<span class="tcy">20</span><span class="tcy">26</span>年<span class="tcy">4</span>月から、伝統工芸職人から直接学べる大人向けワークショップ「粋活－SUIKATSU－」を本格展開している。同店<span class="tcy">6</span>階「アトリエジャパン ダイマルキョウト」で月<span class="tcy">4</span>回程度開催し、京七宝、西陣織、竹籠づくり、蒔絵、漆の絵付け、京友禅など、京都ならではの伝統工芸を体験できる。料金は漆の絵付け<span class="tcy">7</span>150円、竹籠制作体験<span class="tcy">15</span>180円など講座によって幅がある。
-            ユザワヤ芸術学院やヴォーグ学園が短時間・低価格の体験から定期講座への誘導を狙うのに対し、「粋活」は単価の高い職人直伝の一回完結型体験に重心を置く。同じ「体験から始める」設計でも、価格帯と客層の狙いが異なる二つの型が併存している。
-            <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000003709.000025003.html" target="_blank" rel="noopener">大丸松坂屋百貨店プレスリリース（PR TIMES）</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <div class="kicker">【教室・体験】</div>
+        <h2>大丸京都、職人直伝の「粋活」を月<span class="tcy">4</span>回開催</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <rect x="20" y="40" width="60" height="15" />
+            <rect x="20" y="55" width="60" height="15" />
+            <line x1="30" y1="40" x2="30" y2="70" stroke-width="1" />
+            <line x1="50" y1="40" x2="50" y2="70" stroke-width="1" />
+            <line x1="70" y1="40" x2="70" y2="70" stroke-width="1" />
+            <path d="M20,40 Q50,25 80,40" stroke-width="1.2" />
+          </svg>
+          <span class="cap">竹籠づくり体験（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>大丸京都店は<span class="tcy">20</span><span class="tcy">26</span>年<span class="tcy">4</span>月から、伝統工芸職人から直接学べる大人向けワークショップ「粋活－SUIKATSU－」を本格展開している。同店<span class="tcy">6</span>階「アトリエジャパン ダイマルキョウト」で月<span class="tcy">4</span>回程度開催し、京七宝、西陣織、竹籠づくり、蒔絵、漆の絵付け、京友禅など、京都ならではの伝統工芸を体験できる。料金は漆の絵付け<span class="tcy">7</span>150円、竹籠制作体験<span class="tcy">15</span>180円など講座によって幅がある。</p>
+          <p>ユザワヤ芸術学院やヴォーグ学園が短時間・低価格の体験から定期講座への誘導を狙うのに対し、「粋活」は単価の高い職人直伝の一回完結型体験に重心を置く。同じ「体験から始める」設計でも、価格帯と客層の狙いが異なる二つの型が併存している。</p>
+          <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000003709.000025003.html" target="_blank" rel="noopener">大丸松坂屋百貨店プレスリリース（PR TIMES）</a></p>
         </div>
       </article>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece brief">
-        <div class="vwrap">
-          <div class="illustration" style="height:240px;">
-            <svg viewBox="0 0 100 100">
-              <circle cx="50" cy="35" r="14" />
-              <path d="M30,85 Q30,55 50,55 Q70,55 70,85" />
-              <line x1="42" y1="60" x2="42" y2="75" stroke-width="1.2" />
-              <line x1="58" y1="60" x2="58" y2="75" stroke-width="1.2" />
-            </svg>
-            <span class="cap">高校生のワークショップ（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:240px;">
-            <span class="kicker">【教室・学生向け】</span>通信制高校、中高生向け手芸体験を無料開催
-          </div>
-          <div class="body-col" style="height:220px;">
-            広域通信制のヒューマンキャンパス高等学校は<span class="tcy">7</span>月<span class="tcy">25</span>日、秋葉原学習センターで中高生向けの無料ワークショップを開催する。針や糸を使わない「モールドール制作」（ぬい専攻体験）と、編み針不要の「指編みシュシュ制作」（ニット専攻体験）の<span class="tcy">2</span>プログラムを用意し、定員<span class="tcy">20</span>名（先着順、作品持ち帰り可）。講師はサンリオ出身で著書<span class="tcy">750</span>冊超の手芸作家・寺西恵里子氏が務める。
-            高校の専門科目として手芸を学べる進路があることを示す事例で、大人向け講座とは異なる裾野の広げ方といえる。
-            <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000000100.000020765.html" target="_blank" rel="noopener">学校法人佐藤学園プレスリリース（PR TIMES）</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <div class="kicker">【教室・学生向け】</div>
+        <h2>通信制高校、中高生向け手芸体験を無料開催</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="35" r="14" />
+            <path d="M30,85 Q30,55 50,55 Q70,55 70,85" />
+            <line x1="42" y1="60" x2="42" y2="75" stroke-width="1.2" />
+            <line x1="58" y1="60" x2="58" y2="75" stroke-width="1.2" />
+          </svg>
+          <span class="cap">高校生のワークショップ（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>広域通信制のヒューマンキャンパス高等学校は<span class="tcy">7</span>月<span class="tcy">25</span>日、秋葉原学習センターで中高生向けの無料ワークショップを開催する。針や糸を使わない「モールドール制作」（ぬい専攻体験）と、編み針不要の「指編みシュシュ制作」（ニット専攻体験）の<span class="tcy">2</span>プログラムを用意し、定員<span class="tcy">20</span>名（先着順、作品持ち帰り可）。講師はサンリオ出身で著書<span class="tcy">750</span>冊超の手芸作家・寺西恵里子氏が務める。</p>
+          <p>高校の専門科目として手芸を学べる進路があることを示す事例で、大人向け講座とは異なる裾野の広げ方といえる。</p>
+          <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000000100.000020765.html" target="_blank" rel="noopener">学校法人佐藤学園プレスリリース（PR TIMES）</a></p>
         </div>
       </article>
     </div>
@@ -1619,55 +1532,49 @@
       <span class="folio-mark">全国催事暦面</span>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece secondary">
-        <div class="vwrap">
-          <div class="illustration" style="height:280px;">
-            <svg viewBox="0 0 100 100">
-              <rect x="15" y="20" width="70" height="65" rx="4" />
-              <line x1="15" y1="38" x2="85" y2="38" />
-              <line x1="30" y1="12" x2="30" y2="26" />
-              <line x1="70" y1="12" x2="70" y2="26" />
-              <line x1="25" y1="48" x2="32" y2="48" stroke-width="1.2" />
-              <line x1="40" y1="48" x2="47" y2="48" stroke-width="1.2" />
-              <line x1="55" y1="48" x2="62" y2="48" stroke-width="1.2" />
-              <line x1="25" y1="58" x2="32" y2="58" stroke-width="1.2" />
-              <line x1="40" y1="58" x2="47" y2="58" stroke-width="1.2" />
-            </svg>
-            <span class="cap">催事暦（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:280px;">
-            <span class="kicker">【イベントカレンダー】</span><span class="tcy">8</span>月は全国<span class="tcy">169</span>件、クラフトの祭典続々
-          </div>
-          <div class="body-col" style="height:680px;">
-            ハンドメイドイベント情報サイトの集計によると、<span class="tcy">20</span><span class="tcy">26</span>年<span class="tcy">8</span>月は全国で<span class="tcy">169</span>件のハンドメイドイベント・クラフトフェア・手づくり市が開催される見通しだ。都道府県別では東京都<span class="tcy">22</span>件、千葉県<span class="tcy">12</span>件、大阪府<span class="tcy">11</span>件などが目立つ。
-            <span class="tcy">7</span>月も全国で<span class="tcy">180</span>件と、月をまたいでも高水準の開催が続く。<span class="tcy">7</span>月は東京都<span class="tcy">25</span>件、京都府<span class="tcy">13</span>件、兵庫県<span class="tcy">11</span>件が目立ち、関西圏の存在感が8月より強いのが特徴だ。件数の多さが際立つ大都市圏は、来場者数を見込みやすいことが背景にあるとみられる。
-            <p class="source-line">出典：<a href="https://handmadeevent.jp/calendar/2026-08" target="_blank" rel="noopener">ハンドメイドイベント帖（8月）</a><a href="https://handmadeevent.jp/calendar/2026-07" target="_blank" rel="noopener">同（7月）</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <div class="kicker">【イベントカレンダー】</div>
+        <h2><span class="tcy">8</span>月は全国<span class="tcy">169</span>件、クラフトの祭典続々</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <rect x="15" y="20" width="70" height="65" rx="4" />
+            <line x1="15" y1="38" x2="85" y2="38" />
+            <line x1="30" y1="12" x2="30" y2="26" />
+            <line x1="70" y1="12" x2="70" y2="26" />
+            <line x1="25" y1="48" x2="32" y2="48" stroke-width="1.2" />
+            <line x1="40" y1="48" x2="47" y2="48" stroke-width="1.2" />
+            <line x1="55" y1="48" x2="62" y2="48" stroke-width="1.2" />
+            <line x1="25" y1="58" x2="32" y2="58" stroke-width="1.2" />
+            <line x1="40" y1="58" x2="47" y2="58" stroke-width="1.2" />
+          </svg>
+          <span class="cap">催事暦（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>ハンドメイドイベント情報サイトの集計によると、<span class="tcy">20</span><span class="tcy">26</span>年<span class="tcy">8</span>月は全国で<span class="tcy">169</span>件のハンドメイドイベント・クラフトフェア・手づくり市が開催される見通しだ。都道府県別では東京都<span class="tcy">22</span>件、千葉県<span class="tcy">12</span>件、大阪府<span class="tcy">11</span>件などが目立つ。</p>
+          <p><span class="tcy">7</span>月も全国で<span class="tcy">180</span>件と、月をまたいでも高水準の開催が続く。<span class="tcy">7</span>月は東京都<span class="tcy">25</span>件、京都府<span class="tcy">13</span>件、兵庫県<span class="tcy">11</span>件が目立ち、関西圏の存在感が8月より強いのが特徴だ。件数の多さが際立つ大都市圏は、来場者数を見込みやすいことが背景にあるとみられる。</p>
+          <p class="source-line">出典：<a href="https://handmadeevent.jp/calendar/2026-08" target="_blank" rel="noopener">ハンドメイドイベント帖（8月）</a><a href="https://handmadeevent.jp/calendar/2026-07" target="_blank" rel="noopener">同（7月）</a></p>
         </div>
       </article>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece secondary">
-        <div class="vwrap">
-          <div class="illustration" style="height:260px;">
-            <svg viewBox="0 0 100 100">
-              <polygon points="20,55 50,20 80,55" />
-              <rect x="26" y="55" width="48" height="30" />
-              <line x1="50" y1="20" x2="50" y2="10" />
-              <polygon points="50,10 64,15 50,20" />
-            </svg>
-            <span class="cap">各地の祭典（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:260px;">
-            <span class="kicker">【催事】</span>今週末は浜松・四天王寺・代々木で
-          </div>
-          <div class="body-col" style="height:460px;">
-            今週末から来週にかけても、各地で規模の大きいイベントが続く。静岡県では<span class="tcy">7</span>月<span class="tcy">18</span>日から<span class="tcy">20</span>日まで「浜松アートフェスティバル<span class="tcy">20</span><span class="tcy">26</span>」が砂山町会場で開催中。大阪では<span class="tcy">7</span>月<span class="tcy">21</span>日・<span class="tcy">22</span>日に四天王寺骨董市、東京では<span class="tcy">7</span>月<span class="tcy">24</span>日・<span class="tcy">25</span>日に代々木公園で「アースガーデン"夏"ヨルイチ<span class="tcy">20</span><span class="tcy">26</span>」が予定される。広島でも<span class="tcy">7</span>月<span class="tcy">25</span>日・<span class="tcy">26</span>日に広島産業会館東展示館で「ハンドメイドフェスティバル<span class="tcy">20</span><span class="tcy">26</span>」が控えており、週末ごとに全国どこかで大型イベントが開催される状態が続いている。
-            東京都内では<span class="tcy">7</span>月<span class="tcy">16</span>日から<span class="tcy">20</span>日までヒルトピアアートスクエアで「刺繍アートフェスティバル<span class="tcy">20</span><span class="tcy">26</span>」も同時開催中（詳細<span class="tcy">8</span>面）。<span class="tcy">8</span>月には大阪のATCホールで「OSAKAアート＆てづくりバザール」も予定されており、関西圏でも大型催事が続く見通しだ。
-            <p class="source-line">出典：<a href="https://handmadeevent.jp/" target="_blank" rel="noopener">ハンドメイドイベント帖</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <div class="kicker">【催事】</div>
+        <h2>今週末は浜松・四天王寺・代々木で</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <polygon points="20,55 50,20 80,55" />
+            <rect x="26" y="55" width="48" height="30" />
+            <line x1="50" y1="20" x2="50" y2="10" />
+            <polygon points="50,10 64,15 50,20" />
+          </svg>
+          <span class="cap">各地の祭典（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>今週末から来週にかけても、各地で規模の大きいイベントが続く。静岡県では<span class="tcy">7</span>月<span class="tcy">18</span>日から<span class="tcy">20</span>日まで「浜松アートフェスティバル<span class="tcy">20</span><span class="tcy">26</span>」が砂山町会場で開催中。大阪では<span class="tcy">7</span>月<span class="tcy">21</span>日・<span class="tcy">22</span>日に四天王寺骨董市、東京では<span class="tcy">7</span>月<span class="tcy">24</span>日・<span class="tcy">25</span>日に代々木公園で「アースガーデン"夏"ヨルイチ<span class="tcy">20</span><span class="tcy">26</span>」が予定される。広島でも<span class="tcy">7</span>月<span class="tcy">25</span>日・<span class="tcy">26</span>日に広島産業会館東展示館で「ハンドメイドフェスティバル<span class="tcy">20</span><span class="tcy">26</span>」が控えており、週末ごとに全国どこかで大型イベントが開催される状態が続いている。</p>
+          <p>東京都内では<span class="tcy">7</span>月<span class="tcy">16</span>日から<span class="tcy">20</span>日までヒルトピアアートスクエアで「刺繍アートフェスティバル<span class="tcy">20</span><span class="tcy">26</span>」も同時開催中（詳細<span class="tcy">8</span>面）。<span class="tcy">8</span>月には大阪のATCホールで「OSAKAアート＆てづくりバザール」も予定されており、関西圏でも大型催事が続く見通しだ。</p>
+          <p class="source-line">出典：<a href="https://handmadeevent.jp/" target="_blank" rel="noopener">ハンドメイドイベント帖</a></p>
         </div>
       </article>
     </div>
@@ -1716,126 +1623,111 @@
       <span class="folio-mark">刺繍・刺し子面</span>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece lead">
-        <div class="vwrap">
-          <div class="illustration">
-            <svg viewBox="0 0 100 100">
-              <line x1="20" y1="20" x2="20" y2="80" stroke-dasharray="6 5" />
-              <line x1="50" y1="20" x2="50" y2="80" stroke-dasharray="6 5" />
-              <line x1="80" y1="20" x2="80" y2="80" stroke-dasharray="6 5" />
-              <line x1="20" y1="20" x2="80" y2="20" stroke-dasharray="6 5" />
-              <line x1="20" y1="50" x2="80" y2="50" stroke-dasharray="6 5" />
-              <line x1="20" y1="80" x2="80" y2="80" stroke-dasharray="6 5" />
-            </svg>
-            <span class="cap">刺し子の運針（イメージ）</span>
-          </div>
-          <div class="headline-col">
-            <span class="kicker">【新商品】</span>刺し子ブランド、夏の新柄がそろい踏み
-          </div>
-          <div class="body-col" style="height:820px;">
-            手芸・生地専門店「ホビーラホビーレ」は<span class="tcy">7</span>月<span class="tcy">10</span>日、刺し子関連の新商品「トライアングルハーモニー」「Sashiko Style」「コスモスの贈り物」「エストレーヤ」などを発売した。刺し子は古くから布の補強や保温を目的とした運針の技法だが、近年は装飾としての美しさや、無心で針を進める癒やしの手仕事として注目を集めている。
-            同店は<span class="tcy">7</span>月<span class="tcy">24</span>日にも秋らしさを感じさせる新商品の発売を予定しており、季節の変わり目に合わせた商品展開を続けている。
-            「トライアングルハーモニー」や「エストレーヤ」といった柄名からもうかがえるように、刺し子の図案は幾何学模様が中心で、同じ運針でも布地の色や図案の組み合わせ次第で印象が大きく変わる。単調な反復作業に見えて、実際には図案設計の工夫が凝らされている点が、長く定番として支持される理由のひとつだろう。
-            <p class="source-line">出典：<a href="https://www.hobbyra-hobbyre.com/" target="_blank" rel="noopener">ホビーラホビーレ</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <div class="kicker">【新商品】</div>
+        <h2>刺し子ブランド、夏の新柄がそろい踏み</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <line x1="20" y1="20" x2="20" y2="80" stroke-dasharray="6 5" />
+            <line x1="50" y1="20" x2="50" y2="80" stroke-dasharray="6 5" />
+            <line x1="80" y1="20" x2="80" y2="80" stroke-dasharray="6 5" />
+            <line x1="20" y1="20" x2="80" y2="20" stroke-dasharray="6 5" />
+            <line x1="20" y1="50" x2="80" y2="50" stroke-dasharray="6 5" />
+            <line x1="20" y1="80" x2="80" y2="80" stroke-dasharray="6 5" />
+          </svg>
+          <span class="cap">刺し子の運針（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>手芸・生地専門店「ホビーラホビーレ」は<span class="tcy">7</span>月<span class="tcy">10</span>日、刺し子関連の新商品「トライアングルハーモニー」「Sashiko Style」「コスモスの贈り物」「エストレーヤ」などを発売した。刺し子は古くから布の補強や保温を目的とした運針の技法だが、近年は装飾としての美しさや、無心で針を進める癒やしの手仕事として注目を集めている。</p>
+          <p>同店は<span class="tcy">7</span>月<span class="tcy">24</span>日にも秋らしさを感じさせる新商品の発売を予定しており、季節の変わり目に合わせた商品展開を続けている。</p>
+          <p>「トライアングルハーモニー」や「エストレーヤ」といった柄名からもうかがえるように、刺し子の図案は幾何学模様が中心で、同じ運針でも布地の色や図案の組み合わせ次第で印象が大きく変わる。単調な反復作業に見えて、実際には図案設計の工夫が凝らされている点が、長く定番として支持される理由のひとつだろう。</p>
+          <p class="source-line">出典：<a href="https://www.hobbyra-hobbyre.com/" target="_blank" rel="noopener">ホビーラホビーレ</a></p>
         </div>
       </article>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece brief">
-        <div class="vwrap">
-          <div class="illustration" style="height:240px;">
-            <svg viewBox="0 0 100 100">
-              <circle cx="50" cy="20" r="5" />
-              <line x1="50" y1="25" x2="50" y2="35" />
-              <circle cx="50" cy="57" r="22" />
-              <line x1="38" y1="50" x2="62" y2="64" />
-              <line x1="62" y1="50" x2="38" y2="64" />
-            </svg>
-            <span class="cap">立体刺繍アクセサリー（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:240px;">
-            <span class="kicker">【催事】</span>創業<span class="tcy">145</span>年の刺繍技術、立体アクセサリーで店頭に
-          </div>
-          <div class="body-col" style="height:157px;">
-            立体刺繍によるピアスやイヤリングを手がけるブランド「000（トリプル・オゥ）」は、<span class="tcy">7</span>月<span class="tcy">16</span>日から<span class="tcy">20</span>日まで遠鉄百貨店「サンチノ」（浜松市）でポップアップストアを開催する。同ブランドは創業<span class="tcy">145</span>年の刺繍メーカーが培ってきた技術を、軽くやわらかな肌当たりの立体刺繍アクセサリーに落とし込んでおり、夏向けの新作ピアス・イヤリングも展開している。
-            長年培われてきた刺繍技術を、アパレル向けの装飾ではなくアクセサリー単体のブランドとして展開する試みは、老舗メーカーが新たな顧客層を開拓する一つの手法といえる。
-            <p class="source-line">出典：<a href="https://www.000-triple.com/" target="_blank" rel="noopener">000公式サイト</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <div class="kicker">【催事】</div>
+        <h2>創業<span class="tcy">145</span>年の刺繍技術、立体アクセサリーで店頭に</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="20" r="5" />
+            <line x1="50" y1="25" x2="50" y2="35" />
+            <circle cx="50" cy="57" r="22" />
+            <line x1="38" y1="50" x2="62" y2="64" />
+            <line x1="62" y1="50" x2="38" y2="64" />
+          </svg>
+          <span class="cap">立体刺繍アクセサリー（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>立体刺繍によるピアスやイヤリングを手がけるブランド「000（トリプル・オゥ）」は、<span class="tcy">7</span>月<span class="tcy">16</span>日から<span class="tcy">20</span>日まで遠鉄百貨店「サンチノ」（浜松市）でポップアップストアを開催する。同ブランドは創業<span class="tcy">145</span>年の刺繍メーカーが培ってきた技術を、軽くやわらかな肌当たりの立体刺繍アクセサリーに落とし込んでおり、夏向けの新作ピアス・イヤリングも展開している。</p>
+          <p>長年培われてきた刺繍技術を、アパレル向けの装飾ではなくアクセサリー単体のブランドとして展開する試みは、老舗メーカーが新たな顧客層を開拓する一つの手法といえる。</p>
+          <p class="source-line">出典：<a href="https://www.000-triple.com/" target="_blank" rel="noopener">000公式サイト</a></p>
         </div>
       </article>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece brief">
-        <div class="vwrap">
-          <div class="illustration" style="height:240px;">
-            <svg viewBox="0 0 100 100">
-              <path d="M30,20 L30,85 L70,85 L70,20 L58,28 L50,20 L42,28 Z" />
-              <line x1="40" y1="45" x2="60" y2="45" stroke-width="1.2" />
-              <line x1="40" y1="55" x2="60" y2="55" stroke-width="1.2" />
-              <line x1="40" y1="65" x2="55" y2="65" stroke-width="1.2" />
-            </svg>
-            <span class="cap">カットワーク刺繍のシャツ（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:240px;">
-            <span class="kicker">【ファッション】</span>刺繍シャツにアパレルも注目
-          </div>
-          <div class="body-col" style="height:127px;">
-            手芸専門店だけでなく、アパレルの世界でも刺繍への注目が続く。「JOURNAL STANDARD relume」は米国ブランド「PENDLETON」との別注として、伝統的なネイティブ柄をカットワーク刺繍で表現したオープンカラーシャツを<span class="tcy">2026</span>年SS（春夏）モデルとして<span class="tcy">7</span>月上旬に発売した。
-            布地を切り抜いて刺繍で縁取る「カットワーク」は手間のかかる技法で、立体感と高級感が特徴とされる。
-            <p class="source-line">出典：<a href="https://www.fullress.com/journal-standard-relume-pendleton-2026-ss-cutwork-embroidered-open-collar-shirt/" target="_blank" rel="noopener">Fullress</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <div class="kicker">【ファッション】</div>
+        <h2>刺繍シャツにアパレルも注目</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <path d="M30,20 L30,85 L70,85 L70,20 L58,28 L50,20 L42,28 Z" />
+            <line x1="40" y1="45" x2="60" y2="45" stroke-width="1.2" />
+            <line x1="40" y1="55" x2="60" y2="55" stroke-width="1.2" />
+            <line x1="40" y1="65" x2="55" y2="65" stroke-width="1.2" />
+          </svg>
+          <span class="cap">カットワーク刺繍のシャツ（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>手芸専門店だけでなく、アパレルの世界でも刺繍への注目が続く。「JOURNAL STANDARD relume」は米国ブランド「PENDLETON」との別注として、伝統的なネイティブ柄をカットワーク刺繍で表現したオープンカラーシャツを<span class="tcy">2026</span>年SS（春夏）モデルとして<span class="tcy">7</span>月上旬に発売した。</p>
+          <p>布地を切り抜いて刺繍で縁取る「カットワーク」は手間のかかる技法で、立体感と高級感が特徴とされる。</p>
+          <p class="source-line">出典：<a href="https://www.fullress.com/journal-standard-relume-pendleton-2026-ss-cutwork-embroidered-open-collar-shirt/" target="_blank" rel="noopener">Fullress</a></p>
         </div>
       </article>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece secondary">
-        <div class="vwrap">
-          <div class="illustration" style="height:280px;">
-            <svg viewBox="0 0 100 100">
-              <rect x="20" y="20" width="60" height="60" rx="8" />
-              <path d="M35,50 a15,15 0 1,1 30,0 a15,15 0 1,1 -30,0" stroke-width="1.2" />
-              <circle cx="50" cy="50" r="5" />
-            </svg>
-            <span class="cap">刺繍ワッペン（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:280px;">
-            <span class="kicker">【新商品】</span>原宿発の刺繍ワッペン、作家<span class="tcy">24</span>名<span class="tcy">200</span>種に拡大
-          </div>
-          <div class="body-col" style="height:245px;">
-            刺繍・お直し専門店「PATCH&amp;PLAY」（東京都渋谷区神宮前、運営：株式会社STORY&amp;Co.）は<span class="tcy">7</span>月<span class="tcy">3</span>日、クリエイターワッペンシリーズに新たに<span class="tcy">3</span>名のイラストレーターを追加し、参加作家<span class="tcy">24</span>名・ラインナップ<span class="tcy">200</span>種類まで拡大したと発表した。今回は初の韓国出身クリエイターも参加し、「身につけるアート」という提案の幅を広げている。
-            <span class="tcy">20</span><span class="tcy">25</span>年<span class="tcy">11</span>月に原宿でオープンした同店は、刺繍という伝統的な技法を、既製の衣類に後から施す「お直し」「カスタム」の文脈で提案する新しいタイプの専門店として注目される。
-            <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000000059.000028449.html" target="_blank" rel="noopener">株式会社STORY&amp;Co.プレスリリース（PR TIMES）</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <div class="kicker">【新商品】</div>
+        <h2>原宿発の刺繍ワッペン、作家<span class="tcy">24</span>名<span class="tcy">200</span>種に拡大</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <rect x="20" y="20" width="60" height="60" rx="8" />
+            <path d="M35,50 a15,15 0 1,1 30,0 a15,15 0 1,1 -30,0" stroke-width="1.2" />
+            <circle cx="50" cy="50" r="5" />
+          </svg>
+          <span class="cap">刺繍ワッペン（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>刺繍・お直し専門店「PATCH&amp;PLAY」（東京都渋谷区神宮前、運営：株式会社STORY&amp;Co.）は<span class="tcy">7</span>月<span class="tcy">3</span>日、クリエイターワッペンシリーズに新たに<span class="tcy">3</span>名のイラストレーターを追加し、参加作家<span class="tcy">24</span>名・ラインナップ<span class="tcy">200</span>種類まで拡大したと発表した。今回は初の韓国出身クリエイターも参加し、「身につけるアート」という提案の幅を広げている。</p>
+          <p><span class="tcy">20</span><span class="tcy">25</span>年<span class="tcy">11</span>月に原宿でオープンした同店は、刺繍という伝統的な技法を、既製の衣類に後から施す「お直し」「カスタム」の文脈で提案する新しいタイプの専門店として注目される。</p>
+          <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000000059.000028449.html" target="_blank" rel="noopener">株式会社STORY&amp;Co.プレスリリース（PR TIMES）</a></p>
         </div>
       </article>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece secondary">
-        <div class="vwrap">
-          <div class="illustration" style="height:280px;">
-            <svg viewBox="0 0 100 100">
-              <rect x="18" y="20" width="64" height="64" />
-              <circle cx="50" cy="52" r="20" stroke-dasharray="3 3" />
-              <line x1="50" y1="32" x2="50" y2="72" stroke-width="1" />
-              <line x1="30" y1="52" x2="70" y2="52" stroke-width="1" />
-            </svg>
-            <span class="cap">刺繍アートフェスティバル（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:280px;">
-            <span class="type-badge" data-type="NEWS">NEWS</span>
-            <span class="kicker">【催事・開催中】</span>刺繍アートフェスティバル、都内で<span class="tcy">130</span>作品
-          </div>
-          <div class="body-col" style="height:295px;">
-            「刺繍アートフェスティバル<span class="tcy">20</span><span class="tcy">26</span>」が<span class="tcy">7</span>月<span class="tcy">16</span>日から<span class="tcy">20</span>日まで、ヒルトン東京地下<span class="tcy">1</span>階のヒルトピアアートスクエアで開催されている（入場無料）。フランス刺繍、白糸刺繍、スモッキング、自由作品など、年齢・経験・国籍を問わず公募したコンテスト作品<span class="tcy">130</span>点余りを展示するほか、刺繍キットや手芸資材の販売も行う。
-            公募は<span class="tcy">20</span><span class="tcy">25</span>年<span class="tcy">9</span>月から<span class="tcy">11</span>月にかけて実施され、出品料は<span class="tcy">4</span>950円。作品写真による一次審査を経て、来場者投票でグランプリを決める方式で、結果は<span class="tcy">7</span>月<span class="tcy">21</span>日に発表される。プロ・アマ問わず国内外から応募できる間口の広さが特徴で、原宿のPATCH&amp;PLAYのような専門店の動きと合わせ、刺繍というジャンルへの参入路が多様化している様子がうかがえる。
-            <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000000011.000154768.html" target="_blank" rel="noopener">株式会社ブーケプレスリリース（PR TIMES）</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <span class="type-badge" data-type="NEWS">NEWS</span>
+        <div class="kicker">【催事・開催中】</div>
+        <h2>刺繍アートフェスティバル、都内で<span class="tcy">130</span>作品</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <rect x="18" y="20" width="64" height="64" />
+            <circle cx="50" cy="52" r="20" stroke-dasharray="3 3" />
+            <line x1="50" y1="32" x2="50" y2="72" stroke-width="1" />
+            <line x1="30" y1="52" x2="70" y2="52" stroke-width="1" />
+          </svg>
+          <span class="cap">刺繍アートフェスティバル（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>「刺繍アートフェスティバル<span class="tcy">20</span><span class="tcy">26</span>」が<span class="tcy">7</span>月<span class="tcy">16</span>日から<span class="tcy">20</span>日まで、ヒルトン東京地下<span class="tcy">1</span>階のヒルトピアアートスクエアで開催されている（入場無料）。フランス刺繍、白糸刺繍、スモッキング、自由作品など、年齢・経験・国籍を問わず公募したコンテスト作品<span class="tcy">130</span>点余りを展示するほか、刺繍キットや手芸資材の販売も行う。</p>
+          <p>公募は<span class="tcy">20</span><span class="tcy">25</span>年<span class="tcy">9</span>月から<span class="tcy">11</span>月にかけて実施され、出品料は<span class="tcy">4</span>950円。作品写真による一次審査を経て、来場者投票でグランプリを決める方式で、結果は<span class="tcy">7</span>月<span class="tcy">21</span>日に発表される。プロ・アマ問わず国内外から応募できる間口の広さが特徴で、原宿のPATCH&amp;PLAYのような専門店の動きと合わせ、刺繍というジャンルへの参入路が多様化している様子がうかがえる。</p>
+          <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000000011.000154768.html" target="_blank" rel="noopener">株式会社ブーケプレスリリース（PR TIMES）</a></p>
         </div>
       </article>
     </div>
@@ -1851,152 +1743,134 @@
       <span class="folio-mark">書籍・工芸ギャラリー面</span>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece lead">
-        <div class="vwrap">
-          <div class="illustration">
-            <svg viewBox="0 0 100 100">
-              <path d="M50,25 L14,36 L14,80 L50,69 Z" />
-              <path d="M50,25 L86,36 L86,80 L50,69 Z" />
-              <line x1="50" y1="25" x2="50" y2="69" />
-              <line x1="22" y1="48" x2="42" y2="45" />
-              <line x1="58" y1="45" x2="78" y2="48" />
-            </svg>
-            <span class="cap">本棚に並ぶ手芸本（イメージ）</span>
-          </div>
-          <div class="headline-col">
-            <span class="kicker">【今月の一冊】</span>手芸本、今読みたい<span class="tcy">5</span>冊
-          </div>
-          <div class="body-col" style="height:750px;">
-            手芸・ハンドメイド関連の書籍まとめによると、いま読まれている手芸本には幅広いテーマが並ぶ。「ハンドメイド」で稼ぎたくなったら読む本（bon bon cherryハイジ著、フォレスト出版）は月商<span class="tcy">100</span>万円超の作家による販売ノウハウ本。「ネットで売れるハンドメイド副業で月<span class="tcy">10</span>万円稼ぐ本」（山口実加著、技術評論社）はSNSとネットショップ活用による販売戦略を<span class="tcy">45</span>のワザで紹介する。
-            作品づくりそのものを楽しむ一冊も人気で、「MICHU COQUETTEのハンドメイドレシピ　ロマンティックな布こもの」（ブティック社）はヴィンテージとモダンを融合させた布小物の製作ガイド。「いつでも一緒　ふわもこ手芸部」（oniso著、日本ヴォーグ社）はYouTubeやInstagramで人気の著者による動物モチーフ作品集。「はじめてでもすてきに作れる　バッグのきほん」（猪俣友紀著、西東社）は商用利用も可能な初心者向けバッグ作りの基礎書として、息の長い定番となっている。
-            発行年で見ると<span class="tcy">2020</span>年刊行の定番書から<span class="tcy">2025</span>年刊行の最新作まで幅があり、必ずしも「今年出たばかりの新刊」というわけではない。それでも息長く読まれ続けているのは、販売ノウハウ本と作品集という二つの軸が、ハンドメイドを「売る」「作る」の両面から支えているためだろう。
-            <p class="source-line">出典：<a href="https://alfistanao.com/recommended-handmade-books/" target="_blank" rel="noopener">ハンドメイド本まとめ</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <div class="kicker">【今月の一冊】</div>
+        <h2>手芸本、今読みたい<span class="tcy">5</span>冊</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <path d="M50,25 L14,36 L14,80 L50,69 Z" />
+            <path d="M50,25 L86,36 L86,80 L50,69 Z" />
+            <line x1="50" y1="25" x2="50" y2="69" />
+            <line x1="22" y1="48" x2="42" y2="45" />
+            <line x1="58" y1="45" x2="78" y2="48" />
+          </svg>
+          <span class="cap">本棚に並ぶ手芸本（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>手芸・ハンドメイド関連の書籍まとめによると、いま読まれている手芸本には幅広いテーマが並ぶ。「ハンドメイド」で稼ぎたくなったら読む本（bon bon cherryハイジ著、フォレスト出版）は月商<span class="tcy">100</span>万円超の作家による販売ノウハウ本。「ネットで売れるハンドメイド副業で月<span class="tcy">10</span>万円稼ぐ本」（山口実加著、技術評論社）はSNSとネットショップ活用による販売戦略を<span class="tcy">45</span>のワザで紹介する。</p>
+          <p>作品づくりそのものを楽しむ一冊も人気で、「MICHU COQUETTEのハンドメイドレシピ　ロマンティックな布こもの」（ブティック社）はヴィンテージとモダンを融合させた布小物の製作ガイド。「いつでも一緒　ふわもこ手芸部」（oniso著、日本ヴォーグ社）はYouTubeやInstagramで人気の著者による動物モチーフ作品集。「はじめてでもすてきに作れる　バッグのきほん」（猪俣友紀著、西東社）は商用利用も可能な初心者向けバッグ作りの基礎書として、息の長い定番となっている。</p>
+          <p>発行年で見ると<span class="tcy">2020</span>年刊行の定番書から<span class="tcy">2025</span>年刊行の最新作まで幅があり、必ずしも「今年出たばかりの新刊」というわけではない。それでも息長く読まれ続けているのは、販売ノウハウ本と作品集という二つの軸が、ハンドメイドを「売る」「作る」の両面から支えているためだろう。</p>
+          <p class="source-line">出典：<a href="https://alfistanao.com/recommended-handmade-books/" target="_blank" rel="noopener">ハンドメイド本まとめ</a></p>
         </div>
       </article>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece secondary">
-        <div class="vwrap">
-          <div class="illustration" style="height:280px;">
-            <svg viewBox="0 0 100 100">
-              <ellipse cx="45" cy="58" rx="32" ry="22" />
-              <circle cx="78" cy="46" r="12" />
-              <line x1="25" y1="76" x2="25" y2="89" />
-              <line x1="40" y1="79" x2="40" y2="91" />
-              <line x1="55" y1="79" x2="55" y2="91" />
-              <line x1="68" y1="76" x2="68" y2="89" />
-              <path d="M22,48 q4,-5 8,0" stroke-width="1.2" />
-              <path d="M32,44 q4,-5 8,0" stroke-width="1.2" />
-              <path d="M42,42 q4,-5 8,0" stroke-width="1.2" />
-            </svg>
-            <span class="cap">羊毛フェルトの羊（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:280px;">
-            <span class="kicker">【コラボ】</span>羊毛フェルト作家とタッグ、フェリシモが手作りキット
-          </div>
-          <div class="body-col" style="height:203px;">
-            通信販売のフェリシモが手がける手芸ブランド「クチュリエ」は、羊毛フェルト作家「Coto Coto Felt Works」（児玉彩氏）監修によるレッスンキットを発売している。羊やたぬきなど身近な動物モチーフを題材に、初心者でも段階を追って仕上げられるよう構成されているのが特徴だ。
-            羊毛フェルトは近年、リアルな動物表現で人気を集める作家が増えており、テレビ番組で紹介される作家も出てきているなど、趣味の裾野が広がりつつある分野のひとつだ。人気作家が監修するキット商品は、独学では難しい仕上がりの質を担保しつつ、作家自身の知名度を商品の訴求力に変える手法として広がりつつある。
-            <p class="source-line">出典：<a href="https://felissimo.co.jp/couturier/gcd477952" target="_blank" rel="noopener">フェリシモ クチュリエ</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <div class="kicker">【コラボ】</div>
+        <h2>羊毛フェルト作家とタッグ、フェリシモが手作りキット</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <ellipse cx="45" cy="58" rx="32" ry="22" />
+            <circle cx="78" cy="46" r="12" />
+            <line x1="25" y1="76" x2="25" y2="89" />
+            <line x1="40" y1="79" x2="40" y2="91" />
+            <line x1="55" y1="79" x2="55" y2="91" />
+            <line x1="68" y1="76" x2="68" y2="89" />
+            <path d="M22,48 q4,-5 8,0" stroke-width="1.2" />
+            <path d="M32,44 q4,-5 8,0" stroke-width="1.2" />
+            <path d="M42,42 q4,-5 8,0" stroke-width="1.2" />
+          </svg>
+          <span class="cap">羊毛フェルトの羊（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>通信販売のフェリシモが手がける手芸ブランド「クチュリエ」は、羊毛フェルト作家「Coto Coto Felt Works」（児玉彩氏）監修によるレッスンキットを発売している。羊やたぬきなど身近な動物モチーフを題材に、初心者でも段階を追って仕上げられるよう構成されているのが特徴だ。</p>
+          <p>羊毛フェルトは近年、リアルな動物表現で人気を集める作家が増えており、テレビ番組で紹介される作家も出てきているなど、趣味の裾野が広がりつつある分野のひとつだ。人気作家が監修するキット商品は、独学では難しい仕上がりの質を担保しつつ、作家自身の知名度を商品の訴求力に変える手法として広がりつつある。</p>
+          <p class="source-line">出典：<a href="https://felissimo.co.jp/couturier/gcd477952" target="_blank" rel="noopener">フェリシモ クチュリエ</a></p>
         </div>
       </article>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece brief">
-        <div class="vwrap">
-          <div class="illustration" style="height:220px;">
-            <svg viewBox="0 0 100 100">
-              <rect x="15" y="25" width="70" height="50" rx="4" />
-              <polygon points="42,40 42,60 60,50" />
-              <line x1="35" y1="82" x2="65" y2="82" />
-            </svg>
-            <span class="cap">テレビの手芸番組（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:220px;">
-            <span class="kicker">【メディア】</span>NHK「すてきにハンドメイド」、放送続く
-          </div>
-          <div class="body-col" style="height:170px;">
-            書籍だけでなく、テレビも手芸情報の発信源であり続けている。NHKの「すてきにハンドメイド」は、ソーイングや編み物、刺しゅうなど幅広いジャンルの作り方を紹介する長寿番組で、放送回はシリーズとしてNHKの番組サイトにまとめられている。
-            <p class="source-line">出典：<a href="https://www.web.nhk/tv/an/handmade/pl/series-tep-D9P19R1GX9" target="_blank" rel="noopener">NHK すてきにハンドメイド</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <div class="kicker">【メディア】</div>
+        <h2>NHK「すてきにハンドメイド」、放送続く</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <rect x="15" y="25" width="70" height="50" rx="4" />
+            <polygon points="42,40 42,60 60,50" />
+            <line x1="35" y1="82" x2="65" y2="82" />
+          </svg>
+          <span class="cap">テレビの手芸番組（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>書籍だけでなく、テレビも手芸情報の発信源であり続けている。NHKの「すてきにハンドメイド」は、ソーイングや編み物、刺しゅうなど幅広いジャンルの作り方を紹介する長寿番組で、放送回はシリーズとしてNHKの番組サイトにまとめられている。</p>
+          <p class="source-line">出典：<a href="https://www.web.nhk/tv/an/handmade/pl/series-tep-D9P19R1GX9" target="_blank" rel="noopener">NHK すてきにハンドメイド</a></p>
         </div>
       </article>
 
-      <article class="piece brief">
-        <div class="vwrap">
-          <div class="illustration" style="height:220px;">
-            <svg viewBox="0 0 100 100">
-              <rect x="20" y="15" width="60" height="60" />
-              <rect x="30" y="25" width="40" height="40" />
-              <line x1="35" y1="85" x2="65" y2="85" />
-            </svg>
-            <span class="cap">ギャラリーの一室（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:220px;">
-            <span class="kicker">【展覧会】</span>夏、全国のギャラリーで企画展相次ぐ
-          </div>
-          <div class="body-col" style="height:197px;">
-            夏から秋にかけて、各地のギャラリーで手芸・工芸関連の企画展が相次ぐ。SUNABAギャラリーでは<span class="tcy">6</span>月<span class="tcy">20</span>日から<span class="tcy">7</span>月<span class="tcy">8</span>日まで企画個展を開催。京王百貨店新宿店では<span class="tcy">7</span>月<span class="tcy">9</span>日から<span class="tcy">15</span>日に漆芸と硝子の工芸二人展を予定する。文房堂ギャラリーも<span class="tcy">7</span>月<span class="tcy">16</span>日から<span class="tcy">27</span>日に展覧会を開催する。
-            <p class="source-line">出典：<a href="https://sunabagallery.com/upcoming/" target="_blank" rel="noopener">SUNABAギャラリー</a><a href="https://www.keionet.com/info/shinjuku/topics/000232.html" target="_blank" rel="noopener">京王百貨店新宿店</a></p>
-          </div>
+      <article class="story">
+        <div class="kicker">【展覧会】</div>
+        <h2>夏、全国のギャラリーで企画展相次ぐ</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <rect x="20" y="15" width="60" height="60" />
+            <rect x="30" y="25" width="40" height="40" />
+            <line x1="35" y1="85" x2="65" y2="85" />
+          </svg>
+          <span class="cap">ギャラリーの一室（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>夏から秋にかけて、各地のギャラリーで手芸・工芸関連の企画展が相次ぐ。SUNABAギャラリーでは<span class="tcy">6</span>月<span class="tcy">20</span>日から<span class="tcy">7</span>月<span class="tcy">8</span>日まで企画個展を開催。京王百貨店新宿店では<span class="tcy">7</span>月<span class="tcy">9</span>日から<span class="tcy">15</span>日に漆芸と硝子の工芸二人展を予定する。文房堂ギャラリーも<span class="tcy">7</span>月<span class="tcy">16</span>日から<span class="tcy">27</span>日に展覧会を開催する。</p>
+          <p class="source-line">出典：<a href="https://sunabagallery.com/upcoming/" target="_blank" rel="noopener">SUNABAギャラリー</a><a href="https://www.keionet.com/info/shinjuku/topics/000232.html" target="_blank" rel="noopener">京王百貨店新宿店</a></p>
         </div>
       </article>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece secondary">
-        <div class="vwrap">
-          <div class="illustration" style="height:280px;">
-            <svg viewBox="0 0 100 100">
-              <path d="M30,18 L70,18 L70,88 L50,78 L30,88 Z" />
-              <line x1="38" y1="35" x2="62" y2="35" stroke-width="1.2" />
-              <line x1="38" y1="45" x2="62" y2="45" stroke-width="1.2" />
-              <line x1="38" y1="55" x2="55" y2="55" stroke-width="1.2" />
-            </svg>
-            <span class="cap">ソーイング本・バッグ本（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:280px;">
-            <span class="kicker">【新刊】</span>ソーイング・バッグの新刊、実物大型紙付きで相次ぐ
-          </div>
-          <div class="body-col" style="height:330px;">
-            布地・生地の専門店「CHECK &amp; STRIPE」は<span class="tcy">3</span>月<span class="tcy">12</span>日、株式会社世界文化社より『CHECK &amp; STRIPE My Sewing Life　アレンジして楽しむ<span class="tcy">8</span>つのパターン』を発売した。<span class="tcy">8</span>つの基本パターンを土台に、ブラウスやワンピース、コート、パンツなど<span class="tcy">16</span>着の洋服とバッグなどの小物、あわせて<span class="tcy">23</span>作品を掲載。子ども服サイズ（<span class="tcy">100</span>〜<span class="tcy">140</span>cm）の型紙も展開し、親子でお揃いの服作りができる構成になっている。
-            NHK出版は<span class="tcy">5</span>月<span class="tcy">19</span>日、「すてきにハンドメイド」の人気講師・斉藤謠子氏による『私の好きな<span class="tcy">15</span>の布バッグ』を発売した。「重いバッグはもう無理」という視点から実用的で軽いデザインに改良し、トート、ショルダー、サコッシュなど<span class="tcy">15</span>型・<span class="tcy">35</span>作品を実物大型紙付きで収載。定価は<span class="tcy">18</span>70円（税込）。
-            いずれも実物大型紙付きという実用性を軸に、初心者から経験者まで手を動かしやすい設計を打ち出している点が共通する。
-            <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000002297.000009728.html" target="_blank" rel="noopener">株式会社世界文化ホールディングスプレスリリース（PR TIMES）</a></p>
-            <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000001294.000018219.html" target="_blank" rel="noopener">株式会社NHK出版プレスリリース（PR TIMES）</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <div class="kicker">【新刊】</div>
+        <h2>ソーイング・バッグの新刊、実物大型紙付きで相次ぐ</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <path d="M30,18 L70,18 L70,88 L50,78 L30,88 Z" />
+            <line x1="38" y1="35" x2="62" y2="35" stroke-width="1.2" />
+            <line x1="38" y1="45" x2="62" y2="45" stroke-width="1.2" />
+            <line x1="38" y1="55" x2="55" y2="55" stroke-width="1.2" />
+          </svg>
+          <span class="cap">ソーイング本・バッグ本（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>布地・生地の専門店「CHECK &amp; STRIPE」は<span class="tcy">3</span>月<span class="tcy">12</span>日、株式会社世界文化社より『CHECK &amp; STRIPE My Sewing Life　アレンジして楽しむ<span class="tcy">8</span>つのパターン』を発売した。<span class="tcy">8</span>つの基本パターンを土台に、ブラウスやワンピース、コート、パンツなど<span class="tcy">16</span>着の洋服とバッグなどの小物、あわせて<span class="tcy">23</span>作品を掲載。子ども服サイズ（<span class="tcy">100</span>〜<span class="tcy">140</span>cm）の型紙も展開し、親子でお揃いの服作りができる構成になっている。</p>
+          <p>NHK出版は<span class="tcy">5</span>月<span class="tcy">19</span>日、「すてきにハンドメイド」の人気講師・斉藤謠子氏による『私の好きな<span class="tcy">15</span>の布バッグ』を発売した。「重いバッグはもう無理」という視点から実用的で軽いデザインに改良し、トート、ショルダー、サコッシュなど<span class="tcy">15</span>型・<span class="tcy">35</span>作品を実物大型紙付きで収載。定価は<span class="tcy">18</span>70円（税込）。</p>
+          <p>いずれも実物大型紙付きという実用性を軸に、初心者から経験者まで手を動かしやすい設計を打ち出している点が共通する。</p>
+          <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000002297.000009728.html" target="_blank" rel="noopener">株式会社世界文化ホールディングスプレスリリース（PR TIMES）</a></p>
+          <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000001294.000018219.html" target="_blank" rel="noopener">株式会社NHK出版プレスリリース（PR TIMES）</a></p>
         </div>
       </article>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece secondary">
-        <div class="vwrap">
-          <div class="illustration" style="height:280px;">
-            <svg viewBox="0 0 100 100">
-              <rect x="20" y="45" width="24" height="30" stroke-width="1.6" />
-              <polygon points="20,45 32,35 44,45" stroke-width="1.4" />
-              <rect x="52" y="55" width="16" height="20" stroke-width="1.4" />
-              <rect x="72" y="50" width="14" height="25" stroke-width="1.4" />
-              <circle cx="32" cy="30" r="2.4" fill="var(--ink)" stroke="none" />
-              <line x1="15" y1="80" x2="90" y2="80" stroke-width="1.2" />
-            </svg>
-            <span class="cap">ミニチュアインテリア（イメージ）</span>
-          </div>
-          <div class="headline-col" style="height:280px;">
-            <span class="type-badge" data-type="NEWS">NEWS</span>
-            <span class="kicker">【新刊】</span>キャンセル待ち講座の書籍化、ミニチュア本発売中
-          </div>
-          <div class="body-col" style="height:295px;">
-            KADOKAWAは<span class="tcy">5</span>月<span class="tcy">8</span>日、ミニチュア作家・永田菜穂子氏（N original）による『大人のミニチュアインテリア　手作りで楽しむ小さな世界』を発売した。定価<span class="tcy">23</span>10円（税込）。ヴォーグ学園やmiroomなどで「常にキャンセル待ちが続く人気講座」を主宰する著者による書籍化で、製作方法を掲載する<span class="tcy">51</span>点の作品に加え、<span class="tcy">70</span>点超のコレクションカタログも収録する。原寸大型紙と基本動画ガイド付きで、難易度は<span class="tcy">5</span>段階表示。
-            「眺めて、作って、飾る」という3つの楽しみ方を掲げる構成は、完成品の鑑賞と制作体験を両立させたい層に向けたもので、SNSでの人気や「静かに没頭できる時間」を求める大人の関心が背景にあるとみられる。
-            <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000019292.000007006.html" target="_blank" rel="noopener">株式会社KADOKAWAプレスリリース（PR TIMES）</a></p>
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <span class="type-badge" data-type="NEWS">NEWS</span>
+        <div class="kicker">【新刊】</div>
+        <h2>キャンセル待ち講座の書籍化、ミニチュア本発売中</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <rect x="20" y="45" width="24" height="30" stroke-width="1.6" />
+            <polygon points="20,45 32,35 44,45" stroke-width="1.4" />
+            <rect x="52" y="55" width="16" height="20" stroke-width="1.4" />
+            <rect x="72" y="50" width="14" height="25" stroke-width="1.4" />
+            <circle cx="32" cy="30" r="2.4" fill="var(--ink)" stroke="none" />
+            <line x1="15" y1="80" x2="90" y2="80" stroke-width="1.2" />
+          </svg>
+          <span class="cap">ミニチュアインテリア（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>KADOKAWAは<span class="tcy">5</span>月<span class="tcy">8</span>日、ミニチュア作家・永田菜穂子氏（N original）による『大人のミニチュアインテリア　手作りで楽しむ小さな世界』を発売した。定価<span class="tcy">23</span>10円（税込）。ヴォーグ学園やmiroomなどで「常にキャンセル待ちが続く人気講座」を主宰する著者による書籍化で、製作方法を掲載する<span class="tcy">51</span>点の作品に加え、<span class="tcy">70</span>点超のコレクションカタログも収録する。原寸大型紙と基本動画ガイド付きで、難易度は<span class="tcy">5</span>段階表示。</p>
+          <p>「眺めて、作って、飾る」という3つの楽しみ方を掲げる構成は、完成品の鑑賞と制作体験を両立させたい層に向けたもので、SNSでの人気や「静かに没頭できる時間」を求める大人の関心が背景にあるとみられる。</p>
+          <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000019292.000007006.html" target="_blank" rel="noopener">株式会社KADOKAWAプレスリリース（PR TIMES）</a></p>
         </div>
       </article>
     </div>
@@ -2012,34 +1886,32 @@
       <span class="folio-mark">特集・コラム面</span>
     </div>
 
-    <div class="page-body news-row">
-      <article class="piece lead">
-        <div class="vwrap">
-          <div class="illustration">
-            <svg viewBox="0 0 100 100">
-              <circle cx="25" cy="30" r="10" />
-              <line x1="25" y1="40" x2="25" y2="55" />
-              <circle cx="75" cy="70" r="10" />
-              <line x1="75" y1="80" x2="75" y2="55" />
-              <path d="M25,55 Q50,45 75,55" />
-            </svg>
-            <span class="cap">産地とマーケットをつなぐ線（イメージ）</span>
-          </div>
-          <div class="headline-col">
-            <span class="kicker">【特集】</span>産地とマーケットをつなぐ、手仕事の現在地
-          </div>
-          <div class="body-col" style="height:950px;">
-            今号で報じた組子細工と手しごとマーケットには、ひとつの共通点がある。富山県砺波市で職人が手掛ける組子細工は、Cohanaという手芸道具ブランドを通じて全国の作り手の手元に届き、熊本や山形を巡回する手しごとマーケットは、地方の作家たちの作品を各地の消費者に橋渡ししている。産地の技術と消費地の需要をつなぐ回路が、メーカーの製品開発とイベントという二つの経路で、同時並行に動いているとも言える。
-            日本ホビーショーが半世紀続いてきたのも、同様の橋渡し機能を果たしてきたからだろう。会場に集うのは職人だけでなく、クリエイター、愛好家、そして流通・小売の担当者である。世界の手工芸品市場が拡大するというデータの裏側には、こうした地道な橋渡しの積み重ねがある。
-            今号で報じた刺し子やキルト、羊毛フェルトのコラボ企画も、見方を変えれば同じ構図の繰り返しである。ホビーラホビーレの新柄、000の立体刺繍、キルトジャパンのコンテスト、フェリシモとフェルト作家のキット、いずれも「作り手の技術」と「届ける仕組み」という二つの要素が組み合わさって初めて、読者やユーザーの手元に届いている。
-            企業の決算やEC市場のデータも、突き詰めれば同じ回路の別の断面にすぎない。数字と手仕事は対立するものではなく、同じ現場を異なる角度から映しているだけなのかもしれない。手芸新聞は今後も、産地と現場をつなぐ小さな出来事を追っていきたい。
-            今号ではもう一つの回路も見えてきた。百貨店という場である。日本橋三越の「三越手芸」には約100の作家・ブランドが集まり、大丸京都の「粋活」は職人直伝の体験を単価の高い一回完結型サービスとして提供する。通販中心のフェリシモ「編み物フェスタ」やクリーマ主催の「HandMade In Japan Fes'」が延べ3000名規模のクリエイターを集めるのとは異なる回路として、百貨店という「場」がもう一度、手仕事と消費者を結ぶ役割を担い始めているようにも見える。
-          </div>
+    <div class="news-row">
+      <article class="story">
+        <span class="type-badge" data-type="FEATURE">FEATURE</span>
+        <div class="kicker">【特集】</div>
+        <h2>産地とマーケットをつなぐ、手仕事の現在地</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <circle cx="25" cy="30" r="10" />
+            <line x1="25" y1="40" x2="25" y2="55" />
+            <circle cx="75" cy="70" r="10" />
+            <line x1="75" y1="80" x2="75" y2="55" />
+            <path d="M25,55 Q50,45 75,55" />
+          </svg>
+          <span class="cap">産地とマーケットをつなぐ線（イメージ）</span>
+        </div>
+        <div class="body">
+          <p><span class="lead-char">今</span>号で報じた組子細工と手しごとマーケットには、ひとつの共通点がある。富山県砺波市で職人が手掛ける組子細工は、Cohanaという手芸道具ブランドを通じて全国の作り手の手元に届き、熊本や山形を巡回する手しごとマーケットは、地方の作家たちの作品を各地の消費者に橋渡ししている。産地の技術と消費地の需要をつなぐ回路が、メーカーの製品開発とイベントという二つの経路で、同時並行に動いているとも言える。</p>
+          <p>日本ホビーショーが半世紀続いてきたのも、同様の橋渡し機能を果たしてきたからだろう。会場に集うのは職人だけでなく、クリエイター、愛好家、そして流通・小売の担当者である。世界の手工芸品市場が拡大するというデータの裏側には、こうした地道な橋渡しの積み重ねがある。</p>
+          <p>今号で報じた刺し子やキルト、羊毛フェルトのコラボ企画も、見方を変えれば同じ構図の繰り返しである。ホビーラホビーレの新柄、000の立体刺繍、キルトジャパンのコンテスト、フェリシモとフェルト作家のキット、いずれも「作り手の技術」と「届ける仕組み」という二つの要素が組み合わさって初めて、読者やユーザーの手元に届いている。</p>
+          <p>企業の決算やEC市場のデータも、突き詰めれば同じ回路の別の断面にすぎない。数字と手仕事は対立するものではなく、同じ現場を異なる角度から映しているだけなのかもしれない。手芸新聞は今後も、産地と現場をつなぐ小さな出来事を追っていきたい。</p>
+          <p>今号ではもう一つの回路も見えてきた。百貨店という場である。日本橋三越の「三越手芸」には約100の作家・ブランドが集まり、大丸京都の「粋活」は職人直伝の体験を単価の高い一回完結型サービスとして提供する。通販中心のフェリシモ「編み物フェスタ」やクリーマ主催の「HandMade In Japan Fes'」が延べ3000名規模のクリエイターを集めるのとは異なる回路として、百貨店という「場」がもう一度、手仕事と消費者を結ぶ役割を担い始めているようにも見える。</p>
         </div>
       </article>
     </div>
 
-    <div class="page-body">
+    <div class="opinion-grid">
       <div class="column-box">
         <div class="col-icon">
           <svg viewBox="0 0 100 100">
@@ -2051,8 +1923,8 @@
         <div class="col-title">手芸の今</div>
         <div class="col-byline">（この欄は生成AIが独自の視点で綴ります）</div>
         <div class="col-body">
-          今号を通して見えてくるのは、「手を動かすこと」の価値が、産業として大きくなるほど際立つという逆説だ。世界の手工芸品市場は<span class="tcy">20</span><span class="tcy">34</span>年に<span class="tcy">2</span>兆ドル規模へ拡大すると見込まれる一方、その中心にあるのは相変わらず、一人の職人が組子の八芒星を彫る手つきであり、熊本の会場に並ぶ一点物である。
-          刺し子の運針も、キルトのひと針も、羊毛を刺すニードルの一刺しも、突き詰めれば同じ動作の反復にすぎない。それでも同じものが二つとできないのは、そこに関わる手が毎回わずかに違う判断をしているからだろう。手芸新聞が拾い集めたいのは、その逆説が起きている現場である。
+          <p>今号を通して見えてくるのは、「手を動かすこと」の価値が、産業として大きくなるほど際立つという逆説だ。世界の手工芸品市場は<span class="tcy">20</span><span class="tcy">34</span>年に<span class="tcy">2</span>兆ドル規模へ拡大すると見込まれる一方、その中心にあるのは相変わらず、一人の職人が組子の八芒星を彫る手つきであり、熊本の会場に並ぶ一点物である。</p>
+          <p>刺し子の運針も、キルトのひと針も、羊毛を刺すニードルの一刺しも、突き詰めれば同じ動作の反復にすぎない。それでも同じものが二つとできないのは、そこに関わる手が毎回わずかに違う判断をしているからだろう。手芸新聞が拾い集めたいのは、その逆説が起きている現場である。</p>
         </div>
       </div>
 
@@ -2126,7 +1998,7 @@
         <p>編集長：<a href="https://chatgpt.com/g/g-6a5dbec4971481919d12695b6ee3df51-shou-yun-xin-wen-bian-ji-chang" target="_blank" rel="noopener">手芸新聞編集長（AI／ChatGPT）</a></p>
         <p>号数：試作第2号</p>
         <p>発行日：令和8年（2026年）7月20日</p>
-        <p>体裁：全12面・縦組み</p>
+        <p>体裁：全12面（本文横組み・題字縦組み）</p>
       </div>
       <div class="back-box">
         <h3>本紙について</h3>
@@ -2531,7 +2403,7 @@
   /* ============================================================
      編集長コラム・論説・特集の自動表示
      articles配列に displaySlot（表示先コンテナのid）を指定した
-     記事は、この関数がop-box（縦組みの囲み記事）を自動生成して
+     記事は、この関数がop-box（横組みの囲み記事）を自動生成して
      該当ページに挿入します。HTML/CSSの編集は不要です。
      ============================================================ */
   function renderAutoOpArticles() {
@@ -2547,7 +2419,7 @@
           '<div class="col-title-row"><span class="type-badge" data-type="' + a.articleType + '">' + ARTICLE_TYPE_LABELS[a.articleType] + '</span></div>' +
           '<div class="col-title">' + a.title + (a.subtitle ? '<br><span class="col-subtitle">' + a.subtitle + '</span>' : '') + '</div>' +
           '<div class="col-byline">' + (a.author || '編集部') + (a.authorRole ? '（' + a.authorRole + '）' : '') + '</div>' +
-          '<div class="col-excerpt">' + excerptParts.join('　') + '</div>' +
+          '<div class="col-excerpt">' + excerptParts.map((p) => '<p>' + p + '</p>').join('') + '</div>' +
           '<button type="button" class="read-more" data-article-id="' + a.id + '">続きを読む（全文）</button>';
         container.appendChild(box);
       });
@@ -2634,9 +2506,11 @@
       const pageEl = document.getElementById(item.page);
       const body = pageEl && pageEl.querySelector('.page-body');
       if (!body) return;
+      const row = document.createElement('div');
+      row.className = 'news-row';
       const article = document.createElement('article');
-      article.className = 'piece ' + (item.tier || 'brief');
-      const paragraphsHtml = (item.paragraphs || []).join('\n            ');
+      article.className = 'story';
+      const paragraphsHtml = (item.paragraphs || []).map((p) => '<p>' + p + '</p>').join('');
       const sourceHtml = item.sourceLabel
         ? '<p class="source-line">出典：' +
           (item.sourceUrl
@@ -2645,11 +2519,11 @@
           '</p>'
         : '';
       article.innerHTML =
-        '<div class="vwrap">' +
-        '<div class="headline-col"><span class="kicker">【' + (item.kicker || '投稿') + '】</span>' + (item.headline || '') + '</div>' +
-        '<div class="body-col">' + paragraphsHtml + sourceHtml + '</div>' +
-        '</div>';
-      body.appendChild(article);
+        '<div class="kicker">【' + (item.kicker || '投稿') + '】</div>' +
+        '<h2>' + (item.headline || '') + '</h2>' +
+        '<div class="body">' + paragraphsHtml + sourceHtml + '</div>';
+      row.appendChild(article);
+      body.appendChild(row);
     });
   }
   renderUserSubmissions();
