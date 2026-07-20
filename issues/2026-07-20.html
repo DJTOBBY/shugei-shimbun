@@ -62,7 +62,7 @@
     align-items: center;
   }
   .tabs { display: flex; flex-wrap: wrap; gap: 0.35rem; max-width: 1100px; }
-  .tabs button, .actions button {
+  .tabs button {
     font-family: var(--font-gothic);
     font-size: 0.74rem;
     letter-spacing: 0.02em;
@@ -74,9 +74,6 @@
     white-space: nowrap;
   }
   .tabs button.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-  .actions { display: flex; gap: 0.5rem; }
-  .actions button { color: var(--link); border-color: var(--link); }
-  .actions button:hover { background: var(--link); color: var(--paper); }
 
   /* ---------------- page shell ---------------- */
   .paper {
@@ -755,21 +752,6 @@
     .subnews-list, .category-grid, .mini-grid { grid-template-columns: 1fr; }
   }
 
-  @media print {
-    body { background: white; }
-    .no-print, .toolbar { display: none !important; }
-    .paper { box-shadow: none; border: none; max-width: none; margin: 0; }
-    .page[hidden] { display: block !important; }
-    .page:not(:last-child) { page-break-after: always; }
-    .page { zoom: 0.6; }
-    /* 1〜3面は情報量が多いため、A3 1枚に収まるよう個別に縮小率を調整 */
-    #p1 { zoom: 0.41; }
-    #p2 { zoom: 0.45; }
-    #p3 { zoom: 0.51; }
-    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; color-adjust: exact; }
-    @page { size: 297mm 420mm; margin: 10mm; }
-  }
-
   @media (max-width: 720px) {
     .masthead-grid { grid-template-columns: 56px 1fr 56px; }
     .corner-box { font-size: 0.62rem; height: 108px; }
@@ -791,10 +773,6 @@
     <button class="tab" data-target="p10">10面 特集・コラム</button>
     <button class="tab" data-target="p11">11面 索引</button>
     <button class="tab" data-target="p12">12面 奥付</button>
-  </div>
-  <div class="actions">
-    <button onclick="window.print()">印刷・PDF保存</button>
-    <button id="save-image-btn">画像で保存（表示中の面）</button>
   </div>
 </div>
 
@@ -2140,7 +2118,6 @@
       <div class="back-box">
         <h3>紙面のご利用方法</h3>
         <p>各面の記事末尾にあるQRコードから、スマートフォンで出典ページへ直接アクセスできます。画面上部のタブから面を切り替えられるほか、一部の記事は「続きを読む」ボタンから詳細（要点・出典・関連記事）を確認できます。</p>
-        <p>印刷される場合は、画面上部の「印刷・PDF保存」からA3縦サイズで出力できます（全12面・1面につきA3用紙1枚）。</p>
       </div>
       <div class="back-box">
         <h3>記事種別バッジについて</h3>
@@ -2640,8 +2617,7 @@
       (a.relatedArticles && a.relatedArticles.length ? '<div class="ad-related"><h3>関連記事</h3><ul>' + a.relatedArticles.map((r) =>
         '<li><a href="#" onclick="event.preventDefault();' + (r.url.startsWith('#') ? 'jumpToArticle(event,\'' + r.url.slice(1) + '\');' : 'openArticleDialog(\'' + r.url + '\');') + 'document.getElementById(\'article-dialog\').close();">' + escapeHtml(r.title) + '</a></li>'
       ).join('') + '</ul></div>' : '') +
-      '<div class="ad-share"><button type="button" onclick="navigator.share ? navigator.share({title:' + JSON.stringify(a.title) + ',url:location.href}) : navigator.clipboard.writeText(location.href).then(()=>alert(\'URLをコピーしました\'))">共有</button>' +
-      '<button type="button" onclick="window.print()">この記事を印刷</button></div>';
+      '<div class="ad-share"><button type="button" onclick="navigator.share ? navigator.share({title:' + JSON.stringify(a.title) + ',url:location.href}) : navigator.clipboard.writeText(location.href).then(()=>alert(\'URLをコピーしました\'))">共有</button></div>';
     dialog.showModal();
   }
   function jumpToArticle(evt, targetId) {
@@ -2790,53 +2766,4 @@
     });
   });
 
-  document.getElementById('save-image-btn').addEventListener('click', async () => {
-    const target = document.querySelector('.page:not([hidden])');
-    const rect = target.getBoundingClientRect();
-    const width = Math.ceil(rect.width);
-    const height = Math.ceil(target.scrollHeight);
-    const styleText = document.querySelector('style').textContent;
-    const clone = target.cloneNode(true);
-    clone.removeAttribute('hidden');
-    clone.querySelectorAll('.no-print').forEach((el) => el.remove());
-    clone.querySelectorAll('.source-qr-box').forEach((el) => el.remove());
-    const xhtml = new XMLSerializer().serializeToString(clone);
-    const svgString =
-      '<svg xmlns="http://www.w3.org/2000/svg" width="' + width + '" height="' + height + '">' +
-      '<foreignObject width="100%" height="100%">' +
-      '<div xmlns="http://www.w3.org/1999/xhtml"><style>' + styleText + '</style>' + xhtml + '</div>' +
-      '</foreignObject></svg>';
-    const url = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgString);
-    const img = new Image();
-    img.onload = () => {
-      const scale = 2;
-      const canvas = document.createElement('canvas');
-      canvas.width = width * scale;
-      canvas.height = height * scale;
-      const ctx = canvas.getContext('2d');
-      ctx.scale(scale, scale);
-      const bg = getComputedStyle(document.body).getPropertyValue('--paper').trim() || '#ffffff';
-      ctx.fillStyle = bg;
-      ctx.fillRect(0, 0, width, height);
-      ctx.drawImage(img, 0, 0, width, height);
-      try {
-        canvas.toBlob((blob) => {
-          if (!blob) {
-            alert('画像の生成に失敗しました。「印刷・PDF保存」をご利用ください。');
-            return;
-          }
-          const link = document.createElement('a');
-          link.download = '手芸新聞_2026-07-20_' + target.dataset.page + '.jpg';
-          link.href = URL.createObjectURL(blob);
-          link.click();
-        }, 'image/jpeg', 0.92);
-      } catch (e) {
-        alert('画像の生成に失敗しました。「印刷・PDF保存」をご利用ください。');
-      }
-    };
-    img.onerror = () => {
-      alert('お使いのブラウザでは画像保存に対応していない可能性があります。「印刷・PDF保存」をご利用ください。');
-    };
-    img.src = url;
-  });
 </script>
