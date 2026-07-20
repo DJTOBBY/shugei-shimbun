@@ -637,6 +637,7 @@
   }
   .weekday-serial .wd { padding: 0.1em 0.3em; }
   .weekday-serial .wd.today { color: var(--ink); font-weight: 700; border-bottom: 2px solid var(--shu); }
+  .weekday-serial .feature-label { font-weight: 700; color: var(--ink); letter-spacing: 0.05em; }
 
   /* ---- chief editor / editorial / feature teaser boxes ---- */
   .op-box {
@@ -2015,6 +2016,12 @@
         <p>次号では、地方の手芸メーカーの取り組みや、各地のクラフトフェアの開催レポート、新作情報などを予定しています。掲載内容は取材・収集状況により変更になる場合があります。</p>
       </div>
       <div class="back-box">
+        <h3>編集方針について</h3>
+        <p>本紙では、手芸・クラフト・ホビー業界の最新ニュースや市場動向、素材研究、技法解説、作家インタビュー、世界の手芸事情、文化・歴史、販売・マーケティングなど、多彩なテーマを特集・連載としてお届けしています。</p>
+        <p>発行ごとに、その時々で最も注目すべき話題を編集部が選定し、紙面を構成しています。1面上部の「特集・連載」欄では、その号のメインテーマを紹介しています。</p>
+        <p>あわせて、事実報道（NEWS等）と、編集部・編集長の意見や分析を含む記事（EDITORIAL・CHIEF_EDITOR・FEATURE・MARKET・BUSINESS・CULTURE等）は、見出し脇のバッジと記事冒頭の注記で明確に区別しています。</p>
+      </div>
+      <div class="back-box">
         <h3>ご意見・ご感想</h3>
         <p>本紙は試作段階のプロジェクトのため、外部からの問い合わせ窓口は現在設けておりません。内容に誤りをお気づきの場合は、各記事の出典ページを一次情報としてご確認ください。</p>
         <p>紙面の内容についての質問や感想は、<a href="https://chatgpt.com/g/g-6a5dbec4971481919d12695b6ee3df51-shou-yun-xin-wen-bian-ji-chang" target="_blank" rel="noopener">手芸新聞編集長（AI）</a>にお尋ねいただくこともできます。</p>
@@ -2350,26 +2357,19 @@
   articles.forEach((a) => { articlesById[a.id] = a; });
 
   /* ============================================================
-     曜日別連載
+     特集・連載欄
+     編集方針：発行のたびに、編集部がその時々で最も注目すべき話題を
+     選定し、紙面のメインテーマとして構成します（曜日による固定割当は
+     行いません）。ここにその号の特集・連載テーマを1件設定してください。
      ============================================================ */
-  const WEEKDAY_SERIALS = [
-    { day: '日', title: '編集長の一週間' },
-    { day: '月', title: '今週の手芸市場予報' },
-    { day: '火', title: '素材を知る' },
-    { day: '水', title: '作家の仕事論' },
-    { day: '木', title: '世界の手芸事情' },
-    { day: '金', title: '売れる手芸・売れない手芸' },
-    { day: '土', title: '手芸文化史' },
-  ];
-  const ISSUE_DATE = new Date('2026-07-18T00:00:00+09:00'); // 本号の発行日（土曜日）
+  const ISSUE_DATE = new Date('2026-07-18T00:00:00+09:00'); // 本号の発行日
+  const ISSUE_FEATURE = { label: '今週の特集', title: '全国から手芸店が消えている。その先に何が残るのか', page: '2面' };
 
   function renderWeekdaySerial() {
     const el = document.getElementById('weekday-serial');
     if (!el) return;
-    const todayIdx = ISSUE_DATE.getDay();
-    el.innerHTML = '曜日連載　' + WEEKDAY_SERIALS.map((s, i) =>
-      '<span class="wd' + (i === todayIdx ? ' today' : '') + '">' + s.day + '：' + s.title + '</span>'
-    ).join('');
+    el.innerHTML = '<span class="feature-label">特集・連載</span><span class="wd today">' +
+      ISSUE_FEATURE.label + '：' + ISSUE_FEATURE.title + '（' + ISSUE_FEATURE.page + '）</span>';
   }
 
   function renderHeadlineBand() {

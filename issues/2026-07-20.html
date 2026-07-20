@@ -637,6 +637,7 @@
   }
   .weekday-serial .wd { padding: 0.1em 0.3em; }
   .weekday-serial .wd.today { color: var(--ink); font-weight: 700; border-bottom: 2px solid var(--shu); }
+  .weekday-serial .feature-label { font-weight: 700; color: var(--ink); letter-spacing: 0.05em; }
 
   /* ---- chief editor / editorial / feature teaser boxes ---- */
   .op-box {
@@ -2095,7 +2096,7 @@
     </div>
 
     <ul class="toc-list">
-      <li><span class="toc-page">1面</span><span class="toc-title">総合</span><span class="toc-desc">見出し帯／曜日連載／一面トップ「刺繍アートフェスティバル本日最終日」／一面サブニュース（ユザワヤ新店舗・かぎ針編み新シリーズ・世界市場・催事暦）／ユザワヤ新店舗詳報／かぎ針編み新シリーズ詳報／HandMade In Japan Fes' 開催報告</span></li>
+      <li><span class="toc-page">1面</span><span class="toc-title">総合</span><span class="toc-desc">見出し帯／特集・連載／一面トップ「刺繍アートフェスティバル本日最終日」／一面サブニュース（ユザワヤ新店舗・かぎ針編み新シリーズ・世界市場・催事暦）／ユザワヤ新店舗詳報／かぎ針編み新シリーズ詳報／HandMade In Japan Fes' 開催報告</span></li>
       <li><span class="toc-page">2面</span><span class="toc-title">オピニオン面</span><span class="toc-desc">編集長コラム「手芸は暇な人の趣味ではない」（全文）／編集部論説「AI時代に、手で作る価値はむしろ高くなる」（全文）／今週の特集「全国から手芸店が消えている」（全文）</span></li>
       <li><span class="toc-page">3面</span><span class="toc-title">分野別ニュース・小欄面</span><span class="toc-desc">9分野（業界企業・作家クリエイター・新商品素材・イベント展示会・教室資格・市場ビジネス・海外・文化歴史・AIデジタル）の見出し一覧／小欄・短信12欄／新着記事一覧16件</span></li>
       <li><span class="toc-page">4面</span><span class="toc-title">ホビー・キルト</span><span class="toc-desc">凪と編むニットMEET UP／編み物業界8社協賛／キルトジャパンコンテスト2026部門詳細／ハマナカの日本ホビーショー展開／フェリシモ編み物フェスタ</span></li>
@@ -2170,12 +2171,10 @@
         <p>発表日や詳細が確認できない場合は断定を避け、「不明」「未確認」と明記する方針です。記事本文の無断転載は行わず、事実を要約したうえで編集部の解説・見立てを加えています。</p>
       </div>
       <div class="back-box">
-        <h3>編集方針</h3>
-        <p>事実報道（NEWS等）と、編集部・編集長の意見や分析を含む記事（EDITORIAL・CHIEF_EDITOR・FEATURE・MARKET・BUSINESS・CULTURE等）は、見出し脇のバッジと記事冒頭の注記で明確に区別しています。推測を含む記述には「編集部の見方」「現時点での推測」などのラベルを付けています。</p>
-      </div>
-      <div class="back-box">
-        <h3>曜日別連載について</h3>
-        <p>本紙は曜日ごとに異なる連載テーマを設けています（月：今週の手芸市場予報、火：素材を知る、水：作家の仕事論、木：世界の手芸事情、金：売れる手芸・売れない手芸、土：手芸文化史、日：編集長の一週間）。1面上部の「曜日連載」欄で、発行日に対応する連載が自動的に強調表示されます。</p>
+        <h3>編集方針について</h3>
+        <p>本紙では、手芸・クラフト・ホビー業界の最新ニュースや市場動向、素材研究、技法解説、作家インタビュー、世界の手芸事情、文化・歴史、販売・マーケティングなど、多彩なテーマを特集・連載としてお届けしています。</p>
+        <p>発行ごとに、その時々で最も注目すべき話題を編集部が選定し、紙面を構成しています。1面上部の「特集・連載」欄では、その号のメインテーマを紹介しています。</p>
+        <p>あわせて、事実報道（NEWS等）と、編集部・編集長の意見や分析を含む記事（EDITORIAL・CHIEF_EDITOR・FEATURE・MARKET・BUSINESS・CULTURE等）は、見出し脇のバッジと記事冒頭の注記で明確に区別しています。</p>
       </div>
       <div class="back-box">
         <h3>新号のお知らせを受け取る（RSS購読）</h3>
@@ -2508,26 +2507,19 @@
   articles.forEach((a) => { articlesById[a.id] = a; });
 
   /* ============================================================
-     曜日別連載
+     特集・連載欄
+     編集方針：発行のたびに、編集部がその時々で最も注目すべき話題を
+     選定し、紙面のメインテーマとして構成します（曜日による固定割当は
+     行いません）。ここにその号の特集・連載テーマを1件設定してください。
      ============================================================ */
-  const WEEKDAY_SERIALS = [
-    { day: '日', title: '編集長の一週間' },
-    { day: '月', title: '今週の手芸市場予報' },
-    { day: '火', title: '素材を知る' },
-    { day: '水', title: '作家の仕事論' },
-    { day: '木', title: '世界の手芸事情' },
-    { day: '金', title: '売れる手芸・売れない手芸' },
-    { day: '土', title: '手芸文化史' },
-  ];
-  const ISSUE_DATE = new Date('2026-07-20T00:00:00+09:00'); // 本号の発行日（月曜日）
+  const ISSUE_DATE = new Date('2026-07-20T00:00:00+09:00'); // 本号の発行日
+  const ISSUE_FEATURE = { label: '今週の特集', title: '全国から手芸店が消えている。その先に何が残るのか', page: '2面' };
 
   function renderWeekdaySerial() {
     const el = document.getElementById('weekday-serial');
     if (!el) return;
-    const todayIdx = ISSUE_DATE.getDay();
-    el.innerHTML = '曜日連載　' + WEEKDAY_SERIALS.map((s, i) =>
-      '<span class="wd' + (i === todayIdx ? ' today' : '') + '">' + s.day + '：' + s.title + '</span>'
-    ).join('');
+    el.innerHTML = '<span class="feature-label">特集・連載</span><span class="wd today">' +
+      ISSUE_FEATURE.label + '：' + ISSUE_FEATURE.title + '（' + ISSUE_FEATURE.page + '）</span>';
   }
 
   function renderHeadlineBand() {
