@@ -325,27 +325,6 @@
   .source-line a { color: var(--ink-soft); text-underline-offset: 2px; }
   .source-line a + a::before { content: " ／ "; }
 
-  .source-qr-box {
-    writing-mode: horizontal-tb;
-    display: flex;
-    align-items: center;
-    gap: 0.35em;
-    margin-top: 0.3em;
-  }
-  .source-qr-box img.source-qr {
-    width: 26px;
-    height: 26px;
-    border: 1px solid var(--rule-soft);
-    background: #fff;
-    padding: 1px;
-    flex: 0 0 auto;
-  }
-  .source-qr-box .source-qr-text {
-    font-size: 0.52rem;
-    line-height: 1.25;
-    color: var(--ink-soft);
-  }
-
   .cross-ref {
     text-align: right;
     font-size: 0.74rem;
@@ -2119,7 +2098,7 @@
       </div>
       <div class="back-box">
         <h3>紙面のご利用方法</h3>
-        <p>各面の記事末尾にあるQRコードから、スマートフォンで出典ページへ直接アクセスできます。画面上部のタブから面を切り替えられるほか、一部の記事は「続きを読む」ボタンから詳細（要点・出典・関連記事）を確認できます。</p>
+        <p>各面の記事末尾にある出典リンクから、発表元のページへ直接アクセスできます。画面上部のタブから面を切り替えられるほか、一部の記事は「続きを読む」ボタンから詳細（要点・出典・関連記事）を確認できます。</p>
       </div>
       <div class="back-box">
         <h3>記事種別バッジについて</h3>
@@ -2674,32 +2653,6 @@
     });
   }
   renderUserSubmissions();
-
-  /* ============================================================
-     出典リンクのQRコード化（印刷時にスマホでアクセスできるように）
-     ============================================================ */
-  function addSourceQrCodes() {
-    document.querySelectorAll('.source-line').forEach((sourceLine) => {
-      const firstLink = sourceLine.querySelector('a[href]');
-      if (!firstLink) return;
-      const url = firstLink.href;
-      const box = document.createElement('span');
-      box.className = 'source-qr-box';
-      const img = document.createElement('img');
-      img.className = 'source-qr';
-      img.loading = 'lazy';
-      img.alt = 'QRコード：' + url;
-      img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=90x90&margin=0&data=' + encodeURIComponent(url);
-      const textSpan = document.createElement('span');
-      textSpan.className = 'source-qr-text';
-      textSpan.textContent = 'QRで\nリンク先へ';
-      textSpan.style.whiteSpace = 'pre-line';
-      box.appendChild(img);
-      box.appendChild(textSpan);
-      sourceLine.appendChild(box);
-    });
-  }
-  addSourceQrCodes();
 
   /* ============================================================
      既存記事への記事種別バッジの遡及付与
