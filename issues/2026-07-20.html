@@ -294,6 +294,32 @@
     margin-bottom: 0.6em;
     letter-spacing: 0.25em;
   }
+  .ad-slot.filled {
+    border-style: solid;
+    text-align: left;
+  }
+  .ad-slot .ad-name {
+    font-family: var(--font-mincho);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--ink);
+    margin: 0.3em 0 0.35em;
+  }
+  .ad-slot .ad-copy {
+    font-size: 0.82rem;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin: 0 0 0.7em;
+  }
+  .ad-slot .ad-cta {
+    display: inline-block;
+    font-size: 0.72rem;
+    border: 1px solid var(--ink-soft);
+    color: var(--ink);
+    padding: 0.35em 0.9em;
+    text-decoration: none;
+  }
+  .ad-slot .ad-cta:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 
   .source-line {
     clear: both;
@@ -960,6 +986,11 @@
       </article>
     </div>
 
+    <div class="ad-slot no-print" data-ad-slot="p1-1" aria-hidden="true">
+      <span class="ad-label">広告</span><br>
+      この枠は将来の広告掲載用スペースです（現在はプレースホルダー）
+    </div>
+
     <p class="cross-ref">編集長コラム・編集部論説・今週の特集は２面、分野別ニュース・小欄短信は３面に掲載</p>
     <p class="folio">－　１　－</p>
   </section>
@@ -1521,6 +1552,11 @@
       </article>
     </div>
 
+    <div class="ad-slot no-print" data-ad-slot="p6-1" aria-hidden="true">
+      <span class="ad-label">広告</span><br>
+      この枠は将来の広告掲載用スペースです（現在はプレースホルダー）
+    </div>
+
     <p class="cross-ref">全国の催事暦は７面に掲載</p>
     <p class="folio">－　６　－</p>
   </section>
@@ -1607,7 +1643,7 @@
       </tbody>
     </table>
 
-    <div class="ad-slot no-print" aria-hidden="true">
+    <div class="ad-slot no-print" data-ad-slot="p7-1" aria-hidden="true">
       <span class="ad-label">広告</span><br>
       この枠は将来の広告掲載用スペースです（現在はプレースホルダー）
     </div>
@@ -1873,6 +1909,11 @@
           <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000019292.000007006.html" target="_blank" rel="noopener">株式会社KADOKAWAプレスリリース（PR TIMES）</a></p>
         </div>
       </article>
+    </div>
+
+    <div class="ad-slot no-print" data-ad-slot="p9-1" aria-hidden="true">
+      <span class="ad-label">広告</span><br>
+      この枠は将来の広告掲載用スペースです（現在はプレースホルダー）
     </div>
 
     <p class="cross-ref">特集・コラムは10面に掲載</p>
@@ -2556,28 +2597,56 @@
   });
 
   /* ============================================================
-     広告スペース（将来用）
+     広告枠
+     ads配列に広告情報を追加すると、対応する slot の
+     プレースホルダーが自動的に広告表示に切り替わります。
+     何も追加しなければ、これまで通りプレースホルダー表示のままです。
+
+     slot        : 差し込み先。紙面上の data-ad-slot 属性値と一致させる
+                   （現在の掲載可能枠：p1-1 / p6-1 / p7-1 / p9-1）
+     advertiser  : 広告主名
+     copy        : 紹介文（40〜60字目安）
+     url         : リンク先URL
+     linkLabel   : ボタン文言（省略時「詳しくはこちら」）
+     startDate   : 掲載開始日 'YYYY-MM-DD'（省略可）
+     endDate     : 掲載終了日 'YYYY-MM-DD'（省略可）
+     status      : 'active' 以外を指定すると掲載停止
      ============================================================ */
-  const adContent = null;
-  if (adContent) {
-    const slot = document.querySelector('.ad-slot');
-    if (slot) {
-      const label = slot.querySelector('.ad-label');
-      slot.innerHTML = '';
-      if (label) slot.appendChild(label);
-      slot.appendChild(document.createElement('br'));
-      if (adContent.url) {
-        const a = document.createElement('a');
-        a.href = adContent.url;
-        a.target = '_blank';
-        a.rel = 'noopener';
-        a.textContent = adContent.text;
-        slot.appendChild(a);
-      } else {
-        slot.appendChild(document.createTextNode(adContent.text));
-      }
-    }
+  const ads = [
+    // {
+    //   slot: 'p7-1',
+    //   advertiser: '株式会社サンプル手芸資材',
+    //   copy: '全国の手芸店・作家様へ。糸・生地の卸売なら当社まで。',
+    //   url: 'https://example.com',
+    //   linkLabel: '詳しくはこちら',
+    //   startDate: '2026-08-01',
+    //   endDate: '2026-08-31',
+    //   status: 'active',
+    // },
+  ];
+
+  function isAdActive(ad) {
+    if (ad.status && ad.status !== 'active') return false;
+    const today = new Date().toISOString().slice(0, 10);
+    if (ad.startDate && today < ad.startDate) return false;
+    if (ad.endDate && today > ad.endDate) return false;
+    return true;
   }
+
+  function renderAds() {
+    document.querySelectorAll('[data-ad-slot]').forEach((slotEl) => {
+      const ad = ads.find((a) => a.slot === slotEl.dataset.adSlot && isAdActive(a));
+      if (!ad) return;
+      slotEl.classList.add('filled');
+      slotEl.removeAttribute('aria-hidden');
+      slotEl.innerHTML =
+        '<span class="ad-label">広告</span>' +
+        '<div class="ad-name">' + escapeHtml(ad.advertiser) + '</div>' +
+        '<p class="ad-copy">' + escapeHtml(ad.copy) + '</p>' +
+        '<a class="ad-cta" href="' + ad.url + '" target="_blank" rel="noopener sponsored">' + escapeHtml(ad.linkLabel || '詳しくはこちら') + '</a>';
+    });
+  }
+  renderAds();
 
   const tabs = document.querySelectorAll('.tab');
   const pageIds = ['p1','p2','p3','p4','p5','p6','p7','p8','p9','p10','p11','p12'];
