@@ -1,5 +1,14 @@
-<title>手芸新聞 — 2026年7月22日号</title>
+<title>手芸新聞 — 2026年7月22日号（試作第4号）</title>
 <meta name="description" content="全国のハンドメイド・手芸メーカー、イベント、トレンドを毎日お届けする手芸新聞。全12面の業界紙形式で構成した試作号。">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="手芸新聞">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="手芸新聞 — 2026年7月22日号（試作第4号）">
+<meta property="og:description" content="長野キルトフェスティバル、今年で10周年／TOKYOハンドメイド祭、2026年通期日程を発表／世界の手工芸品市場、2035年に1596億ドルへ">
+<meta property="og:url" content="https://djtobby.github.io/shugei-shimbun/issues/2026-07-22.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="手芸新聞 — 2026年7月22日号（試作第4号）">
+<meta name="twitter:description" content="長野キルトフェスティバル、今年で10周年／TOKYOハンドメイド祭、2026年通期日程を発表／世界の手工芸品市場、2035年に1596億ドルへ">
 <style>
   :root {
     --paper: #ece9e0;
@@ -1607,6 +1616,7 @@
         <p class="feed-url-box">https://djtobby.github.io/shugei-shimbun/feed.xml</p>
         <p>登録方法：①上のURLをコピー　②<a href="https://blogtrottr.com/" target="_blank" rel="noopener">Blogtrottr</a>（おすすめ・簡単）または<a href="https://follow.it/" target="_blank" rel="noopener">Follow.it</a>を開く　③URLを貼り付けてメールアドレスを入力　④登録完了。RSSリーダー（Feedlyなど）でも同じURLで購読できます。</p>
         <p>バックナンバー一覧は<a href="https://djtobby.github.io/shugei-shimbun/" target="_blank" rel="noopener">https://djtobby.github.io/shugei-shimbun/</a>からご覧いただけます。</p>
+        <p>過去記事の横断検索・編集長コラムの連載一覧は<a href="https://djtobby.github.io/shugei-shimbun/archive.html" target="_blank" rel="noopener">こちら</a>からご覧いただけます。</p>
       </div>
     </div>
 
@@ -2230,4 +2240,14 @@
     });
   });
 
+  /* 号外・アーカイブページからの直接リンク用（?goto=記事ID または 面ID） */
+  (function () {
+    const gotoId = new URLSearchParams(location.search).get('goto');
+    if (!gotoId) return;
+    if (typeof articlesById !== 'undefined' && articlesById[gotoId]) {
+      openArticleDialog(gotoId);
+    } else {
+      jumpToArticle(null, gotoId);
+    }
+  })();
 </script>

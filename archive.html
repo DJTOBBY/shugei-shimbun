@@ -1,0 +1,190 @@
+<title>手芸新聞 — 記事検索・コラム一覧</title>
+<meta name="description" content="手芸新聞のバックナンバーを横断して記事を検索。編集長コラムの連載一覧も掲載。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="手芸新聞">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="手芸新聞 — 記事検索・コラム一覧">
+<meta property="og:description" content="手芸新聞のバックナンバーを横断して記事を検索。編集長コラムの連載一覧も掲載。">
+<meta property="og:url" content="https://djtobby.github.io/shugei-shimbun/archive.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="手芸新聞 — 記事検索・コラム一覧">
+<meta name="twitter:description" content="手芸新聞のバックナンバーを横断して記事を検索。編集長コラムの連載一覧も掲載。">
+<style>
+  :root {
+    --paper: #ece9e0; --ink: #1a1a1a; --ink-soft: #4a473e;
+    --rule: #1a1a1a; --rule-soft: #8a8677; --shu: #b7301f; --link: #33445e;
+    --font-mincho: "Hiragino Mincho ProN", "YuMincho", "Yu Mincho", "Noto Serif JP", "Times New Roman", serif;
+    --font-gothic: "Hiragino Kaku Gothic ProN", "YuGothic", "Yu Gothic", "Noto Sans JP", "Helvetica Neue", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --paper: #17181a; --ink: #e7e4d9; --ink-soft: #b0ad9f; --rule: #cfccc0; --rule-soft: #55534a; --shu: #e07a63; --link: #9db2d6; }
+  }
+  :root[data-theme="dark"] { --paper: #17181a; --ink: #e7e4d9; --ink-soft: #b0ad9f; --rule: #cfccc0; --rule-soft: #55534a; --shu: #e07a63; --link: #9db2d6; }
+  :root[data-theme="light"] { --paper: #ece9e0; --ink: #1a1a1a; --ink-soft: #4a473e; --rule: #1a1a1a; --rule-soft: #8a8677; --shu: #b7301f; --link: #33445e; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-gothic); }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 2.4rem 1.2rem 4rem; }
+  .masthead { text-align: center; margin-bottom: 0.6rem; }
+  .masthead .emblem { display: flex; justify-content: center; margin-bottom: 0.4rem; }
+  .masthead .emblem svg { width: 30px; height: 30px; overflow: visible; fill: none; stroke: var(--ink-soft); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .masthead h1 { font-family: var(--font-mincho); font-weight: 700; font-size: clamp(2.2rem, 6vw, 3rem); letter-spacing: 0.1em; margin: 0; }
+  .masthead .sub { font-size: 0.64rem; letter-spacing: 0.3em; color: var(--ink-soft); text-transform: uppercase; margin-top: 0.3em; }
+  .rule { border-top: 4px solid var(--rule); border-bottom: 1px solid var(--rule); height: 6px; margin: 0.9rem 0 1.6rem; }
+  .backlink { font-size: 0.8rem; margin-bottom: 1.2rem; }
+  h2 { font-family: var(--font-mincho); font-size: 1.05rem; border-bottom: 3px double var(--ink); padding-bottom: 0.3em; margin: 2.2rem 0 1.2rem; }
+  h2:first-of-type { margin-top: 0; }
+  .lede { font-size: 0.86rem; color: var(--ink-soft); line-height: 1.8; margin: -0.6rem 0 1.2rem; }
+
+  /* コラム連載 */
+  .col-list { list-style: none; margin: 0; padding: 0; }
+  .col-item { display: block; text-decoration: none; color: inherit; border: 1px solid var(--rule-soft); padding: 0.9rem 1.1rem; margin-bottom: 0.8rem; transition: border-color 0.15s; }
+  .col-item:hover { border-color: var(--ink); }
+  .col-item .col-no { font-size: 0.66rem; color: var(--shu); letter-spacing: 0.05em; font-weight: 700; }
+  .col-item .col-title { font-family: var(--font-mincho); font-weight: 700; font-size: 1rem; margin: 0.25em 0; }
+  .col-item .col-meta { font-size: 0.74rem; color: var(--ink-soft); }
+
+  /* 検索 */
+  .search-box { border: 1px solid var(--rule-soft); padding: 1.1rem 1.3rem; margin-bottom: 1.4rem; }
+  .search-box input[type="search"] {
+    width: 100%; font-size: 1rem; font-family: var(--font-gothic); color: var(--ink);
+    background: transparent; border: none; border-bottom: 2px solid var(--ink); padding: 0.4em 0.1em; outline: none;
+  }
+  .filter-row { display: flex; flex-wrap: wrap; gap: 0.5em; margin-top: 0.9em; }
+  .tag-chip {
+    font-size: 0.72rem; letter-spacing: 0.03em; padding: 0.3em 0.8em; border: 1px solid var(--rule-soft);
+    background: transparent; color: var(--ink-soft); cursor: pointer; border-radius: 999px; font-family: var(--font-gothic);
+  }
+  .tag-chip.active { border-color: var(--shu); color: var(--shu); }
+  .result-count { font-size: 0.76rem; color: var(--ink-soft); margin: 0.6em 0 1em; }
+  .result-list { list-style: none; margin: 0; padding: 0; }
+  .result-item { display: block; text-decoration: none; color: inherit; border-bottom: 1px solid var(--rule-soft); padding: 0.95rem 0.1rem; }
+  .result-item:last-child { border-bottom: none; }
+  .result-top { display: flex; gap: 0.6em; align-items: baseline; flex-wrap: wrap; font-size: 0.7rem; color: var(--ink-soft); }
+  .result-top .r-badge { border: 1px solid var(--rule-soft); padding: 0.05em 0.5em; }
+  .result-title { font-family: var(--font-mincho); font-weight: 700; font-size: 1.02rem; margin: 0.3em 0; }
+  .result-lead { font-size: 0.85rem; line-height: 1.7; color: var(--ink-soft); }
+  .no-result { font-size: 0.86rem; color: var(--ink-soft); padding: 1.5rem 0; text-align: center; }
+  footer { margin-top: 2.4rem; font-size: 0.72rem; color: var(--ink-soft); border-top: 1px solid var(--rule-soft); padding-top: 0.8em; }
+</style>
+
+<div class="wrap">
+  <div class="masthead">
+    <div class="emblem">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="34" />
+        <line x1="38" y1="28" x2="62" y2="72" />
+        <circle cx="38" cy="26" r="4" />
+        <path d="M38,28 C22,42 30,58 48,60" />
+      </svg>
+    </div>
+    <h1>手芸新聞</h1>
+    <p class="sub">SHUGEI SHIMBUN — 記事検索・コラム一覧</p>
+  </div>
+  <div class="rule"></div>
+  <p class="backlink"><a href="index.html">← バックナンバー一覧に戻る</a></p>
+
+  <h2>編集長コラム 連載一覧</h2>
+  <p class="lede">編集長（AI人格）が毎号綴る所感欄です。連載「手芸の向こう側」に加え、号外的に掲載したコラムもあわせて収録しています。</p>
+  <ul class="col-list" id="column-list"></ul>
+
+  <h2>記事を検索</h2>
+  <p class="lede">これまでの号に掲載した記事を、キーワードやタグで横断的に探せます。</p>
+  <div class="search-box">
+    <input type="search" id="search-input" placeholder="キーワードで検索（例：ビーズ、市場、刺繍）">
+    <div class="filter-row" id="tag-filters"></div>
+  </div>
+  <p class="result-count" id="result-count"></p>
+  <ul class="result-list" id="result-list"></ul>
+
+  <footer>手芸新聞は個人が試作しているデジタル新聞です。実在の刊行物・法人ではありません。各記事の内容は公開情報を編集部が要約・構成したものです。本ページのデータは各号を発行するたびに手動で更新しています。</footer>
+</div>
+
+<script>
+  const articles = [{"issueDate":"2026-07-23","issueLabel":"試作第5号","id":"business-001","articleType":"BUSINESS","title":"作品を安く売りすぎる作家たち","subtitle":null,"lead":"材料費だけを積み上げて価格をつけ、自分の作業時間をゼロ円で計算してしまう——作家のあいだでよく語られる悩みを、編集部なりに考えてみた。","category":"作家・クリエイター","tags":["作家ビジネス","価格設定"],"publishedAt":"2026-07-18T11:00:00+09:00"},{"issueDate":"2026-07-23","issueLabel":"試作第5号","id":"col-chief-editor-001","articleType":"CHIEF_EDITOR","title":"一粒ずつ、自分だけの一本を作る時間","subtitle":"編集長コラム「手芸の向こう側」第4回","lead":"流行は繰り返す、とよく言われる。しかし、本当に繰り返しているのは「形」ではない。人が手で作ったものに価値を感じる気持ちである。","category":"コラム","tags":["編集長コラム","ビーズ","手仕事の価値"],"publishedAt":"2026-07-23T10:00:00+09:00"},{"issueDate":"2026-07-23","issueLabel":"試作第5号","id":"culture-001","articleType":"CULTURE","title":"一粒のビーズから見る世界の交易史","subtitle":null,"lead":"小さなガラス玉ひとつが、大陸を越えて人と物を結びつけてきた。ビーズは古くから交易の通貨としても使われた、手芸素材の中でもとりわけ歴史の長い存在だ。","category":"文化・歴史","tags":["文化","ビーズ","交易史"],"publishedAt":"2026-07-18T11:15:00+09:00"},{"issueDate":"2026-07-23","issueLabel":"試作第5号","id":"editorial-001","articleType":"EDITORIAL","title":"二つのグランプリが分けられた意味","subtitle":"編集部はこう見る","lead":"刺繍アートフェスティバル2026は、壁掛け作品部門と立体作品部門にそれぞれグランプリを設けた。最優秀を1点に絞らない審査設計には、どんな狙いがあるのか。","category":"論説","tags":["論説","コンテスト","刺繍アートフェスティバル"],"publishedAt":"2026-07-23T10:15:00+09:00"},{"issueDate":"2026-07-23","issueLabel":"試作第5号","id":"feature-001","articleType":"FEATURE","title":"VOGUEが伝えた「ビーズブーム」——なぜ今、世界は再びビーズに魅了されるのか","subtitle":"今週の特集","lead":"2026年のファッションシーンで存在感を高めるビーズネックレス。英国版VOGUEが伝えたトレンドを、手芸業界の立場から読み解く。","category":"特集","tags":["特集","ビーズ","ファッション"],"publishedAt":"2026-07-23T10:30:00+09:00"},{"issueDate":"2026-07-23","issueLabel":"試作第5号","id":"front-lead-kumiko","articleType":"NEWS","title":"刺繍アートフェスティバル、グランプリ発表","subtitle":"壁掛け部門・立体部門の2作品が受賞、25作品に副賞も","lead":"「刺繍アートフェスティバル2026」は来場者投票によるグランプリを発表。壁掛け作品部門は奥田萌里衣氏、立体作品部門は多禰知葉氏が選ばれた。","category":"総合","tags":["催事","刺繍","コンテスト"],"publishedAt":"2026-07-23T07:00:00+09:00"},{"issueDate":"2026-07-23","issueLabel":"試作第5号","id":"market-001","articleType":"MARKET","title":"推し活市場は手芸業界の新しい入口になるか","subtitle":null,"lead":"うちわデコ、ぬい服、レジンアクセサリー——「推し活」グッズの手作りは、裁縫・ビーズ・レジンなど複数分野の技術を横断する。","category":"市場・ビジネス","tags":["市場","推し活","若年層"],"publishedAt":"2026-07-18T10:45:00+09:00"},{"issueDate":"2026-07-22","issueLabel":"試作第4号","id":"col-chief-editor-001","articleType":"CHIEF_EDITOR","title":"10年続いた催事が教えてくれること","subtitle":"編集長コラム「手芸の向こう側」第3回","lead":"長野キルトフェスティバルが今年で10回目を迎える。一度の盛り上がりと、10回続けることの間には、埋めがたい距離がある。","category":"コラム","tags":["編集長コラム","手芸文化論","継続"],"publishedAt":"2026-07-22T10:00:00+09:00"},{"issueDate":"2026-07-22","issueLabel":"試作第4号","id":"col-chief-editor-002","articleType":"CHIEF_EDITOR","title":"手でつくる時間は、未来を育てる時間","subtitle":"編集長コラム","lead":"夏休みが始まるこの季節、手芸店には親子連れや学生の姿が増える。手芸は作品をつくること以上に、人を育てる文化なのかもしれない。","category":"コラム","tags":["編集長コラム","夏休み","手仕事の価値"],"publishedAt":"2026-07-22T11:00:00+09:00"},{"issueDate":"2026-07-22","issueLabel":"試作第4号","id":"editorial-001","articleType":"EDITORIAL","title":"世界市場、なぜ推計はこんなに違うのか","subtitle":"編集部はこう見る","lead":"IMARC Groupは2034年に2,038億ドルと推計する一方、Business Research Insightsは2035年に1,596億ドルと推計する。同じ「世界の手工芸品市場」なのに、なぜ数字が違うのか。","category":"論説","tags":["論説","市場調査","データ比較"],"publishedAt":"2026-07-22T10:15:00+09:00"},{"issueDate":"2026-07-22","issueLabel":"試作第4号","id":"feature-001","articleType":"FEATURE","title":"長野キルトフェスティバル10年の歩みに見る、地方発クラフトイベントの持続力","subtitle":"今週の特集","lead":"2005年に「長野キルトウィーク」として始まった催事が、2026年8月に10回目を迎える。地方都市で10年続いたことの意味を考える。","category":"特集","tags":["特集","キルト","地方イベント"],"publishedAt":"2026-07-22T10:30:00+09:00"},{"issueDate":"2026-07-22","issueLabel":"試作第4号","id":"front-lead-kumiko","articleType":"NEWS","title":"長野キルトフェスティバル、今年で10周年","subtitle":"8月27〜29日、初開催の「長野キルトウィーク」から10回目","lead":"一般社団法人日本キルト協会などが実行委員会を務める「長野キルトフェスティバル2026」が、8月27日から29日まで開催される。","category":"総合","tags":["催事","キルト","長野"],"publishedAt":"2026-07-22T07:00:00+09:00"},{"issueDate":"2026-07-21","issueLabel":"試作第3号","id":"col-chief-editor-001","articleType":"CHIEF_EDITOR","title":"「刺繍」という言葉は、誰のものか","subtitle":"編集長コラム「手芸の向こう側」第2回","lead":"今号の紙面には「刺繍」という言葉が何度も登場する。公募展の閉幕と、キャラクターグッズの説明文。同じ一語が違う文脈で使われている。","category":"コラム","tags":["編集長コラム","手芸文化論","刺繍"],"publishedAt":"2026-07-21T10:00:00+09:00"},{"issueDate":"2026-07-21","issueLabel":"試作第3号","id":"col-chief-editor-002","articleType":"CHIEF_EDITOR","title":"便利な時代だからこそ、手でつくる価値","subtitle":"編集長コラム","lead":"便利な時代だからこそ、手で作る価値はむしろ高まっていく——編集長が思うことを綴ります。","category":"コラム","tags":["編集長コラム","AI","手仕事の価値"],"publishedAt":"2026-07-21T11:00:00+09:00"},{"issueDate":"2026-07-21","issueLabel":"試作第3号","id":"editorial-001","articleType":"EDITORIAL","title":"キャラクターコラボが手芸業界に持ち込むもの","subtitle":"編集部はこう見る","lead":"サンリオ×groveのコラボアイテムは、刺繍やキルティングを前面に押し出して売られる。手芸業界にとって、これは追い風か希薄化か。","category":"論説","tags":["論説","キャラクターコラボ","刺繍"],"publishedAt":"2026-07-21T10:15:00+09:00"},{"issueDate":"2026-07-21","issueLabel":"試作第3号","id":"feature-001","articleType":"FEATURE","title":"「競わない」コンテストは、業界に何をもたらすか","subtitle":"今週の特集","lead":"本日閉幕する刺繍アートフェスティバルは「競い合う」のではなく「広げ、応援し、つなぐ」ことを掲げる。この設計思想は何をもたらすのか。","category":"特集","tags":["特集","コンテスト","刺繍アートフェスティバル"],"publishedAt":"2026-07-21T10:30:00+09:00"},{"issueDate":"2026-07-21","issueLabel":"試作第3号","id":"front-lead-kumiko","articleType":"NEWS","title":"刺繍アートフェスティバル、本日閉幕　グランプリ発表へ","subtitle":"5日間で130作品を展示、受賞式典・交流会も","lead":"刺繍作品の公募コンテスト・展示会「刺繍アートフェスティバル2026」が本日、5日間の会期を終えて閉幕する。","category":"総合","tags":["催事","刺繍","コンテスト"],"publishedAt":"2026-07-21T07:00:00+09:00"},{"issueDate":"2026-07-20","issueLabel":"試作第2号","id":"col-chief-editor-001","articleType":"CHIEF_EDITOR","title":"手芸は「暇な人の趣味」ではない","subtitle":"編集長コラム「手芸の向こう側」第1回","lead":"取材のたびに、判で押したように同じ言葉を投げかけられる。「手芸なんて、暇な人がやることでしょう」。","category":"コラム","tags":["編集長コラム","手芸文化論","値付け"],"publishedAt":"2026-07-18T10:00:00+09:00"},{"issueDate":"2026-07-20","issueLabel":"試作第2号","id":"editorial-001","articleType":"EDITORIAL","title":"AI時代に、手で作る価値はむしろ高くなる","subtitle":"編集部はこう見る","lead":"生成AIが文章や画像を瞬時に作る時代に、手で仕上げる工芸品の値打ちはどうなるのか。編集部の見立ては逆だ。","category":"論説","tags":["論説","AI","手仕事の価値"],"publishedAt":"2026-07-18T10:15:00+09:00"},{"issueDate":"2026-07-20","issueLabel":"試作第2号","id":"feature-001","articleType":"FEATURE","title":"全国から手芸店が消えている。その先に何が残るのか","subtitle":"今週の特集","lead":"商店街を歩けば、シャッターが下りた手芸店に気づく人も多いだろう。後継者不足、EC化、大型店舗への集約——要因は一つではない。","category":"特集","tags":["特集","手芸店","小売"],"publishedAt":"2026-07-18T10:30:00+09:00"},{"issueDate":"2026-07-20","issueLabel":"試作第2号","id":"front-lead-kumiko","articleType":"NEWS","title":"刺繍アートフェスティバル、130作品の投票が佳境","subtitle":"結果発表は明日、グランプリの行方は","lead":"刺繍作品の公募コンテスト・展示会「刺繍アートフェスティバル2026」が本日、東京都内で最終日を迎える。","category":"総合","tags":["催事","刺繍","コンテスト"],"publishedAt":"2026-07-20T07:00:00+09:00"}];
+
+  function issueUrl(a) {
+    return 'issues/' + a.issueDate + '.html?goto=' + encodeURIComponent(a.id);
+  }
+
+  function formatDate(issueDate) {
+    const [y, m, d] = issueDate.split('-');
+    return y + '年' + parseInt(m, 10) + '月' + parseInt(d, 10) + '日';
+  }
+
+  const typeLabel = {
+    NEWS: 'NEWS', CHIEF_EDITOR: 'コラム', EDITORIAL: '論説', FEATURE: '特集',
+    MARKET: '市場', BUSINESS: '作家・ビジネス', CULTURE: '文化',
+  };
+
+  /* ===== 編集長コラム 連載一覧 ===== */
+  function renderColumnSeries() {
+    const columns = articles
+      .filter((a) => a.articleType === 'CHIEF_EDITOR')
+      .sort((a, b) => a.publishedAt.localeCompare(b.publishedAt));
+    const list = document.getElementById('column-list');
+    list.innerHTML = columns.map((a) => {
+      const seriesMatch = (a.subtitle || '').match(/第(\d+)回/);
+      const noLabel = seriesMatch ? '連載 第' + seriesMatch[1] + '回' : '号外コラム';
+      return (
+        '<li><a class="col-item" href="' + issueUrl(a) + '">' +
+        '<div class="col-no">' + noLabel + '</div>' +
+        '<div class="col-title">' + a.title + '</div>' +
+        '<div class="col-meta">' + formatDate(a.issueDate) + '（' + a.issueLabel + '）</div>' +
+        '</a></li>'
+      );
+    }).join('');
+  }
+
+  /* ===== 記事検索 ===== */
+  const allTags = Array.from(new Set(articles.flatMap((a) => a.tags))).sort();
+  let activeTag = null;
+
+  function renderTagFilters() {
+    const box = document.getElementById('tag-filters');
+    box.innerHTML = allTags.map((t) =>
+      '<button type="button" class="tag-chip" data-tag="' + t + '">' + t + '</button>'
+    ).join('');
+    box.querySelectorAll('.tag-chip').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        activeTag = activeTag === btn.dataset.tag ? null : btn.dataset.tag;
+        renderTagFilters();
+        renderResults();
+      });
+      if (btn.dataset.tag === activeTag) btn.classList.add('active');
+    });
+  }
+
+  function renderResults() {
+    const q = document.getElementById('search-input').value.trim().toLowerCase();
+    const filtered = articles.filter((a) => {
+      const matchesTag = !activeTag || a.tags.includes(activeTag);
+      if (!matchesTag) return false;
+      if (!q) return true;
+      const haystack = [a.title, a.lead, a.category, a.subtitle, ...a.tags].filter(Boolean).join(' ').toLowerCase();
+      return haystack.includes(q);
+    }).sort((a, b) => b.issueDate.localeCompare(a.issueDate));
+
+    const list = document.getElementById('result-list');
+    if (filtered.length === 0) {
+      document.getElementById('result-count').textContent = '該当する記事が見つかりませんでした。';
+      list.innerHTML = '';
+      return;
+    }
+    document.getElementById('result-count').textContent = filtered.length + '件の記事';
+    list.innerHTML = filtered.map((a) => (
+      '<li><a class="result-item" href="' + issueUrl(a) + '">' +
+      '<div class="result-top"><span class="r-badge">' + (typeLabel[a.articleType] || a.articleType) + '</span>' +
+      '<span>' + formatDate(a.issueDate) + '（' + a.issueLabel + '）</span>' +
+      '<span>' + a.category + '</span></div>' +
+      '<div class="result-title">' + a.title + '</div>' +
+      '<div class="result-lead">' + (a.lead || '') + '</div>' +
+      '</a></li>'
+    )).join('');
+  }
+
+  document.getElementById('search-input').addEventListener('input', renderResults);
+
+  renderColumnSeries();
+  renderTagFilters();
+  renderResults();
+</script>
