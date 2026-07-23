@@ -1,0 +1,2088 @@
+<title>手芸新聞 — 2026年7月23日号</title>
+<meta name="description" content="全国のハンドメイド・手芸メーカー、イベント、トレンドを毎日お届けする手芸新聞。全12面の業界紙形式で構成した試作号。">
+<style>
+  :root {
+    --paper: #ece9e0;
+    --ink: #1a1a1a;
+    --ink-soft: #4a473e;
+    --rule: #1a1a1a;
+    --rule-soft: #8a8677;
+    --shu: #b7301f;
+    --link: #33445e;
+    --shadow: rgba(0, 0, 0, 0.14);
+
+    --font-mincho: "Hiragino Mincho ProN", "YuMincho", "Yu Mincho", "Noto Serif JP", "Times New Roman", serif;
+    --font-gothic: "Hiragino Kaku Gothic ProN", "YuGothic", "Yu Gothic", "Noto Sans JP", "Helvetica Neue", sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #17181a;
+      --ink: #e7e4d9;
+      --ink-soft: #b0ad9f;
+      --rule: #cfccc0;
+      --rule-soft: #55534a;
+      --shu: #e07a63;
+      --link: #9db2d6;
+      --shadow: rgba(0, 0, 0, 0.5);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #17181a; --ink: #e7e4d9; --ink-soft: #b0ad9f;
+    --rule: #cfccc0; --rule-soft: #55534a; --shu: #e07a63;
+    --link: #9db2d6; --shadow: rgba(0, 0, 0, 0.5);
+  }
+  :root[data-theme="light"] {
+    --paper: #ece9e0; --ink: #1a1a1a; --ink-soft: #4a473e;
+    --rule: #1a1a1a; --rule-soft: #8a8677; --shu: #b7301f;
+    --link: #33445e; --shadow: rgba(0, 0, 0, 0.14);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-gothic);
+  }
+  a { color: var(--link); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--shu); outline-offset: 2px; }
+
+  .tcy { text-combine-upright: all; }
+
+  /* ---------------- toolbar ---------------- */
+  .toolbar {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 1rem 1rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .tabs { display: flex; flex-wrap: wrap; gap: 0.35rem; max-width: 1100px; }
+  .tabs button {
+    font-family: var(--font-gothic);
+    font-size: 0.74rem;
+    letter-spacing: 0.02em;
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--rule-soft);
+    padding: 0.45em 0.7em;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .tabs button.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  /* ---------------- page shell ---------------- */
+  .paper {
+    max-width: 1060px;
+    margin: 1rem auto 3rem;
+    background-color: var(--paper);
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(0,0,0,0.05) 100%);
+    background-blend-mode: multiply, normal;
+    box-shadow: 0 10px 40px var(--shadow);
+    border: 1px solid var(--rule-soft);
+  }
+  .page { padding: 1.6rem clamp(1rem, 3vw, 2.4rem) 1.4rem; aspect-ratio: 297 / 420; }
+  .page[hidden] { display: none; }
+
+  /* ---------------- front-page masthead ---------------- */
+  .masthead-grid {
+    display: grid;
+    grid-template-columns: 92px 1fr 92px;
+    align-items: stretch;
+    gap: 0.9rem;
+  }
+  .corner-box {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 0.74rem;
+    line-height: 2.05;
+    height: 132px;
+    color: var(--ink-soft);
+    border-left: 1px solid var(--rule-soft);
+    border-right: 1px solid var(--rule-soft);
+    padding: 0 0.15rem;
+    justify-self: center;
+  }
+  .corner-box.left { border-right: none; }
+  .corner-box.right { border-left: none; }
+
+  .nameplate { text-align: center; align-self: center; }
+  .nameplate .emblem {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.3rem;
+  }
+  .nameplate .emblem svg {
+    width: 34px; height: 34px; overflow: visible;
+    fill: none; stroke: var(--ink-soft); stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .nameplate .wordmark {
+    font-family: var(--font-mincho);
+    font-weight: 700;
+    font-size: clamp(2.6rem, 7.4vw, 4rem);
+    letter-spacing: 0.12em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .nameplate .subtitle {
+    margin: 0.35em 0 0;
+    font-size: 0.68rem;
+    letter-spacing: 0.32em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7em;
+  }
+  .nameplate .subtitle::before,
+  .nameplate .subtitle::after {
+    content: "";
+    width: 2.5em;
+    height: 1px;
+    background: var(--rule-soft);
+    position: relative;
+  }
+  .nameplate .subtitle::before { margin-right: 0.2em; }
+  .nameplate .subtitle::after { margin-left: 0.2em; }
+
+  .rule-thick-thin {
+    margin-top: 0.8rem;
+    border-top: 4px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    height: 6px;
+  }
+  .index-line {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    padding: 0.35rem 0 0.7rem;
+    border-bottom: 1px solid var(--rule-soft);
+    margin-bottom: 1.1rem;
+    letter-spacing: 0.02em;
+  }
+
+  /* ---------------- running header (inner pages) ---------------- */
+  .running-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--font-mincho);
+    font-size: 0.86rem;
+    letter-spacing: 0.05em;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px double var(--rule);
+    margin-bottom: 1.2rem;
+  }
+  .running-header .folio-mark {
+    font-family: var(--font-gothic);
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+  }
+
+  /* ---------------- newspaper article grid (横書き) ---------------- */
+  .page-body { margin: 0; }
+  .news-row + .news-row {
+    margin-top: 1.6rem;
+    padding-top: 1.4rem;
+    border-top: 3px double var(--rule);
+  }
+  .news-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 0 2rem;
+    align-items: start;
+  }
+  .news-grid .lead-col { border-right: 1px solid var(--rule-soft); padding-right: 2rem; }
+  .news-grid .side-col { display: flex; flex-direction: column; gap: 1.4rem; }
+  .more-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.4rem 2rem;
+  }
+  .more-grid + .more-grid,
+  .news-grid + .more-grid { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid var(--rule-soft); }
+
+  article.lead, article.brief { max-width: 100%; }
+  article.brief + article.brief { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid var(--rule-soft); }
+  article.story + article.story { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid var(--rule-soft); }
+
+  .kicker {
+    display: block;
+    font-family: var(--font-gothic);
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: var(--link);
+    margin: 0.2em 0 0.3em;
+  }
+  .fuku-midashi { font-size: 0.7em; font-weight: 500; color: var(--ink-soft); display: block; margin-top: 0.3em; }
+
+  article.lead h2, article.story h2 {
+    font-family: var(--font-mincho); font-weight: 700; font-size: 1.62rem; line-height: 1.4;
+    margin: 0 0 0.6em; text-wrap: balance;
+  }
+  article.brief h3 {
+    font-family: var(--font-mincho); font-weight: 700; font-size: 1.1rem; line-height: 1.45;
+    margin: 0 0 0.5em; text-wrap: balance;
+  }
+  article.story { max-width: 100%; }
+
+  /* ---------------- newspaper cut illustrations ---------------- */
+  .lede-media, .thumb {
+    border: 1px solid var(--rule);
+    background-image: radial-gradient(circle, var(--ink-soft) 1px, transparent 1.3px);
+    background-size: 6px 6px;
+  }
+  .lede-media {
+    float: left; width: 170px; margin: 0 1.3rem 0.7rem 0; padding: 0.6em;
+  }
+  .thumb {
+    float: right; width: 84px; height: 84px; margin: 0 0 0.6em 0.9em;
+    display: flex; align-items: center; justify-content: center; flex: 0 0 auto;
+  }
+  .lede-media svg, .thumb svg {
+    width: 100%; height: auto; overflow: visible;
+    fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linejoin: round; stroke-linecap: round;
+  }
+  .thumb svg { width: 70%; height: 70%; }
+  .lede-media .cap { display: block; font-size: 0.64rem; color: var(--ink-soft); text-align: center; line-height: 1.35; margin-top: 0.4em; }
+
+  .lead-char {
+    font-family: var(--font-mincho); font-weight: 700; font-size: 2.5em; float: left;
+    line-height: 0.85; margin: 0.03em 0.09em 0 0; color: var(--ink);
+  }
+
+  .body p, .col-excerpt p { font-size: 1rem; line-height: 1.85; margin: 0 0 1em; color: var(--ink); }
+  article.brief .body p, article.brief p { font-size: 0.9rem; line-height: 1.75; color: var(--ink-soft); margin: 0 0 0.7em; }
+  .body { clear: none; }
+  .body::after { content: ""; display: table; clear: both; }
+
+  .pull-quote {
+    font-family: var(--font-mincho); font-weight: 700; font-size: 1.15rem; line-height: 1.6;
+    border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    padding: 0.6em 0; margin: 1em 0; color: var(--ink); clear: both;
+  }
+  .pull-quote::before { content: "「"; color: var(--ink-soft); }
+  .pull-quote::after { content: "」"; color: var(--ink-soft); }
+
+  .ad-slot {
+    writing-mode: horizontal-tb;
+    border: 1px dashed var(--rule-soft);
+    padding: 1rem 1.2rem;
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    margin-top: 1.4rem;
+  }
+  .ad-slot .ad-label {
+    font-family: var(--font-mincho);
+    font-weight: 700;
+    color: var(--ink-soft);
+    border: 1px solid var(--rule-soft);
+    display: inline-block;
+    padding: 0.15em 0.8em;
+    font-size: 0.68rem;
+    margin-bottom: 0.6em;
+    letter-spacing: 0.25em;
+  }
+  .ad-slot.filled {
+    border-style: solid;
+    text-align: left;
+  }
+  .ad-slot .ad-name {
+    font-family: var(--font-mincho);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--ink);
+    margin: 0.3em 0 0.35em;
+  }
+  .ad-slot .ad-copy {
+    font-size: 0.82rem;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin: 0 0 0.7em;
+  }
+  .ad-slot .ad-cta {
+    display: inline-block;
+    font-size: 0.72rem;
+    border: 1px solid var(--ink-soft);
+    color: var(--ink);
+    padding: 0.35em 0.9em;
+    text-decoration: none;
+  }
+  .ad-slot .ad-cta:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  .source-line {
+    clear: both;
+    margin: 0.5em 0 0;
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    border-top: 1px dotted var(--rule-soft);
+    padding-top: 0.35em;
+  }
+  .source-line a { color: var(--ink-soft); text-underline-offset: 2px; }
+  .source-line a + a::before { content: " ／ "; }
+
+  .cross-ref {
+    text-align: right;
+    font-size: 0.74rem;
+    color: var(--ink-soft);
+    border-top: 1px solid var(--rule-soft);
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+  }
+
+  /* ---------------- editorial column ---------------- */
+  .opinion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2rem; align-items: start; }
+  .column-box {
+    border: 1px solid var(--rule-soft);
+    padding: 1.1rem 1.3rem;
+  }
+  .column-box .col-icon {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 0.5em;
+  }
+  .column-box .col-icon svg {
+    width: 38px; height: 38px; overflow: visible;
+    fill: none; stroke: var(--ink); stroke-width: 2.2;
+    stroke-linejoin: round; stroke-linecap: round;
+  }
+  .column-box .col-title {
+    font-family: var(--font-mincho);
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+  .column-box .col-byline {
+    font-size: 0.66rem;
+    color: var(--ink-soft);
+    margin-top: 0.3em;
+  }
+  .column-box .col-body { font-size: 0.88rem; line-height: 1.8; margin-top: 0.7em; color: var(--ink-soft); }
+  .column-box .col-body p { margin: 0 0 0.8em; }
+
+  .editors-note {
+    font-size: 0.78rem;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    border: 1px solid var(--rule-soft);
+    padding: 0.9em 1.1em;
+  }
+  .editors-note .et-title {
+    font-family: var(--font-mincho);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 0.92rem;
+    margin-bottom: 0.5em;
+  }
+
+  /* ---------------- horizontal table page ---------------- */
+  .event-table {
+    writing-mode: horizontal-tb;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 760px;
+    font-size: 0.84rem;
+    margin: 1rem 0 0.5rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .event-table caption {
+    writing-mode: horizontal-tb;
+    text-align: left;
+    font-family: var(--font-mincho);
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.5em;
+  }
+  .event-table th, .event-table td {
+    border: 1px solid var(--rule-soft);
+    padding: 0.45em 0.75em;
+    text-align: left;
+  }
+  .event-table th {
+    font-family: var(--font-mincho);
+    font-weight: 700;
+    border-bottom: 2px solid var(--rule);
+  }
+
+  /* ---------------- TOC page ---------------- */
+  .toc-list {
+    writing-mode: horizontal-tb;
+    list-style: none;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    max-width: 900px;
+  }
+  .toc-list li {
+    display: flex;
+    gap: 1.2rem;
+    align-items: baseline;
+    padding: 0.85em 0;
+    border-bottom: 1px dotted var(--rule-soft);
+  }
+  .toc-list .toc-page {
+    font-family: var(--font-mincho);
+    font-weight: 700;
+    font-size: 1.1rem;
+    width: 3em;
+    flex: 0 0 auto;
+    font-variant-numeric: tabular-nums;
+  }
+  .toc-list .toc-title { font-weight: 700; }
+  .toc-list .toc-desc { color: var(--ink-soft); font-size: 0.86rem; }
+
+  /* ---------------- colophon page ---------------- */
+  .back-grid {
+    writing-mode: horizontal-tb;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    max-width: 1100px;
+  }
+  .back-box {
+    border: 1px solid var(--rule-soft);
+    padding: 1.2rem 1.4rem;
+  }
+  .back-box h3 {
+    font-family: var(--font-mincho);
+    font-size: 1rem;
+    margin: 0 0 0.7em;
+    border-bottom: 1px solid var(--rule-soft);
+    padding-bottom: 0.4em;
+  }
+  .back-box p { font-size: 0.86rem; line-height: 1.9; color: var(--ink-soft); margin: 0 0 0.6em; }
+  .back-box .feed-url-box { font-family: monospace; font-size: 0.78rem; background: rgba(0,0,0,0.05); padding: 0.5em 0.7em; word-break: break-all; color: var(--ink); }
+  .back-mini-wordmark {
+    writing-mode: horizontal-tb;
+    font-family: var(--font-mincho);
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 0.1em;
+    margin: 0 0 1rem;
+  }
+
+  .folio {
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.15em;
+    margin-top: 1.2rem;
+  }
+
+  footer.colophon {
+    margin-top: 1.6rem;
+    padding-top: 0.9rem;
+    border-top: 3px double var(--rule);
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 2rem;
+    justify-content: space-between;
+  }
+  footer.colophon .notice { max-width: 44em; }
+
+  /* ================================================================
+     記事種別バッジ / データ駆動記事コンポーネント
+     ================================================================ */
+  .type-badge {
+    writing-mode: horizontal-tb;
+    display: inline-block;
+    font-family: var(--font-gothic);
+    font-weight: 700;
+    font-size: 0.58rem;
+    letter-spacing: 0.06em;
+    padding: 0.15em 0.5em;
+    border: 1px solid var(--ink-soft);
+    color: var(--ink-soft);
+    white-space: nowrap;
+    margin-bottom: 0.35em;
+  }
+  .type-badge[data-type="BREAKING"] { color: #fff; background: var(--shu); border-color: var(--shu); }
+  .type-badge[data-type="EDITORIAL"],
+  .type-badge[data-type="CHIEF_EDITOR"],
+  .type-badge[data-type="OPINION"] { color: var(--link); border-color: var(--link); }
+  .type-badge[data-type="FEATURE"] { color: var(--ink); border-color: var(--ink); background: rgba(0,0,0,0.04); }
+
+  .opinion-flag {
+    writing-mode: horizontal-tb;
+    font-size: 0.68rem;
+    color: var(--link);
+    border: 1px solid var(--link);
+    padding: 0.35em 0.7em;
+    margin: 0.5em 0;
+    display: inline-block;
+  }
+
+  .fuku-midashi { font-size: 0.6em; font-weight: 500; color: var(--ink-soft); display: block; margin-top: 0.35em; }
+
+  .why-matters {
+    border: 1px solid var(--rule-soft);
+    padding: 1rem 1.2rem;
+    font-size: 0.82rem;
+    line-height: 1.7;
+  }
+  .why-matters h4 { font-family: var(--font-mincho); font-size: 0.84rem; color: var(--ink-soft); margin: 0 0 0.6em; border-bottom: 1px solid var(--rule-soft); padding-bottom: 0.4em; }
+  .why-matters ul { margin: 0; padding: 0; list-style: none; }
+  .why-matters li { margin-bottom: 0.6em; }
+  .why-matters li::before { content: "・"; }
+  .read-more-btn {
+    display: inline-block;
+    margin-top: 0.6em;
+    font-size: 0.66rem;
+    background: none;
+    border: 1px solid var(--ink-soft);
+    color: var(--ink-soft);
+    padding: 0.3em 0.7em;
+    cursor: pointer;
+    font-family: var(--font-gothic);
+  }
+  .read-more-btn:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  /* ---- headline band ---- */
+  .headline-band {
+    writing-mode: horizontal-tb;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4em 1.4em;
+    font-size: 0.78rem;
+    padding: 0.5em 0 0.7em;
+    margin-bottom: 0.9rem;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .headline-band a { color: var(--ink); text-decoration: none; }
+  .headline-band a:hover { text-decoration: underline; }
+  .headline-band .hb-badge { font-size: 0.62rem; color: var(--ink-soft); margin-right: 0.3em; }
+
+  /* ---- front-page sub-news teaser list ---- */
+  .subnews-list {
+    writing-mode: horizontal-tb;
+    list-style: none;
+    margin: 0.7rem 0 1.2rem;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 0.9rem 1.4rem;
+  }
+  .subnews-list li { border-top: 1px solid var(--rule-soft); padding-top: 0.5em; }
+  .subnews-list .sn-meta { font-size: 0.64rem; color: var(--ink-soft); display: flex; gap: 0.6em; flex-wrap: wrap; }
+  .subnews-list .sn-headline {
+    font-family: var(--font-mincho); font-weight: 700; font-size: 0.9rem;
+    margin: 0.25em 0; display: block; color: var(--ink); text-decoration: none;
+  }
+  .subnews-list .sn-headline:hover { text-decoration: underline; }
+  .subnews-list .sn-summary { font-size: 0.74rem; color: var(--ink-soft); line-height: 1.6; }
+
+  /* ---- section heading ---- */
+  .section-heading {
+    writing-mode: horizontal-tb;
+    font-family: var(--font-mincho);
+    font-weight: 700;
+    font-size: 1.02rem;
+    border-bottom: 3px double var(--rule);
+    padding-bottom: 0.3em;
+    margin: 1.5rem 0 0.8rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6em;
+  }
+  .section-heading .en { font-family: var(--font-gothic); font-weight: 400; font-size: 0.58rem; color: var(--ink-soft); letter-spacing: 0.14em; }
+
+  /* ---- weekday serial box ---- */
+  .weekday-serial {
+    writing-mode: horizontal-tb;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 1em;
+    font-size: 0.66rem;
+    color: var(--ink-soft);
+    padding: 0.35em 0;
+    margin-bottom: 0.5rem;
+  }
+  .weekday-serial .wd { padding: 0.1em 0.3em; }
+  .weekday-serial .wd.today { color: var(--ink); font-weight: 700; border-bottom: 2px solid var(--shu); }
+  .weekday-serial .feature-label { font-weight: 700; color: var(--ink); letter-spacing: 0.05em; }
+
+  /* ---- chief editor / editorial / feature teaser boxes ---- */
+  .op-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2rem; align-items: start; }
+  .op-box {
+    border: 1px solid var(--rule-soft);
+    padding: 1.2rem 1.4rem;
+  }
+  .op-box.feature-box { grid-column: 1 / -1; border-color: var(--ink); }
+  .op-box .col-title-row { display: flex; align-items: center; margin-bottom: 0.6em; }
+  .op-box .col-title { font-family: var(--font-mincho); font-weight: 700; font-size: 1.22rem; line-height: 1.5; }
+  .op-box .col-subtitle { font-size: 0.85em; color: var(--ink-soft); margin-top: 0.4em; }
+  .op-box .col-byline { font-size: 0.72rem; color: var(--ink-soft); margin-top: 0.3em; }
+  .op-box .col-excerpt { font-size: 0.94rem; line-height: 1.9; margin-top: 0.8em; }
+  .op-box .col-excerpt p { margin: 0 0 1em; }
+  .op-box .read-more {
+    display: inline-block;
+    margin-top: 0.6em;
+    font-size: 0.72rem;
+    background: none;
+    border: 1px solid var(--ink-soft);
+    color: var(--ink-soft);
+    padding: 0.35em 0.8em;
+    cursor: pointer;
+    font-family: var(--font-gothic);
+  }
+  .op-box .read-more:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  /* ---- category index grid（分野別ニュース面） ---- */
+  .category-grid {
+    writing-mode: horizontal-tb;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.1rem 1.6rem;
+    margin: 0.7rem 0 1.3rem;
+  }
+  .category-card { border-top: 2px solid var(--rule); padding-top: 0.5em; }
+  .category-card h4 { font-family: var(--font-mincho); font-size: 0.84rem; margin: 0 0 0.5em; color: var(--ink); }
+  .category-card ul { list-style: none; margin: 0; padding: 0; }
+  .category-card li { margin-bottom: 0.5em; font-size: 0.76rem; line-height: 1.5; }
+  .category-card a { color: var(--ink); text-decoration: none; }
+  .category-card a:hover { text-decoration: underline; }
+  .category-card .cc-badge { font-size: 0.58rem; color: var(--ink-soft); margin-right: 0.3em; }
+  .category-card .cc-desc { display: block; font-size: 0.68rem; color: var(--ink-soft); line-height: 1.6; margin: 0.2em 0 0; }
+
+  /* ---- mini-box grid（小欄・短信） ---- */
+  .mini-grid {
+    writing-mode: horizontal-tb;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 0.9rem;
+    margin: 0.7rem 0 1.3rem;
+  }
+  .mini-box { border: 1px solid var(--rule-soft); padding: 0.65em 0.85em; font-size: 0.72rem; line-height: 1.6; color: var(--ink-soft); }
+  .mini-box h5 { font-family: var(--font-mincho); font-size: 0.78rem; color: var(--ink); margin: 0 0 0.5em; border-bottom: 1px solid var(--rule-soft); padding-bottom: 0.3em; }
+  .mini-box.empty { font-style: italic; }
+  .mini-box .num { font-family: var(--font-mincho); font-size: 1.25rem; color: var(--ink); font-variant-numeric: tabular-nums; font-style: normal; }
+
+  /* ---- new-arrivals chronological list ---- */
+  .arrivals-list { writing-mode: horizontal-tb; list-style: none; margin: 0.7rem 0 1rem; padding: 0; }
+  .arrivals-list li { display: flex; gap: 0.8em; align-items: baseline; padding: 0.45em 0; border-bottom: 1px dotted var(--rule-soft); font-size: 0.78rem; flex-wrap: wrap; }
+  .arrivals-list time { color: var(--ink-soft); font-size: 0.66rem; flex: 0 0 auto; font-variant-numeric: tabular-nums; }
+  .arrivals-list .arr-cat { color: var(--ink-soft); font-size: 0.64rem; flex: 0 0 auto; }
+  .arrivals-list a { color: var(--ink); text-decoration: none; font-weight: 700; }
+  .arrivals-list a:hover { text-decoration: underline; }
+
+  /* ---- article detail dialog ---- */
+  dialog.article-dialog {
+    writing-mode: horizontal-tb;
+    width: min(680px, 92vw);
+    max-height: 86vh;
+    padding: 0;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    color: var(--ink);
+  }
+  dialog.article-dialog::backdrop { background: rgba(0,0,0,0.5); }
+  .ad-inner { padding: 1.4rem 1.6rem 1.8rem; overflow-y: auto; max-height: 86vh; }
+  .ad-close {
+    position: sticky; top: 0; float: right;
+    background: var(--paper); border: 1px solid var(--rule-soft); color: var(--ink-soft);
+    font-size: 0.9rem; width: 2em; height: 2em; cursor: pointer;
+  }
+  .ad-inner .ad-badges { display: flex; gap: 0.5em; align-items: center; margin-bottom: 0.6em; flex-wrap: wrap; }
+  .ad-inner .ad-cat { font-size: 0.68rem; color: var(--ink-soft); }
+  .ad-inner h2 { font-family: var(--font-mincho); font-size: 1.35rem; margin: 0.2em 0; text-wrap: balance; }
+  .ad-inner .ad-subtitle { font-family: var(--font-mincho); font-size: 0.98rem; color: var(--ink-soft); margin: 0 0 0.6em; }
+  .ad-inner .ad-lead { font-size: 0.94rem; line-height: 1.8; margin-bottom: 0.8em; }
+  .ad-inner .ad-meta { font-size: 0.7rem; color: var(--ink-soft); display: flex; flex-wrap: wrap; gap: 0.3em 1em; margin-bottom: 0.8em; padding-bottom: 0.6em; border-bottom: 1px solid var(--rule-soft); }
+  .ad-inner .ad-toc { font-size: 0.74rem; border: 1px solid var(--rule-soft); padding: 0.6em 1em; margin-bottom: 0.9em; }
+  .ad-inner .ad-toc a { color: var(--ink-soft); }
+  .ad-inner .ad-keypoints { background: rgba(0,0,0,0.03); border-left: 3px solid var(--ink); padding: 0.7em 1em; margin: 0.8em 0; font-size: 0.82rem; }
+  .ad-inner .ad-keypoints h3, .ad-inner .ad-body h3, .ad-inner .ad-editor-note h3, .ad-inner .ad-related h3 { font-family: var(--font-mincho); font-size: 0.8rem; margin: 0 0 0.4em; }
+  .ad-inner .ad-keypoints ul { margin: 0; padding-left: 1.2em; }
+  .ad-inner .ad-body p { font-size: 0.9rem; line-height: 1.95; margin: 0 0 1em; }
+  .ad-inner .ad-editor-note { font-size: 0.78rem; color: var(--ink-soft); border: 1px dashed var(--rule-soft); padding: 0.7em 1em; margin: 0.8em 0; }
+  .ad-inner .ad-source { font-size: 0.7rem; color: var(--ink-soft); margin: 0.8em 0; }
+  .ad-inner .ad-tags { display: flex; flex-wrap: wrap; gap: 0.4em; margin: 0.8em 0; }
+  .ad-inner .ad-tags span { font-size: 0.64rem; border: 1px solid var(--rule-soft); padding: 0.15em 0.6em; color: var(--ink-soft); }
+  .ad-inner .ad-related ul { list-style: none; padding: 0; margin: 0; font-size: 0.8rem; }
+  .ad-inner .ad-related li { padding: 0.3em 0; border-bottom: 1px dotted var(--rule-soft); }
+  .ad-inner .ad-share { display: flex; gap: 0.5em; margin-top: 1rem; flex-wrap: wrap; }
+  .ad-inner .ad-share button { font-size: 0.7rem; border: 1px solid var(--link); color: var(--link); background: none; padding: 0.35em 0.8em; cursor: pointer; }
+
+  /* ---- chief-editor column generator ---- */
+
+  @media (max-width: 720px) {
+    .op-row, .opinion-grid, .news-grid { grid-template-columns: 1fr; }
+    .news-grid .lead-col { border-right: none; padding-right: 0; border-bottom: 1px solid var(--rule-soft); padding-bottom: 1.2rem; margin-bottom: 0.4rem; }
+    .more-grid { grid-template-columns: 1fr; }
+    .subnews-list, .category-grid, .mini-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 720px) {
+    .masthead-grid { grid-template-columns: 56px 1fr 56px; }
+    .corner-box { font-size: 0.62rem; height: 108px; }
+    .back-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="toolbar no-print">
+  <div class="tabs">
+    <button class="tab active" data-target="p1">1面 総合</button>
+    <button class="tab" data-target="p2">2面 オピニオン</button>
+    <button class="tab" data-target="p3">3面 分野別・短信</button>
+    <button class="tab" data-target="p4">4面 ホビー・キルト</button>
+    <button class="tab" data-target="p5">5面 市場・企業</button>
+    <button class="tab" data-target="p6">6面 予告・教室</button>
+    <button class="tab" data-target="p7">7面 催事暦</button>
+    <button class="tab" data-target="p8">8面 刺繍</button>
+    <button class="tab" data-target="p9">9面 書籍・工芸</button>
+    <button class="tab" data-target="p10">10面 特集・コラム</button>
+    <button class="tab" data-target="p11">11面 索引</button>
+    <button class="tab" data-target="p12">12面 奥付</button>
+  </div>
+</div>
+
+<div class="paper" id="paper">
+
+  <!-- ============ 1面：総合 ============ -->
+  <section class="page" id="p1" data-page="p1">
+    <div class="masthead-grid">
+      <div class="corner-box left">
+        第<span class="tcy">5</span>号　無料<br>令和<span class="tcy">8</span>年（<span class="tcy">20</span><span class="tcy">26</span>年）
+      </div>
+      <div class="nameplate">
+        <div class="emblem">
+          <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="34" />
+            <line x1="38" y1="28" x2="62" y2="72" />
+            <circle cx="38" cy="26" r="4" />
+            <path d="M38,28 C22,42 30,58 48,60" />
+          </svg>
+        </div>
+        <h1 class="wordmark">手芸新聞</h1>
+        <p class="subtitle">SHUGEI SHIMBUN</p>
+      </div>
+      <div class="corner-box right">
+        <span class="tcy">7</span>月<span class="tcy">23</span>日　木曜日<br>発行：編集部
+      </div>
+    </div>
+    <div class="rule-thick-thin"></div>
+    <div class="headline-band" id="headline-band"></div>
+    <div class="index-line">
+      <span>本日のことば　—　一粒の積み重ねが、一本の物語になる</span>
+      <span>全12面：オピニオン・分野別・ホビー・キルト・市場・企業・催事暦・刺繍・書籍・工芸・特集・コラム</span>
+    </div>
+    <div class="weekday-serial" id="weekday-serial"></div>
+
+    <p class="section-heading">一面トップ <span class="en">TOP STORY</span></p>
+    <div class="news-row">
+      <div class="news-grid">
+        <div class="lead-col">
+          <article class="lead">
+            <span class="type-badge" data-type="NEWS">NEWS</span>
+            <div class="kicker">【催事・結果発表】</div>
+            <h2>刺繍アートフェスティバル、グランプリ発表<span class="fuku-midashi">壁掛け部門・立体部門の2作品が受賞、25作品に副賞も</span></h2>
+            <div class="lede-media">
+              <svg viewBox="0 0 100 100">
+                <path d="M50,15 L58,35 L80,38 L64,53 L68,75 L50,64 L32,75 L36,53 L20,38 L42,35 Z" stroke-width="1.6" />
+                <circle cx="50" cy="50" r="4" fill="var(--ink)" stroke="none" />
+              </svg>
+              <span class="cap">受賞のリボン（イメージ）</span>
+            </div>
+            <div class="body">
+              <p><span class="lead-char">刺</span>繍作品の公募コンテスト・展示会「刺繍アートフェスティバル<span class="tcy">20</span><span class="tcy">26</span>」（本紙既報）は、来場者投票によるグランプリを発表した。壁掛け作品部門は奥田萌里衣氏「ホーランドロップとカモミール」、立体作品部門は多禰知葉氏「Peaceful days」がそれぞれグランプリに選ばれ、副賞<span class="tcy">10</span>万円が贈られた。</p>
+              <p class="pull-quote">一粒の積み重ねが、一本の物語になる</p>
+              <p>このほか「ひらめき賞」「究極の手仕事賞」などの特別賞、オリムパス賞・貴和製作所賞・DMC賞など複数の企業賞も発表され、全体で<span class="tcy">25</span>作品が受賞した。<span class="tcy">130</span>点余りの応募作品から、審査員だけでなく来場者投票を経て多層的に受賞作を選び出す方式が採られた。</p>
+              <p>壁掛け・立体という異なる2部門でそれぞれグランプリを設けた構成は、平面作品と立体作品という表現形式の違いを競わせず、それぞれの土俵で評価する設計といえる（<span class="tcy">2</span>面論説で詳報）。</p>
+              <p class="source-line">出典：<a href="https://embroidery-art-fes.com/contest2026" target="_blank" rel="noopener">刺繍アートフェスティバル公式</a></p>
+            </div>
+          </article>
+        </div>
+        <div class="side-col">
+          <div class="why-matters">
+            <h4>なぜ重要か</h4>
+            <ul>
+              <li>壁掛け・立体の2部門にグランプリを分けた設計は、表現形式の異なる作品を同じ土俵で競わせない、公募展のあり方の一例になりうる。</li>
+              <li>企業賞を複数併設することで、糸・道具メーカー各社が自社製品を使った作品に光を当てる機会にもなっている。</li>
+            </ul>
+            <button type="button" class="read-more-btn" data-article-id="front-lead-kumiko">続きを読む（詳細）</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-heading">一面サブニュース <span class="en">SUB STORIES</span></p>
+    <ul class="subnews-list">
+      <li>
+        <div class="sn-meta"><span class="type-badge" data-type="NEWS">NEWS</span><span>教室・講座</span><time>07:00</time></div>
+        <a class="sn-headline" href="#p1" onclick="jumpToArticle(event,'sn-beads')">ビーズ刺繍ジュエリー、通信講座で学ぶ人が増加</a>
+        <p class="sn-summary">オンライン完結の通信講座・認定講座が複数展開。世界的なビーズブームとも呼応。詳細は本欄下に掲載。</p>
+      </li>
+      <li>
+        <div class="sn-meta"><span class="type-badge" data-type="MARKET">MARKET</span><span>市場・国内</span><time>07:00</time></div>
+        <a class="sn-headline" href="#p5" onclick="jumpToArticle(event,'p5')">ファッショングッズ市場、5兆2457億円に拡大</a>
+        <p class="sn-summary">矢野経済研究所調べ、前年比108.5％。ビーズアクセサリーも含む身の回り品市場が拡大。詳細は5面。</p>
+      </li>
+      <li>
+        <div class="sn-meta"><span class="type-badge" data-type="NEWS">NEWS</span><span>催事</span><time>07:00</time></div>
+        <a class="sn-headline" href="#p7" onclick="jumpToArticle(event,'p7')">広島ハンドメイドフェスティバル、約300店舗が出店へ</a>
+        <p class="sn-summary">7月25〜26日開催。TATRAS大阪店の企画展は明日24日が最終日。詳細は7面。</p>
+      </li>
+      <li>
+        <div class="sn-meta"><span class="type-badge" data-type="NEWS">NEWS</span><span>新刊・予告</span><time>07:00</time></div>
+        <a class="sn-headline" href="#p9" onclick="jumpToArticle(event,'p9')">子ども向け手芸本、7月29日発売</a>
+        <p class="sn-summary">日本文芸社刊。夏休み中の子どもの自由研究・手作り需要を意識した一冊。詳細は9面。</p>
+      </li>
+    </ul>
+
+    <div class="news-row" id="sn-beads">
+      <article class="story">
+        <span class="type-badge" data-type="NEWS">NEWS</span>
+        <div class="kicker">【教室・講座】</div>
+        <h2>ビーズ刺繍ジュエリー、通信講座で学ぶ人が増加</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <circle cx="35" cy="30" r="7" />
+            <circle cx="55" cy="42" r="7" />
+            <circle cx="40" cy="58" r="7" />
+            <circle cx="62" cy="66" r="7" />
+            <circle cx="70" cy="30" r="7" />
+            <path d="M35,30 Q45,36 55,42 Q47,50 40,58 Q51,62 62,66 Q66,48 70,30" stroke-width="1" opacity="0.7" />
+          </svg>
+          <span class="cap">ビーズ刺繍ジュエリー（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>ビーズを土台布に刺しゅうして仕立てる「ビーズ刺繍ジュエリー」を、オンライン完結の通信講座で学ぶ動きが広がっている。ビーズ刺繍ジュエリー協会®は、作家・古川真貴子氏が主宰する通信講座・講師認定講座を展開しており、SNS上で個別に質問や相談ができる仕組みを備える。ユーキャンも同様にビーズアクセサリー講座を開講しており、パールやガラス、天然石などを使ったイヤリング・ネックレス制作を、動画教材と一式のビーズ・用具付きで学べる。</p>
+          <p>対面の教室に通わずに技術を習得できる通信講座の広がりは、時間や場所の制約がある層にもビーズ手芸への入口を提供している。本号2面の特集でも取り上げる通り、世界的なビーズアクセサリーの再流行と、国内の学びの場の広がりが重なりつつある。</p>
+          <p class="source-line">出典：<a href="https://beja.jp/" target="_blank" rel="noopener">ビーズ刺繍ジュエリー協会®</a></p>
+        </div>
+      </article>
+    </div>
+
+    <div class="ad-slot no-print" data-ad-slot="p1-1" aria-hidden="true">
+      <span class="ad-label">広告</span><br>
+      この枠は将来の広告掲載用スペースです（現在はプレースホルダー）
+    </div>
+
+    <p class="cross-ref">編集長コラム・編集部論説・今週の特集は２面、分野別ニュース・小欄短信は３面に掲載</p>
+    <p class="folio">－　１　－</p>
+  </section>
+
+  <!-- ============ 2面：オピニオン面 ============ -->
+  <section class="page" id="p2" data-page="p2" hidden>
+    <div class="running-header">
+      <span>手芸新聞　令和<span class="tcy">8</span>年<span class="tcy">7</span>月<span class="tcy">23</span>日（木）</span>
+      <span class="folio-mark">オピニオン面</span>
+    </div>
+
+    <p class="section-heading">編集長コラム <span class="en">CHIEF EDITOR'S COLUMN</span></p>
+    <div class="page-body op-row">
+      <div class="op-box">
+        <div class="col-title-row">
+          <span class="type-badge" data-type="CHIEF_EDITOR">CHIEF EDITOR</span>
+        </div>
+        <div class="col-title">手芸の向こう側　第<span class="tcy">4</span>回<br>「一粒ずつ、自分だけの一本を作る時間」</div>
+        <div class="col-byline">編集長</div>
+        <div class="col-excerpt">
+          <p>流行は繰り返す、とよく言われる。しかし、本当に繰り返しているのは「形」ではない。人が手で作ったものに価値を感じる気持ちである。機械で大量に作れる時代だからこそ、一粒ずつビーズを選び、糸を通し、自分だけの一本を作る時間が豊かさになる。</p>
+          <p>今号2面の特集で触れたビーズブームは、単なるアクセサリーの流行ではなく、「クラフトを楽しむ文化」が再び世界に広がり始めたサインなのかもしれない、と私は思う。</p>
+          <p>ファッションは季節ごとに変わる。しかし、ビーズが持つ「作る楽しさ」は時代を超えて受け継がれてきた。この世界的なトレンドをきっかけに、もう一度ビーズに触れてみる——そんな新しいものづくりの一歩が、次の作品につながるかもしれない。</p>
+        </div>
+        <button type="button" class="read-more" data-article-id="col-chief-editor-001">続きを読む（関連記事・タグなど）</button>
+      </div>
+
+      <div class="op-box">
+        <div class="col-title-row">
+          <span class="type-badge" data-type="EDITORIAL">EDITORIAL</span>
+        </div>
+        <div class="col-title">編集部はこう見る<br>「二つのグランプリが分けられた意味」</div>
+        <div class="col-byline">AI編集部による分析・論説</div>
+        <div class="col-excerpt">
+          <p>【論点】刺繍アートフェスティバル2026は、壁掛け作品部門と立体作品部門にそれぞれグランプリを設け、2作品を選出した（本紙1面既報）。1つの公募展で最優秀を1点に絞らず、部門を分けて評価する設計には、どんな狙いがあるのか。編集部の論点はここにある。</p>
+          <p>【背景】壁掛け作品と立体作品は、そもそも制作工程も鑑賞のされ方も異なる。壁掛けは平面構成や配色のバランスが問われ、立体は素材の扱いや構造の工夫が問われる。両者を同じ基準で比較して1位を決めるのは、本来無理のある話ともいえる。</p>
+          <p>【出展者への影響】部門を分けることで、平面表現を得意とする作家と立体表現を得意とする作家が、互いの土俵を侵さずに評価される。応募する側からみれば、自分の得意な表現形式で正当に評価されるという安心感につながる。</p>
+          <p>【業界への影響】評価軸を一本化しない審査設計は、多様な技法・表現が併存する刺繍というジャンルの懐の深さを、コンテストの制度面で体現しているとも読める。</p>
+          <p>【編集部の見解（現時点での推測）】部門別グランプリという設計は、「competing（競う）」よりも「celebrating（讃える）」に軸足を置いた評価のあり方の一つではないか、というのが編集部の見立てである。ただしこれは審査基準の公式な説明に基づくものではなく、結果からの推測にとどまる。</p>
+          <p>【今後の注目点】各部門の受賞作の傾向、企業賞との重複の有無など、審査結果の詳細を今後の取材で確認していきたい。</p>
+        </div>
+        <button type="button" class="read-more" data-article-id="editorial-001">続きを読む（関連記事・タグなど）</button>
+      </div>
+    </div>
+
+    <p class="section-heading">今週の特集 <span class="en">WEEKLY FEATURE</span></p>
+    <div class="page-body op-row">
+      <div class="op-box feature-box">
+        <div class="col-title-row">
+          <span class="type-badge" data-type="FEATURE">FEATURE</span>
+        </div>
+        <div class="col-title">VOGUEが伝えた「ビーズブーム」<br>——なぜ今、世界は再びビーズに魅了されるのか</div>
+        <div class="col-byline">編集部</div>
+        <div class="col-excerpt">
+          <p>2026年のファッションシーンで、静かに、しかし確実に存在感を高めているものがある。それが「ビーズネックレス」だ。英国版VOGUEは、この春夏の注目アクセサリーとしてビーズネックレスを取り上げ、「ボーホースタイルの再来」を象徴するアイテムとして紹介した。クロエをはじめとするブランドが提案した現代的なボーホースタイルを背景に、カラフルなビーズや天然素材を使ったネックレスが、ランウェイだけでなく街のファッションへも広がりを見せている。</p>
+          <p>しかし、この流れを手芸業界の立場から見ると、「流行」という一言では片付けられない、もっと大きな意味が見えてくる。</p>
+          <p>日本では1990年代後半から2000年代初頭にかけて、ビーズアクセサリーが大ブームとなった。丸小ビーズやチェコビーズ、スワロフスキー®・クリスタルを使った作品が数多く生まれ、多くの手芸店には専門コーナーが設けられた。当時は「きれいに編む」「細かく作る」ことが技術の象徴だった。ところが、現在のトレンドは少し違う。大小さまざまなビーズを自由に組み合わせ、木、ガラス、シェル、天然石、レジン、コードなど異素材をミックスするスタイルが主流になっている。色も形も揃え過ぎず、「少し不揃い」であることが魅力として受け入れられている。つまり、「技術を見せるアクセサリー」から、「個性を表現するアクセサリー」へと価値観が変化しているのだ。</p>
+          <p>ビーズアクセサリーは、大量生産が難しい分野である。同じ材料を使っても、色の並び方や配置、組み合わせによって印象は大きく変わる。だからこそ、ハンドメイドとの相性が非常に良い素材と言える。近年は「一点もの」や「自分だけの色」を求める消費者が増えており、その流れの中で、作り手自身が素材を選び、物語を込めて制作できるビーズアクセサリーは、まさに現代のニーズに合ったクラフトなのだ。</p>
+          <p>VOGUEの記事でも紹介されているように、今年のビーズネックレスは一本で完成させるのではなく、何本も重ねて身に着けるスタイルが特徴だ。天然石、シェル、コード、チャームなど異なる素材を自由に組み合わせることで、自分らしいコーディネートを楽しむ提案が広がっている。これはハンドメイド作家にとっても大きなチャンスだ。一本ずつ選べるシリーズ、季節ごとのカラー展開、チャームを交換できるデザインなど、組み合わせを楽しめる商品づくりが期待できる。</p>
+          <p>日本には世界的にも高い評価を受けるビーズメーカーがある。精密な品質を誇るシードビーズ、美しい発色のガラスビーズ、豊富な副資材など、日本のものづくりは海外デザイナーからも高く評価されている。世界的なビーズブームが続けば、日本の素材や技術が再び注目される可能性も十分にある。流行は海外から始まることが多い一方で、その流れを支える素材や技術には、日本企業が重要な役割を果たしてきた。</p>
+        </div>
+        <button type="button" class="read-more" data-article-id="feature-001">続きを読む（関連記事・タグなど）</button>
+      </div>
+    </div>
+
+    <div class="page-body op-row" id="auto-op-articles-p2"></div>
+
+    <p class="cross-ref">分野別ニュース・小欄短信は３面に掲載</p>
+    <p class="folio">－　２　－</p>
+  </section>
+
+  <!-- ============ 3面：分野別ニュース・小欄面 ============ -->
+  <section class="page" id="p3" data-page="p3" hidden>
+    <div class="running-header">
+      <span>手芸新聞　令和<span class="tcy">8</span>年<span class="tcy">7</span>月<span class="tcy">23</span>日（木）</span>
+      <span class="folio-mark">分野別ニュース・小欄面</span>
+    </div>
+
+    <p class="section-heading">分野別ニュース <span class="en">BY CATEGORY</span></p>
+    <div class="category-grid">
+      <div class="category-card">
+        <h4>業界・企業</h4>
+        <ul>
+          <li><a href="#p1" onclick="jumpToArticle(event,'p1')"><span class="cc-badge">[NEWS]</span>刺繍アートフェスティバル、グランプリ発表</a><span class="cc-desc">壁掛け部門・立体部門の2作品が受賞、25作品に副賞も。</span></li>
+          <li><a href="#" onclick="jumpToArticle(event,'p5')"><span class="cc-badge">[MARKET]</span>ファッショングッズ市場、5兆2457億円に拡大</a><span class="cc-desc">矢野経済研究所調べ、前年比108.5％。</span></li>
+          <li><a href="#" onclick="jumpToArticle(event,'sn-beads')"><span class="cc-badge">[NEWS]</span>ビーズ刺繍ジュエリー、通信講座で学ぶ人が増加</a><span class="cc-desc">世界的なビーズブームとも呼応する動き。</span></li>
+        </ul>
+      </div>
+      <div class="category-card">
+        <h4>作家・クリエイター</h4>
+        <ul>
+          <li><a href="#" onclick="event.preventDefault();openArticleDialog('business-001')"><span class="cc-badge">[BUSINESS]</span>作品を安く売りすぎる作家たち</a><span class="cc-desc">材料費だけで価格を決め、制作時間をゼロ円換算してしまう作家が多いという業界内の指摘を考える。</span></li>
+          <li><a href="#" onclick="jumpToArticle(event,'p8')"><span class="cc-badge">[NEWS]</span>刺繍アートフェスティバル、企業賞含め25作品が受賞</a><span class="cc-desc">オリムパス賞・貴和製作所賞・DMC賞など複数の企業賞も発表。</span></li>
+        </ul>
+      </div>
+      <div class="category-card">
+        <h4>新商品・素材</h4>
+        <ul>
+          <li><a href="#" onclick="jumpToArticle(event,'p9')"><span class="cc-badge">[NEWS]</span>子ども向け手芸本、7月29日発売</a><span class="cc-desc">日本文芸社刊。夏休みの自由研究・手作り需要を意識。</span></li>
+          <li><a href="#" onclick="jumpToArticle(event,'p9')"><span class="cc-badge">[NEWS]</span>ユーキャン「ビーズアクセサリー講座」</a><span class="cc-desc">動画教材とビーズ一式付きで、全9作品を制作しながら学べる。</span></li>
+        </ul>
+      </div>
+      <div class="category-card">
+        <h4>イベント・展示会</h4>
+        <ul>
+          <li><a href="#" onclick="jumpToArticle(event,'p7')"><span class="cc-badge">[NEWS]</span>広島ハンドメイドフェス、約300店舗が出店へ</a><span class="cc-desc">7月25〜26日開催。今週末は代々木・山形でも大型イベント。</span></li>
+          <li><a href="#" onclick="jumpToArticle(event,'p6')"><span class="cc-badge">[NEWS]</span>TATRAS大阪店の企画展、明日24日が最終日</a><span class="cc-desc">英国王室御用達の刺繍職人による展示・カスタマイズサービス。</span></li>
+        </ul>
+      </div>
+      <div class="category-card">
+        <h4>教室・資格</h4>
+        <ul>
+          <li><a href="#" onclick="jumpToArticle(event,'p4')"><span class="cc-badge">[NEWS]</span>ビーズ刺繍ジュエリー協会、通信・講師認定講座</a><span class="cc-desc">対面不要でSNS相談も可能な学びの場。</span></li>
+          <li><a href="#" onclick="jumpToArticle(event,'p9')"><span class="cc-badge">[NEWS]</span>ユーキャン「ビーズアクセサリー講座」</a><span class="cc-desc">標準学習期間3カ月、全9作品を制作。</span></li>
+        </ul>
+      </div>
+      <div class="category-card">
+        <h4>市場・ビジネス</h4>
+        <ul>
+          <li><a href="#" onclick="jumpToArticle(event,'p5')"><span class="cc-badge">[MARKET]</span>ファッショングッズ市場、5兆2457億円に拡大</a><span class="cc-desc">矢野経済研究所調べ。アクセサリー分野も市場拡大に寄与。</span></li>
+          <li><a href="#" onclick="event.preventDefault();openArticleDialog('market-001')"><span class="cc-badge">[MARKET]</span>推し活市場は手芸業界の新しい入口になるか</a><span class="cc-desc">うちわデコ・ぬい服・レジンアクセサリーなど、複数分野を横断する手作り需要を分析。</span></li>
+        </ul>
+      </div>
+      <div class="category-card">
+        <h4>海外</h4>
+        <ul>
+          <li><a href="#" onclick="event.preventDefault();openArticleDialog('feature-001')"><span class="cc-badge">[FEATURE]</span>VOGUEが伝えた「ビーズブーム」</a><span class="cc-desc">英国版VOGUEが報じた2026年春夏のビーズネックレス再流行を分析。</span></li>
+          <li><a href="#" onclick="jumpToArticle(event,'p6')"><span class="cc-badge">[NEWS]</span>TATRAS大阪店の企画展、明日24日が最終日</a><span class="cc-desc">「Hand &amp; Lock」日本代表によるデジタル刺繍カスタマイズも。</span></li>
+        </ul>
+      </div>
+      <div class="category-card">
+        <h4>文化・歴史</h4>
+        <ul>
+          <li><a href="#" onclick="event.preventDefault();openArticleDialog('culture-001')"><span class="cc-badge">[CULTURE]</span>一粒のビーズから見る世界の交易史</a><span class="cc-desc">ヴェネチアングラスビーズ、アフリカのトレードビーズ、日本のとんぼ玉の歴史をたどる。</span></li>
+          <li><a href="#" onclick="event.preventDefault();openArticleDialog('feature-001')"><span class="cc-badge">[FEATURE]</span>VOGUEが伝えた「ビーズブーム」</a><span class="cc-desc">技術を見せる細工から個性を表現するスタイルへ、価値観の変化を読み解く。</span></li>
+        </ul>
+      </div>
+      <div class="category-card">
+        <h4>AI・デジタル</h4>
+        <ul>
+          <li><a href="#" onclick="event.preventDefault();openArticleDialog('editorial-001')"><span class="cc-badge">[EDITORIAL]</span>二つのグランプリが分けられた意味</a><span class="cc-desc">壁掛け・立体それぞれにグランプリを設けた審査設計を分析する編集部論説。</span></li>
+          <li><a href="#" onclick="jumpToArticle(event,'p10')"><span class="cc-badge">[OPINION]</span>コラム「手芸の今」</a><span class="cc-desc">生成AIが独自の視点で綴る所感欄。流行と技術・物語の関係に着目。</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="section-heading">小欄・短信 <span class="en">BRIEFS</span></p>
+    <div class="mini-grid">
+      <div class="mini-box" data-short-slot="industry-brief"></div>
+      <div class="mini-box" data-short-slot="new-product-memo"></div>
+      <div class="mini-box"><h5>今日の数字</h5><p><span class="num">25<span style="font-size:0.6em;">作品</span></span><br>刺繍アートフェスティバル2026の受賞作品数（グランプリ2点、特別賞・企業賞含む、1面既報）。130点余りの応募作品のうち約2割が受賞した計算になる。</p></div>
+      <div class="mini-box" data-short-slot="keyword-of-week"></div>
+      <div class="mini-box"><h5>展示会カレンダー</h5><p>今週末は東京・代々木公園「アースガーデン」、山形「手しごとマーケット」、広島「ハンドメイドフェスティバル」（約300店舗）が続く。全国のハンドメイドイベント一覧は7面に掲載。</p></div>
+      <div class="mini-box"><h5>催事・最終日</h5><p>TATRAS大阪店の刺繍職人企画展「THE CRAFT JOURNEY」は明日24日が最終日。英国王室御用達「Hand &amp; Lock」日本代表による一点物の展示・販売が見られる最後の機会。詳細は6・8面。</p></div>
+      <div class="mini-box" data-short-slot="sns-watch"></div>
+      <div class="mini-box" data-short-slot="world-digest"></div>
+      <div class="mini-box"><h5>新刊・予告</h5><p>日本文芸社の子ども向け手芸本が7月29日発売予定。夏休み期間の子ども向け手芸コンテンツが教室・出版の両面で強化されている。詳細は6・9面。</p></div>
+      <div class="mini-box empty"><h5>受賞・人事</h5><p>現在、確認できる受賞・人事情報はありません。判明次第この欄でお伝えします。コンテストの受賞結果などは各記事でも随時お知らせします。</p></div>
+      <div class="mini-box" data-short-slot="editor-qa"></div>
+      <div class="mini-box"><h5>編集後記</h5><p>本号の今週の特集は、読者の方よりご提供いただいた原稿をもとに構成した。紙面についてのご意見・ご感想は10面の編集後記欄、またはGitHub Issues、編集長（AI）へのチャットからお寄せください。</p></div>
+    </div>
+
+    <p class="section-heading">新着記事一覧 <span class="en">LATEST</span></p>
+    <ul class="arrivals-list">
+      <li><time>07:00</time><span class="arr-cat">[NEWS] 総合</span><a href="#" onclick="event.preventDefault();openArticleDialog('front-lead-kumiko')">刺繍アートフェスティバル、グランプリ発表</a></li>
+      <li><time>07:15</time><span class="arr-cat">[NEWS] 総合</span><a href="#" onclick="jumpToArticle(event,'sn-beads')">ビーズ刺繍ジュエリー、通信講座で学ぶ人が増加</a></li>
+      <li><time>07:30</time><span class="arr-cat">[NEWS] ホビー・キルト</span><a href="#" onclick="jumpToArticle(event,'p4')">ビーズ刺繍ジュエリー協会、通信・講師認定講座</a></li>
+      <li><time>08:15</time><span class="arr-cat">[MARKET] 市場・企業</span><a href="#" onclick="jumpToArticle(event,'p5')">ファッショングッズ市場、5兆2457億円に拡大</a></li>
+      <li><time>08:30</time><span class="arr-cat">[NEWS] 予告・教室</span><a href="#" onclick="jumpToArticle(event,'p6')">TATRAS大阪店の企画展、明日24日が最終日</a></li>
+      <li><time>08:45</time><span class="arr-cat">[NEWS] 予告・教室</span><a href="#" onclick="jumpToArticle(event,'p6')">子ども向け手芸本、7月29日発売</a></li>
+      <li><time>09:00</time><span class="arr-cat">[NEWS] 催事暦</span><a href="#" onclick="jumpToArticle(event,'p7')">広島ハンドメイドフェス、約300店舗が出店へ</a></li>
+      <li><time>09:15</time><span class="arr-cat">[NEWS] 刺繍</span><a href="#" onclick="jumpToArticle(event,'p8')">刺繍アートフェスティバル、企業賞含め25作品が受賞</a></li>
+      <li><time>09:30</time><span class="arr-cat">[NEWS] 書籍・工芸</span><a href="#" onclick="jumpToArticle(event,'p9')">「はじめての子ども手芸」、7月29日発売</a></li>
+      <li><time>09:45</time><span class="arr-cat">[NEWS] 書籍・工芸</span><a href="#" onclick="jumpToArticle(event,'p9')">ユーキャン「ビーズアクセサリー講座」</a></li>
+      <li><time>10:00</time><span class="arr-cat">[CHIEF_EDITOR] コラム</span><a href="#" onclick="event.preventDefault();openArticleDialog('col-chief-editor-001')">一粒ずつ、自分だけの一本を作る時間</a></li>
+      <li><time>10:15</time><span class="arr-cat">[EDITORIAL] 論説</span><a href="#" onclick="event.preventDefault();openArticleDialog('editorial-001')">二つのグランプリが分けられた意味</a></li>
+      <li><time>10:30</time><span class="arr-cat">[FEATURE] 特集</span><a href="#" onclick="event.preventDefault();openArticleDialog('feature-001')">VOGUEが伝えた「ビーズブーム」</a></li>
+      <li><time>10:45</time><span class="arr-cat">[MARKET] 市場</span><a href="#" onclick="event.preventDefault();openArticleDialog('market-001')">推し活市場は手芸業界の新しい入口になるか</a></li>
+      <li><time>11:15</time><span class="arr-cat">[CULTURE] 文化</span><a href="#" onclick="event.preventDefault();openArticleDialog('culture-001')">一粒のビーズから見る世界の交易史</a></li>
+    </ul>
+
+    <p class="cross-ref">ホビー・キルト面は４面に掲載</p>
+    <p class="folio">－　３　－</p>
+  </section>
+
+  <!-- ============ 4面：ホビー・キルト ============ -->
+  <section class="page" id="p4" data-page="p4" hidden>
+    <div class="running-header">
+      <span>手芸新聞　令和<span class="tcy">8</span>年<span class="tcy">7</span>月<span class="tcy">23</span>日（木）</span>
+      <span class="folio-mark">ホビー・キルト面</span>
+    </div>
+
+    <div class="news-row">
+      <article class="story">
+        <span class="type-badge" data-type="NEWS">NEWS</span>
+        <div class="kicker">【教室・講座】</div>
+        <h2>ビーズ刺繍ジュエリー協会、通信・講師認定講座を展開</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <circle cx="35" cy="30" r="7" />
+            <circle cx="55" cy="42" r="7" />
+            <circle cx="40" cy="58" r="7" />
+            <circle cx="62" cy="66" r="7" />
+            <circle cx="70" cy="30" r="7" />
+            <path d="M35,30 Q45,36 55,42 Q47,50 40,58 Q51,62 62,66 Q66,48 70,30" stroke-width="1" opacity="0.7" />
+          </svg>
+          <span class="cap">ビーズ刺繍ジュエリー（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>ビーズ刺繍ジュエリー協会®は、作家・古川真貴子氏が主宰する通信講座・講師認定講座を展開している（<span class="tcy">1</span>面既報）。SNS上で個別に質問や相談ができる仕組みを備え、受講者は好きな場所・好きな時間に自分のペースで学べる。ビーズを土台布に刺しゅうして仕立てる技法は、パールやガラス、天然石などを組み合わせたジュエリー制作に応用されている。</p>
+          <p>対面の教室に依存しない学びの場が広がっていることは、地方在住者や時間の制約がある社会人にとって、専門技術を習得するハードルを下げる効果が見込める。世界的なビーズアクセサリーの再流行（<span class="tcy">2</span>面特集既報）を追い風に、こうした講座への関心もさらに高まる可能性がある。</p>
+          <p class="source-line">出典：<a href="https://beja.jp/association_post/2223/" target="_blank" rel="noopener">ビーズ刺繍ジュエリー協会®</a></p>
+        </div>
+      </article>
+    </div>
+
+    <p class="cross-ref">世界の手工芸品市場・企業動向は５面に掲載</p>
+    <p class="folio">－　４　－</p>
+  </section>
+
+  <!-- ============ 5面：市場・企業 ============ -->
+  <section class="page" id="p5" data-page="p5" hidden>
+    <div class="running-header">
+      <span>手芸新聞　令和<span class="tcy">8</span>年<span class="tcy">7</span>月<span class="tcy">23</span>日（木）</span>
+      <span class="folio-mark">市場・企業動向面</span>
+    </div>
+
+    <div class="news-row">
+      <article class="story">
+        <span class="type-badge" data-type="MARKET">MARKET</span>
+        <div class="kicker">【国内市場・トレンド】</div>
+        <h2>ファッショングッズ市場、<span class="tcy">5</span>兆<span class="tcy">2457</span>億円に拡大</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <rect x="14" y="18" width="72" height="46" rx="6" />
+            <polygon points="42,32 42,50 58,41" />
+            <polyline points="14,84 34,74 54,79 86,58" />
+          </svg>
+          <span class="cap">拡大する身の回り品市場（イメージ）</span>
+        </div>
+        <div class="body">
+          <p><span class="lead-char">調</span>査会社の矢野経済研究所は、ファッショングッズ・身の回り品市場に関する調査結果を発表した。<span class="tcy">20</span><span class="tcy">24</span>年のファッショングッズ・身の回り品小売市場規模は、前年比<span class="tcy">10</span>8.5％の<span class="tcy">5</span>兆<span class="tcy">2</span>457億円と推計されている。バッグ・財布・ベルトに加え、ネックレスやイヤリングなどのアクセサリー類もこの市場区分に含まれる。</p>
+          <p>本号<span class="tcy">2</span>面で特集した世界的なビーズネックレスの再流行のように、アクセサリー分野での消費者の関心の高まりは、国内のファッショングッズ市場全体の拡大にも寄与しているとみられる。ハンドメイド作家が手がける一点物のビーズアクセサリーも、この大きな市場の一部を構成している。</p>
+          <p>本紙既報の手工芸品市場（IMARC Group、Business Research Insights調べ）とは統計区分が異なるが、身につける装飾品への消費者の関心が高まっているという方向性は共通している。</p>
+          <p class="source-line">出典：<a href="https://www.yano.co.jp/" target="_blank" rel="noopener">矢野経済研究所</a></p>
+        </div>
+      </article>
+    </div>
+
+    <p class="cross-ref">催事暦・カルチャースクール動向は６面に掲載</p>
+    <p class="folio">－　５　－</p>
+  </section>
+
+  <!-- ============ 6面：催事・学び ============ -->
+  <section class="page" id="p6" data-page="p6" hidden>
+    <div class="running-header">
+      <span>手芸新聞　令和<span class="tcy">8</span>年<span class="tcy">7</span>月<span class="tcy">23</span>日（木）</span>
+      <span class="folio-mark">催事予告・教室動向面</span>
+    </div>
+
+    <div class="news-row">
+      <article class="story">
+        <span class="type-badge" data-type="NEWS">NEWS</span>
+        <div class="kicker">【催事・明日最終日】</div>
+        <h2>TATRAS大阪店の刺繍職人企画展、明日<span class="tcy">24</span>日が最終日</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <rect x="20" y="15" width="60" height="70" rx="4" />
+            <circle cx="50" cy="35" r="10" stroke-dasharray="2 2" />
+            <path d="M35,55 Q50,45 65,55" stroke-width="1" />
+            <path d="M35,65 Q50,55 65,65" stroke-width="1" />
+          </svg>
+          <span class="cap">刺繍企画展、残り1日（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>ファッションブランド「TATRAS」大阪店で開催中の刺繍職人企画展「THE CRAFT JOURNEY」（本紙既報）は、明<span class="tcy">24</span>日が最終日となる。英国王室御用達の刺繍工房「Hand &amp; Lock」日本代表・Pom Zyquita氏による一点物の展示・販売や、デジタル刺繍によるカスタマイズサービスを体験できる最後の機会となる。</p>
+          <p>銀座店（<span class="tcy">7</span>月<span class="tcy">10</span>〜<span class="tcy">16</span>日）に続く巡回企画としての開催で、大阪店での会期終了後の次回展開は現時点で発表されていない。</p>
+          <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000000332.000020942.html" target="_blank" rel="noopener">株式会社WEAVAプレスリリース（PR TIMES）</a></p>
+        </div>
+      </article>
+    </div>
+
+    <div class="news-row">
+      <article class="story">
+        <span class="type-badge" data-type="NEWS">NEWS</span>
+        <div class="kicker">【新刊・予告】</div>
+        <h2>子ども向け手芸本、<span class="tcy">7</span>月<span class="tcy">29</span>日発売</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <path d="M50,25 L14,36 L14,80 L50,69 Z" />
+            <path d="M50,25 L86,36 L86,80 L50,69 Z" />
+            <line x1="50" y1="25" x2="50" y2="69" />
+          </svg>
+          <span class="cap">子ども向け手芸本（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>日本文芸社は<span class="tcy">7</span>月<span class="tcy">29</span>日、「基礎からわかる！ハンドメイドでとにかくかわいい！はじめての子ども手芸」を発売する（本紙既報、詳細は<span class="tcy">9</span>面）。夏休み中の子どもの自由研究や、親子での手作り体験を意識した内容とみられる。</p>
+          <p>ユザワヤ芸術学院の単発講習（本紙前号既報）と同様、夏休み期間は子ども向けの手芸コンテンツが教室・出版の両面で強化される傾向がある。</p>
+          <p class="source-line">出典：<a href="https://www.nihonbungeisha.co.jp/calendar/" target="_blank" rel="noopener">日本文芸社</a></p>
+        </div>
+      </article>
+    </div>
+
+    <div class="ad-slot no-print" data-ad-slot="p6-1" aria-hidden="true">
+      <span class="ad-label">広告</span><br>
+      この枠は将来の広告掲載用スペースです（現在はプレースホルダー）
+    </div>
+
+    <p class="cross-ref">全国の催事暦は７面に掲載</p>
+    <p class="folio">－　６　－</p>
+  </section>
+
+  <!-- ============ 7面：全国催事暦 ============ -->
+  <section class="page" id="p7" data-page="p7" hidden>
+    <div class="running-header">
+      <span>手芸新聞　令和<span class="tcy">8</span>年<span class="tcy">7</span>月<span class="tcy">23</span>日（木）</span>
+      <span class="folio-mark">全国催事暦面</span>
+    </div>
+
+    <div class="news-row">
+      <article class="story">
+        <span class="type-badge" data-type="NEWS">NEWS</span>
+        <div class="kicker">【催事】</div>
+        <h2>広島ハンドメイドフェス、約<span class="tcy">300</span>店舗が出店へ</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <polygon points="20,55 50,20 80,55" />
+            <rect x="26" y="55" width="48" height="30" />
+            <line x1="50" y1="20" x2="50" y2="10" />
+            <polygon points="50,10 64,15 50,20" />
+          </svg>
+          <span class="cap">各地の祭典（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>「広島ハンドメイドフェスティバル」が<span class="tcy">7</span>月<span class="tcy">25</span>日・<span class="tcy">26</span>日、広島産業会館東展示館で開催される。約<span class="tcy">300</span>店舗が出店する見通しで、中国地方でも有数の規模のハンドメイドイベントとなる。同じ週末には東京・代々木公園で「アースガーデン"夏"ヨルイチ2026」（<span class="tcy">7</span>月<span class="tcy">24</span>〜<span class="tcy">25</span>日）、山形で「手しごとマーケット山形」第<span class="tcy">4</span>回（同<span class="tcy">24</span>〜<span class="tcy">26</span>日）も予定されており、週末ごとに全国どこかで大型イベントが重なる状態が続いている。</p>
+          <p>大阪のTATRAS大阪店で開催中の刺繍職人による企画展「THE CRAFT JOURNEY」（本紙既報）は明<span class="tcy">24</span>日が最終日となる。<span class="tcy">8</span>月には長野で「長野キルトフェスティバル」（<span class="tcy">27</span>〜<span class="tcy">29</span>日、本紙既報）も控えている。</p>
+          <p class="source-line">出典：<a href="https://handmadeevent.jp/" target="_blank" rel="noopener">ハンドメイドイベント帖</a></p>
+        </div>
+      </article>
+    </div>
+
+    <table class="event-table">
+      <caption>主な開催予定（一部・判明分）</caption>
+      <thead>
+        <tr><th>時期</th><th>イベント名</th><th>会場・地域</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>7月24日</td><td>TATRAS大阪店「THE CRAFT JOURNEY」最終日</td><td>大阪府・TATRAS大阪店</td></tr>
+        <tr><td>7月24〜25日</td><td>アースガーデン"夏"ヨルイチ2026</td><td>東京都・代々木公園</td></tr>
+        <tr><td>7月24〜26日</td><td>手しごとマーケット山形（第4回）</td><td>山形県・山形ビッグウイング</td></tr>
+        <tr><td>7月25〜26日</td><td>広島ハンドメイドフェスティバル（約300店舗）</td><td>広島県・広島産業会館東展示館</td></tr>
+        <tr><td>8月1〜2日</td><td>本厚木ミロード ハンドメイドマーケット2026（夏）</td><td>神奈川県・本厚木ミロード</td></tr>
+        <tr><td>8月1〜2日</td><td>シャレオ ハンドメイドマルシェ</td><td>広島県・シャレオ中央広場</td></tr>
+        <tr><td>8月1〜2日</td><td>東京蚤の市 夏祭り</td><td>東京都・ジャイアンツタウンスタジアム</td></tr>
+        <tr><td>8月1〜16日</td><td>Te-POT CRAFT MARKET</td><td>神奈川県・横浜ランドマークプラザ</td></tr>
+        <tr><td>8月1〜31日</td><td>夢の森公園 キッズクラフトフェスタ2026</td><td>新潟県・柏崎市 夢の森公園</td></tr>
+        <tr><td>8月2日</td><td>GOOD FLEA MARKET</td><td>熊本県・グランメッセ熊本</td></tr>
+        <tr><td>8月2日</td><td>雑司ヶ谷 手創り市</td><td>東京都・鬼子母神堂・大鳥神社</td></tr>
+        <tr><td>8月22日</td><td>OSAKAアート&amp;てづくりバザール vol.52</td><td>大阪府・ATCホール</td></tr>
+        <tr><td>8月27〜29日</td><td>長野キルトフェスティバル2026（10周年）</td><td>長野県</td></tr>
+        <tr><td>8月30日</td><td>てしごと市 in だて Vol.8</td><td>北海道・伊達市</td></tr>
+        <tr><td>9月19〜20日</td><td>TOKYOハンドメイド祭 -HanSai-14</td><td>東京都・都立産業貿易センター浜松町館</td></tr>
+        <tr><td>10月29〜31日</td><td>ビーズアートショー（秋・素材博覧会内）</td><td>神奈川県・横浜港大さん橋ホール</td></tr>
+        <tr><td>11月10〜12日</td><td>ワールドキルトフェスティバル2026</td><td>神奈川県・パシフィコ横浜</td></tr>
+        <tr><td>11月14〜15日</td><td>デザインフェスタ vol.64</td><td>東京都・東京ビッグサイト</td></tr>
+      </tbody>
+    </table>
+
+    <div class="ad-slot no-print" data-ad-slot="p7-1" aria-hidden="true">
+      <span class="ad-label">広告</span><br>
+      この枠は将来の広告掲載用スペースです（現在はプレースホルダー）
+    </div>
+
+    <p class="cross-ref">刺繍・アパレルの新商品情報は８面に掲載</p>
+    <p class="folio">－　７　－</p>
+  </section>
+
+  <!-- ============ 8面：刺繍 ============ -->
+  <section class="page" id="p8" data-page="p8" hidden>
+    <div class="running-header">
+      <span>手芸新聞　令和<span class="tcy">8</span>年<span class="tcy">7</span>月<span class="tcy">23</span>日（木）</span>
+      <span class="folio-mark">刺繍・刺し子面</span>
+    </div>
+
+    <div class="news-row">
+      <article class="story">
+        <span class="type-badge" data-type="NEWS">NEWS</span>
+        <div class="kicker">【催事・詳報】</div>
+        <h2>刺繍アートフェスティバル、企業賞含め<span class="tcy">25</span>作品が受賞</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <path d="M50,15 L58,35 L80,38 L64,53 L68,75 L50,64 L32,75 L36,53 L20,38 L42,35 Z" stroke-width="1.6" />
+          </svg>
+          <span class="cap">受賞作品の数々（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>「刺繍アートフェスティバル2026」の受賞結果詳細（本紙<span class="tcy">1</span>面既報）では、来場者投票によるグランプリ（壁掛け作品部門・立体作品部門）のほか、「ひらめき賞」「究極の手仕事賞」といった特別賞、オリムパス賞・貴和製作所賞・DMC賞など複数の企業賞が発表され、全体で<span class="tcy">25</span>作品が受賞した。</p>
+          <p>企業賞は、糸・道具メーカー各社がそれぞれの視点で作品を選ぶ仕組みで、自社製品を使った作品や、技術的に自社の強みと重なる作品に光を当てる機会になっている。<span class="tcy">130</span>点余りの応募作品のうち約<span class="tcy">2</span>割が何らかの形で受賞したことになり、間口の広い評価設計がうかがえる。</p>
+          <p>大阪ではTATRAS大阪店の刺繍職人企画展「THE CRAFT JOURNEY」も明<span class="tcy">24</span>日に最終日を迎える（<span class="tcy">6</span>面既報）。公募展と海外発の企画展という異なる形の刺繍イベントが、同時期に会期の節目を迎えた形だ。</p>
+          <p class="source-line">出典：<a href="https://embroidery-art-fes.com/contest2026" target="_blank" rel="noopener">刺繍アートフェスティバル公式</a></p>
+        </div>
+      </article>
+    </div>
+
+    <p class="cross-ref">書籍・工芸ギャラリー情報は９面に掲載</p>
+    <p class="folio">－　８　－</p>
+  </section>
+
+  <!-- ============ 9面：書籍・工芸 ============ -->
+  <section class="page" id="p9" data-page="p9" hidden>
+    <div class="running-header">
+      <span>手芸新聞　令和<span class="tcy">8</span>年<span class="tcy">7</span>月<span class="tcy">23</span>日（木）</span>
+      <span class="folio-mark">書籍・工芸ギャラリー面</span>
+    </div>
+
+    <div class="news-row">
+      <article class="story">
+        <span class="type-badge" data-type="NEWS">NEWS</span>
+        <div class="kicker">【新刊・予告】</div>
+        <h2>「はじめての子ども手芸」、<span class="tcy">7</span>月<span class="tcy">29</span>日発売</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <path d="M50,25 L14,36 L14,80 L50,69 Z" />
+            <path d="M50,25 L86,36 L86,80 L50,69 Z" />
+            <line x1="50" y1="25" x2="50" y2="69" />
+            <line x1="22" y1="48" x2="42" y2="45" />
+            <line x1="58" y1="45" x2="78" y2="48" />
+          </svg>
+          <span class="cap">子ども向け手芸本（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>日本文芸社は<span class="tcy">7</span>月<span class="tcy">29</span>日、「基礎からわかる！ハンドメイドでとにかくかわいい！はじめての子ども手芸」を発売する（本紙<span class="tcy">6</span>面既報）。夏休み期間中の刊行で、自由研究や親子での手作り体験を意識した内容とみられる。</p>
+          <p>手芸本の読者層は大人向けが中心だが、子ども向けに特化した入門書は、次世代の作り手を育てる裾野づくりの一環ともいえる。クラフトハートトーカイの「なつやすみキッズ手芸」（本紙前々号既報）など、店頭でも夏休みの子ども向け企画が相次いでおり、出版・小売の両面から子どもの手芸人口を広げる動きが重なっている。</p>
+          <p class="source-line">出典：<a href="https://www.nihonbungeisha.co.jp/calendar/" target="_blank" rel="noopener">日本文芸社</a></p>
+        </div>
+      </article>
+    </div>
+
+    <div class="news-row">
+      <article class="story">
+        <div class="kicker">【新刊・通信講座】</div>
+        <h2>ユーキャン「ビーズアクセサリー講座」、動画教材付きで学べる</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <rect x="32" y="18" width="36" height="64" rx="6" />
+            <line x1="32" y1="26" x2="68" y2="26" stroke-width="1" opacity="0.6" />
+            <line x1="32" y1="74" x2="68" y2="74" stroke-width="1" opacity="0.6" />
+            <circle cx="50" cy="78" r="2" fill="var(--ink)" stroke="none" />
+          </svg>
+          <span class="cap">動画で学ぶビーズ講座（イメージ）</span>
+        </div>
+        <div class="body">
+          <p>通信教育大手のユーキャンは「ビーズアクセサリー講座」を開講している。パールやガラス、天然石などのビーズを使い、イヤリングやネックレスなど全<span class="tcy">9</span>作品を制作しながらビーズ刺繍やワイヤーアクセサリーの技術を学ぶ内容で、メインテキストのほか約<span class="tcy">70</span>分の動画教材（全<span class="tcy">10</span>本）、基本<span class="tcy">4</span>作品分のビーズ一式、丸ペンチ・平ペンチなどの用具が付属する。標準学習期間は<span class="tcy">3</span>カ月。</p>
+          <p>本号<span class="tcy">2</span>面の特集で触れた世界的なビーズネックレスの再流行を踏まえると、こうした通信講座は、流行に関心を持った消費者が実際に「作る側」へ回る入口の一つになりうる。</p>
+          <p class="source-line">出典：<a href="https://prtimes.jp/main/html/rd/p/000001251.000007628.html" target="_blank" rel="noopener">株式会社ユーキャンプレスリリース（PR TIMES）</a></p>
+        </div>
+      </article>
+    </div>
+
+    <div class="ad-slot no-print" data-ad-slot="p9-1" aria-hidden="true">
+      <span class="ad-label">広告</span><br>
+      この枠は将来の広告掲載用スペースです（現在はプレースホルダー）
+    </div>
+
+    <p class="cross-ref">特集・コラムは10面に掲載</p>
+    <p class="folio">－　９　－</p>
+  </section>
+
+  <!-- ============ 10面：特集・コラム ============ -->
+  <section class="page" id="p10" data-page="p10" hidden>
+    <div class="running-header">
+      <span>手芸新聞　令和<span class="tcy">8</span>年<span class="tcy">7</span>月<span class="tcy">23</span>日（木）</span>
+      <span class="folio-mark">特集・コラム面</span>
+    </div>
+
+    <div class="news-row">
+      <article class="story">
+        <span class="type-badge" data-type="FEATURE">FEATURE</span>
+        <div class="kicker">【特集】</div>
+        <h2>「作る」と「身につける」がつながる一日</h2>
+        <div class="lede-media">
+          <svg viewBox="0 0 100 100">
+            <circle cx="25" cy="30" r="10" />
+            <line x1="25" y1="40" x2="25" y2="55" />
+            <circle cx="75" cy="70" r="10" />
+            <line x1="75" y1="80" x2="75" y2="55" />
+            <path d="M25,55 Q50,45 75,55" />
+          </svg>
+          <span class="cap">つくる手、身につける手（イメージ）</span>
+        </div>
+        <div class="body">
+          <p><span class="lead-char">今</span>号を通して見えてくるのは、「作る側」と「身につける側」が、思いのほか近い場所にいるという構図だ。刺繍アートフェスティバルのグランプリ（本紙1面既報）は、130点の応募作品から来場者投票で選ばれた、作り手の技術の結晶である。一方、本号2面の特集で取り上げたVOGUEのビーズネックレス再流行は、身につける側の嗜好の変化から始まった動きだ。</p>
+          <p>この二つは、別々の現象ではない。ビーズ刺繍ジュエリー協会やユーキャンの通信講座（本紙4・9面既報）に人が集まっているのは、身につけたいという気持ちが、作ってみたいという気持ちに変わる瞬間があるからだろう。矢野経済研究所が報じたファッショングッズ市場の拡大（5面既報）も、突き詰めれば同じ消費者の「身につけたい」という気持ちの総量を映した数字にすぎない。</p>
+          <p>子ども向け手芸本の発売やクラフトハートトーカイの夏休み企画（本紙6・9面既報）も、この循環の入口を早いうちに開いておく試みといえる。子どもの頃に「作ってみたい」と思った経験が、大人になって「身につけたい」を「自分で作る」に変える土壌になる。</p>
+          <p>TATRAS大阪店の刺繍職人企画展（本紙6・8面既報）が、鑑賞とデジタルカスタマイズという二つの体験を同じ店舗で提供しているのも、象徴的だ。「作る」を鑑賞することと、「身につける」を自分ごとにすることの間には、思うより短い距離しかないのかもしれない。</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="opinion-grid">
+      <div class="column-box">
+        <div class="col-icon">
+          <svg viewBox="0 0 100 100">
+            <line x1="30" y1="12" x2="62" y2="86" />
+            <circle cx="27" cy="9" r="4" />
+            <path d="M27,9 C4,26 16,52 40,58 C58,63 52,80 36,86" />
+          </svg>
+        </div>
+        <div class="col-title">手芸の今</div>
+        <div class="col-byline">（この欄は生成AIが独自の視点で綴ります）</div>
+        <div class="col-body">
+          <p>今号を通して見えてくるのは、流行のきっかけは外側からやってくることが多い一方で、それを支える技術と物語は常に内側で育まれてきた、という事実だ。ビーズネックレスの再流行はロンドンのランウェイから始まったが、それを日本で形にするのは、シードビーズの品質やガラスビーズの発色といった、地道に磨かれてきた国内の素材・技術である。</p>
+          <p>刺繍アートフェスティバルの130点の応募作品も、一つひとつは静かな手仕事の積み重ねにすぎない。それでも、来場者投票という開かれた評価の場に置かれた瞬間、静かな手仕事は物語になる。手芸新聞が拾い集めたいのは、その物語が生まれる瞬間である。</p>
+        </div>
+      </div>
+
+      <div class="editors-note">
+        <div class="et-title">編集後記</div>
+        <p>本号は試作号として、Web上の公開情報をもとに編集部が構成しました。今号の特集記事は、読者の方よりご提供いただいた原稿をもとに編集部が構成しています。</p>
+        <p>記事内容についてお気づきの点があれば、各記事末尾の出典ページをご確認のうえ、本紙編集部までお寄せください。</p>
+      </div>
+    </div>
+
+    <p class="cross-ref">紙面索引は11面に掲載</p>
+    <p class="folio">－　10　－</p>
+  </section>
+
+  <!-- ============ 11面：紙面索引 ============ -->
+  <section class="page" id="p11" data-page="p11" hidden>
+    <div class="running-header">
+      <span>手芸新聞　令和<span class="tcy">8</span>年<span class="tcy">7</span>月<span class="tcy">23</span>日（木）</span>
+      <span class="folio-mark">紙面索引</span>
+    </div>
+
+    <ul class="toc-list">
+      <li><span class="toc-page">1面</span><span class="toc-title">総合</span><span class="toc-desc">見出し帯／特集・連載／一面トップ「刺繍アートフェスティバル、グランプリ発表」／一面サブニュース（ビーズ刺繍講座・ファッショングッズ市場・広島ハンドメイドフェス・子ども向け手芸本）／ビーズ刺繍ジュエリー詳報</span></li>
+      <li><span class="toc-page">2面</span><span class="toc-title">オピニオン面</span><span class="toc-desc">編集長コラム「一粒ずつ、自分だけの一本を作る時間」（全文）／編集部論説「二つのグランプリが分けられた意味」（全文）／今週の特集「VOGUEが伝えた『ビーズブーム』」（全文、読者投稿）</span></li>
+      <li><span class="toc-page">3面</span><span class="toc-title">分野別ニュース・小欄面</span><span class="toc-desc">9分野の見出し一覧／小欄・短信12欄／新着記事一覧15件</span></li>
+      <li><span class="toc-page">4面</span><span class="toc-title">ホビー・キルト</span><span class="toc-desc">ビーズ刺繍ジュエリー協会の通信・講師認定講座</span></li>
+      <li><span class="toc-page">5面</span><span class="toc-title">市場・企業</span><span class="toc-desc">ファッショングッズ市場、5兆2457億円に拡大（矢野経済研究所調べ）</span></li>
+      <li><span class="toc-page">6面</span><span class="toc-title">予告・教室</span><span class="toc-desc">TATRAS大阪店、明日24日が最終日／子ども向け手芸本、7月29日発売予告</span></li>
+      <li><span class="toc-page">7面</span><span class="toc-title">全国催事暦</span><span class="toc-desc">広島ハンドメイドフェス（約300店舗）／今週末の催事一覧／主要イベント一覧表</span></li>
+      <li><span class="toc-page">8面</span><span class="toc-title">刺繍</span><span class="toc-desc">刺繍アートフェスティバル、企業賞含め25作品が受賞（詳報）</span></li>
+      <li><span class="toc-page">9面</span><span class="toc-title">書籍・工芸</span><span class="toc-desc">「はじめての子ども手芸」7月29日発売／ユーキャン「ビーズアクセサリー講座」</span></li>
+      <li><span class="toc-page">10面</span><span class="toc-title">特集・コラム</span><span class="toc-desc">特集「『作る』と『身につける』がつながる一日」／コラム「手芸の今」／編集後記</span></li>
+      <li><span class="toc-page">11面</span><span class="toc-title">紙面索引</span><span class="toc-desc">このページ（全12面の内容一覧）</span></li>
+      <li><span class="toc-page">12面</span><span class="toc-title">奥付</span><span class="toc-desc">発行情報・編集長紹介・本紙について・次号予告・ご意見ご感想</span></li>
+    </ul>
+
+    <div class="back-grid" style="margin-top:2rem;">
+      <div class="back-box">
+        <h3>本号のポイント</h3>
+        <p>刺繍アートフェスティバル2026の受賞結果がついに発表されました。壁掛け作品部門は奥田萌里衣氏、立体作品部門は多禰知葉氏がグランプリを受賞し、全体で25作品が受賞しています（1・2・8面）。</p>
+        <p>今週の特集は、読者の方からご投稿いただいた原稿をもとに構成しました。英国版VOGUEが伝えたビーズネックレスの再流行を、手芸業界の視点から読み解いています。あわせて、ビーズ刺繍ジュエリーの通信講座やユーキャンの通信講座、矢野経済研究所のファッショングッズ市場データなど、関連する話題を4・5・9面に展開しました。</p>
+        <p>TATRAS大阪店の刺繍職人企画展は明日24日が最終日、広島ハンドメイドフェスティバルは今週末に約300店舗が出店予定です。</p>
+      </div>
+      <div class="back-box">
+        <h3>紙面のご利用方法</h3>
+        <p>各面の記事末尾にある出典リンクから、発表元のページへ直接アクセスできます。画面上部のタブから面を切り替えられるほか、一部の記事は「続きを読む」ボタンから詳細（要点・出典・関連記事）を確認できます。</p>
+      </div>
+      <div class="back-box">
+        <h3>記事種別バッジについて</h3>
+        <p>本紙は見出し脇のバッジで記事種別を示しています。NEWSは事実報道、EDITORIAL・CHIEF_EDITOR・FEATUREなどは編集部・編集長の見解を含む記事で、それぞれ記事冒頭に「事実報道ではありません」等の注記があります。MARKET・BUSINESS・CULTUREは市場分析や文化解説など、事実と編集部の見立てを組み合わせた記事です。</p>
+      </div>
+    </div>
+
+    <p class="cross-ref">奥付・次号予告は12面に掲載</p>
+    <p class="folio">－　11　－</p>
+  </section>
+
+  <!-- ============ 12面：奥付 ============ -->
+  <section class="page" id="p12" data-page="p12" hidden>
+    <div class="running-header">
+      <span>手芸新聞　令和<span class="tcy">8</span>年<span class="tcy">7</span>月<span class="tcy">23</span>日（木）</span>
+      <span class="folio-mark">奥付</span>
+    </div>
+
+    <p class="back-mini-wordmark">手芸新聞</p>
+
+    <div class="back-grid">
+      <div class="back-box">
+        <h3>発行情報</h3>
+        <p>発行：手芸新聞編集部（DJ TOBBY　AI新聞プロジェクト）</p>
+        <p>編集長：<a href="https://chatgpt.com/g/g-6a5dbec4971481919d12695b6ee3df51-shou-yun-xin-wen-bian-ji-chang" target="_blank" rel="noopener">手芸新聞編集長（AI／ChatGPT）</a></p>
+        <p>号数：試作第5号</p>
+        <p>発行日：令和8年（2026年）7月23日</p>
+        <p>体裁：全12面（本文横組み・題字縦組み）</p>
+      </div>
+      <div class="back-box">
+        <h3>本紙について</h3>
+        <p>本紙は個人が試作しているデジタル新聞の試作号です。実在の刊行物・法人ではありません。各記事は公開されているプレスリリースや報道・調査資料をもとに編集部が要約・構成したもので、全文転載ではありません。詳細・一次情報は各記事末尾の出典リンクよりご確認ください。</p>
+        <p>本紙は記事を「NEWS・BREAKING・EDITORIAL・CHIEF_EDITOR・FEATURE・INTERVIEW・MARKET・MATERIAL・TECHNIQUE・CULTURE・BUSINESS・WORLD・OPINION・SHORTS」の種別に分類し、見出し脇のバッジで表示しています。事実報道と意見・分析記事は明確に区別しています。</p>
+        <p>コラム「手芸の今」、編集長コラム、編集部論説はいずれも一次情報ではなく、編集部・編集長・生成AI（Claude）による見解です。特集記事中の一部の統計は本紙が試作段階のため未確認のサンプル原稿を含みます（各記事の編集部注をご確認ください）。</p>
+        <p>「編集長」は<a href="https://chatgpt.com/g/g-6a5dbec4971481919d12695b6ee3df51-shou-yun-xin-wen-bian-ji-chang" target="_blank" rel="noopener">ChatGPTのカスタムGPTとして構築されたAI人格</a>であり、実在の人物ではありません。</p>
+      </div>
+      <div class="back-box">
+        <h3>次号予告</h3>
+        <p>次号では、地方の手芸メーカーの取り組みや、各地のクラフトフェアの開催レポート、新作情報などを予定しています。掲載内容は取材・収集状況により変更になる場合があります。</p>
+      </div>
+      <div class="back-box">
+        <h3>ご意見・ご感想</h3>
+        <p>紙面についてのご意見・ご感想・誤りのご指摘は、<a href="https://github.com/DJTOBBY/shugei-shimbun/issues/new" target="_blank" rel="noopener">GitHub Issues</a>からお寄せください。GitHubアカウントがあればどなたでも投稿できます。内容に誤りをお気づきの場合は、あわせて各記事の出典ページを一次情報としてご確認ください。</p>
+        <p>紙面の内容についての質問や感想は、<a href="https://chatgpt.com/g/g-6a5dbec4971481919d12695b6ee3df51-shou-yun-xin-wen-bian-ji-chang" target="_blank" rel="noopener">手芸新聞編集長（AI）</a>にお尋ねいただくこともできます。</p>
+      </div>
+      <div class="back-box">
+        <h3>取材・情報源について</h3>
+        <p>本紙は一次情報を優先し、企業公式サイト・プレスリリース配信サービス（PR TIMES等）・展示会主催者の発表・作家やブランドの公式発表を中心に情報を収集しています。同じ内容が複数サイトに転載されている場合は、できる限り元の発表元を特定して出典に用いています。</p>
+        <p>発表日や詳細が確認できない場合は断定を避け、「不明」「未確認」と明記する方針です。記事本文の無断転載は行わず、事実を要約したうえで編集部の解説・見立てを加えています。</p>
+      </div>
+      <div class="back-box">
+        <h3>編集方針について</h3>
+        <p>本紙では、手芸・クラフト・ホビー業界の最新ニュースや市場動向、素材研究、技法解説、作家インタビュー、世界の手芸事情、文化・歴史、販売・マーケティングなど、多彩なテーマを特集・連載としてお届けしています。</p>
+        <p>発行ごとに、その時々で最も注目すべき話題を編集部が選定し、紙面を構成しています。1面上部の「特集・連載」欄では、その号のメインテーマを紹介しています。</p>
+        <p>あわせて、事実報道（NEWS等）と、編集部・編集長の意見や分析を含む記事（EDITORIAL・CHIEF_EDITOR・FEATURE・MARKET・BUSINESS・CULTURE等）は、見出し脇のバッジと記事冒頭の注記で明確に区別しています。</p>
+      </div>
+      <div class="back-box">
+        <h3>新号のお知らせを受け取る（RSS購読）</h3>
+        <p>新しい号が出るたびにメールでお知らせを受け取りたい場合は、下記のフィードURLを無料のメール通知サービスに登録してください。メールアドレスの登録・配信はすべてサービス側が行うため、本紙が個人情報をお預かりすることはありません。</p>
+        <p class="feed-url-box">https://djtobby.github.io/shugei-shimbun/feed.xml</p>
+        <p>登録方法：①上のURLをコピー　②<a href="https://blogtrottr.com/" target="_blank" rel="noopener">Blogtrottr</a>（おすすめ・簡単）または<a href="https://follow.it/" target="_blank" rel="noopener">Follow.it</a>を開く　③URLを貼り付けてメールアドレスを入力　④登録完了。RSSリーダー（Feedlyなど）でも同じURLで購読できます。</p>
+        <p>バックナンバー一覧は<a href="https://djtobby.github.io/shugei-shimbun/" target="_blank" rel="noopener">https://djtobby.github.io/shugei-shimbun/</a>からご覧いただけます。</p>
+      </div>
+    </div>
+
+    <footer class="colophon">
+      <span class="notice">本紙は各社プレスリリースおよび公開情報を編集部が要約・構成したものです。全文転載ではありません。</span>
+      <span>手芸新聞 試作第5号 / 令和8年7月23日発行</span>
+    </footer>
+    <p class="folio">－　12　－</p>
+  </section>
+
+</div>
+
+<dialog class="article-dialog no-print" id="article-dialog">
+  <div class="ad-inner" id="article-dialog-inner"></div>
+</dialog>
+
+<script>
+  /* ============================================================
+     記事種別（articleType）ラベルと、事実／意見の表示バナー
+     ============================================================ */
+  const ARTICLE_TYPE_LABELS = {
+    NEWS: 'NEWS', BREAKING: 'BREAKING', EDITORIAL: 'EDITORIAL', CHIEF_EDITOR: 'CHIEF EDITOR',
+    FEATURE: 'FEATURE', INTERVIEW: 'INTERVIEW', MARKET: 'MARKET', MATERIAL: 'MATERIAL',
+    TECHNIQUE: 'TECHNIQUE', CULTURE: 'CULTURE', BUSINESS: 'BUSINESS', WORLD: 'WORLD',
+    OPINION: 'OPINION', SHORTS: 'SHORTS',
+  };
+  function bannerFor(articleType) {
+    switch (articleType) {
+      case 'CHIEF_EDITOR': return 'この記事は編集長の見解を示すコラムです。事実報道ではありません。';
+      case 'EDITORIAL': return 'この記事は公開情報をもとにAI編集部が分析した論説です。本文中の意見は事実報道とは区別されています。';
+      case 'FEATURE': return 'この記事は特集記事です。事実の要約に加え、編集部の見方（推測）を含みます。';
+      case 'MARKET': return 'この記事は市場動向の分析記事です。統計は出典を明記し、推測部分は明示しています。';
+      case 'BUSINESS': return 'この記事は編集部による意見記事です。特定の企業・個人を指すものではありません。';
+      case 'CULTURE': return 'この記事は文化的背景を紹介するサンプル原稿です。詳細な年代・数値は今後補強予定です。';
+      case 'OPINION': return 'この記事は寄稿者の意見記事です。';
+      default: return null;
+    }
+  }
+
+  /* ============================================================
+     記事データモデル（articles）
+     フィールド: id, slug, title, subtitle, lead, body(配列),
+     summary, articleType, category, tags(配列), author, authorRole,
+     publishedAt, updatedAt, sourceName, sourceUrl, sourcePublishedAt,
+     factOrOpinion（fact/opinion）, editorNote, keyPoints(配列),
+     relatedArticles(配列 {title,url}), image, imageCaption,
+     featured, priority, status（draft/published）
+
+     この配列に登録した記事は、記事詳細ダイアログ（続きを読む）から
+     全項目を閲覧できます。既存の紙面記事（HTML直書き）は変更せず、
+     この配列は主に新設した論説・コラム・特集・短信サンプル用です。
+
+     ------------------------------------------------------------
+     ★ 編集長・編集部がコラムや特集を新しく追加する場合 ★
+     この配列の末尾（閉じカッコ "]" の直前）に、下のような
+     オブジェクトを追加するだけで、2面（オピニオン面）に
+     自動的にコラム欄が1つ増えます。HTMLやCSSの編集は不要です。
+
+     {
+       id: 'col-chief-editor-002',       // 他と重複しない任意のID
+       articleType: 'CHIEF_EDITOR',      // CHIEF_EDITOR / EDITORIAL / FEATURE のいずれか
+       title: 'コラムのタイトル',
+       subtitle: '手芸の向こう側　第2回',  // 任意
+       lead: '導入文（1〜2文）',
+       category: 'コラム', tags: ['編集長コラム'],
+       author: '編集長', authorRole: '手芸新聞 編集長',
+       publishedAt: new Date().toISOString(), updatedAt: new Date().toISOString(),
+       sourceName: '手芸新聞編集部（編集長本人の所感）', sourceUrl: null, sourcePublishedAt: null,
+       factOrOpinion: 'opinion',
+       editorNote: '本欄は編集長個人の意見であり、事実報道ではありません。',
+       keyPoints: ['要点1', '要点2'],
+       body: ['本文の段落1', '本文の段落2', '本文の段落3'],
+       relatedArticles: [], image: null, imageCaption: null,
+       featured: true, priority: 1, status: 'published',
+       displaySlot: 'auto-op-articles-p2',   // ← これを付けると自動でp2に表示されます
+     },
+
+     本文（lead・body）はそのまま縦書きで表示されます。数字を
+     ２桁ずつ横に並べたい場合は '<span class="tcy">26</span>' の
+     ようにHTMLタグを直接書き込めます（他の記事と同じ書式です）。
+     下書き作成には editor-tools.html（このファイルとは別）を
+     ご利用いただけます。
+     ------------------------------------------------------------ */
+  const articles = [
+    {
+      id: 'front-lead-kumiko', slug: 'embroidery-art-festival-2026-grand-prix', articleType: 'NEWS',
+      title: '刺繍アートフェスティバル、グランプリ発表',
+      subtitle: '壁掛け部門・立体部門の2作品が受賞、25作品に副賞も',
+      lead: '「刺繍アートフェスティバル2026」は来場者投票によるグランプリを発表。壁掛け作品部門は奥田萌里衣氏、立体作品部門は多禰知葉氏が選ばれた。',
+      category: '総合', tags: ['催事', '刺繍', 'コンテスト'],
+      author: '編集部', authorRole: '取材・構成',
+      publishedAt: '2026-07-23T07:00:00+09:00', updatedAt: '2026-07-23T07:00:00+09:00',
+      sourceName: '刺繍アートフェスティバル公式', sourceUrl: 'https://embroidery-art-fes.com/contest2026',
+      sourcePublishedAt: '2026-07-21', factOrOpinion: 'fact', editorNote: null,
+      keyPoints: [
+        '壁掛け・立体の2部門にグランプリを分けた設計は、表現形式の異なる作品を同じ土俵で競わせない公募展のあり方の一例になりうる',
+        '企業賞を複数併設することで、糸・道具メーカー各社が自社製品を使った作品に光を当てる機会にもなっている',
+      ],
+      body: [
+        '刺繍作品の公募コンテスト・展示会「刺繍アートフェスティバル2026」（本紙既報）は、来場者投票によるグランプリを発表した。壁掛け作品部門は奥田萌里衣氏「ホーランドロップとカモミール」、立体作品部門は多禰知葉氏「Peaceful days」がそれぞれグランプリに選ばれ、副賞10万円が贈られた。',
+        'このほか「ひらめき賞」「究極の手仕事賞」などの特別賞、オリムパス賞・貴和製作所賞・DMC賞など複数の企業賞も発表され、全体で25作品が受賞した。130点余りの応募作品から、審査員だけでなく来場者投票を経て多層的に受賞作を選び出す方式が採られた。',
+        '壁掛け・立体という異なる2部門でそれぞれグランプリを設けた構成は、平面作品と立体作品という表現形式の違いを競わせず、それぞれの土俵で評価する設計といえる。',
+      ],
+      relatedArticles: [ { title: '刺繍アートフェスティバル、受賞結果はまだ発表されず（前号）', url: '#p8' } ],
+      image: null, imageCaption: null, featured: true, priority: 1, status: 'published',
+    },
+    {
+      id: 'col-chief-editor-001', slug: 'hitotsubu-zutsu-jibundake-no-ippon-wo-tsukuru-jikan', articleType: 'CHIEF_EDITOR',
+      title: '一粒ずつ、自分だけの一本を作る時間',
+      subtitle: '編集長コラム「手芸の向こう側」第4回',
+      lead: '流行は繰り返す、とよく言われる。しかし、本当に繰り返しているのは「形」ではない。人が手で作ったものに価値を感じる気持ちである。',
+      category: 'コラム', tags: ['編集長コラム', 'ビーズ', '手仕事の価値'],
+      author: '編集長', authorRole: '手芸新聞 編集長',
+      publishedAt: '2026-07-23T10:00:00+09:00', updatedAt: '2026-07-23T10:00:00+09:00',
+      sourceName: '手芸新聞編集部（編集長本人の所感）', sourceUrl: null, sourcePublishedAt: null,
+      factOrOpinion: 'opinion',
+      editorNote: '本欄は編集長個人の意見であり、事実報道ではありません。編集長（AI人格）には<a href="https://chatgpt.com/g/g-6a5dbec4971481919d12695b6ee3df51-shou-yun-xin-wen-bian-ji-chang" target="_blank" rel="noopener">こちら</a>からチャットで話しかけられます。',
+      keyPoints: [
+        '機械で大量に作れる時代だからこそ、一粒ずつビーズを選び、糸を通す時間が豊かさになる',
+        '今号のビーズブームは「クラフトを楽しむ文化」が再び世界に広がり始めたサインかもしれない',
+        'ビーズが持つ「作る楽しさ」は時代を超えて受け継がれてきた',
+      ],
+      body: [
+        '流行は繰り返す、とよく言われる。しかし、本当に繰り返しているのは「形」ではない。人が手で作ったものに価値を感じる気持ちである。機械で大量に作れる時代だからこそ、一粒ずつビーズを選び、糸を通し、自分だけの一本を作る時間が豊かさになる。',
+        '今号2面の特集で触れたビーズブームは、単なるアクセサリーの流行ではなく、「クラフトを楽しむ文化」が再び世界に広がり始めたサインなのかもしれない、と私は思う。',
+        'ファッションは季節ごとに変わる。しかし、ビーズが持つ「作る楽しさ」は時代を超えて受け継がれてきた。この世界的なトレンドをきっかけに、もう一度ビーズに触れてみる——そんな新しいものづくりの一歩が、次の作品につながるかもしれない。',
+      ],
+      relatedArticles: [
+        { title: 'VOGUEが伝えた「ビーズブーム」（今週の特集）', url: 'feature-001' },
+        { title: 'ビーズ刺繍ジュエリー、通信講座で学ぶ人が増加', url: '#sn-beads' },
+      ],
+      image: null, imageCaption: null, featured: true, priority: 1, status: 'published',
+    },
+    {
+      id: 'editorial-001', slug: 'futatsu-no-grand-prix-ga-wakerareta-imi', articleType: 'EDITORIAL',
+      title: '二つのグランプリが分けられた意味',
+      subtitle: '編集部はこう見る',
+      lead: '刺繍アートフェスティバル2026は、壁掛け作品部門と立体作品部門にそれぞれグランプリを設けた。最優秀を1点に絞らない審査設計には、どんな狙いがあるのか。',
+      category: '論説', tags: ['論説', 'コンテスト', '刺繍アートフェスティバル'],
+      author: 'AI編集部', authorRole: '編集部（生成AIによる分析）',
+      publishedAt: '2026-07-23T10:15:00+09:00', updatedAt: '2026-07-23T10:15:00+09:00',
+      sourceName: '刺繍アートフェスティバル公式ほか本紙既報', sourceUrl: 'https://embroidery-art-fes.com/contest2026',
+      sourcePublishedAt: '2026-07-21', factOrOpinion: 'opinion',
+      editorNote: '本稿はAI編集部による分析・論説です。事実部分と推測部分を区別して記載しています。審査基準の公式な説明に基づくものではなく、結果からの推測を含みます。',
+      keyPoints: [
+        '刺繍アートフェスティバル2026は壁掛け・立体の2部門にそれぞれグランプリを設けた（本紙1面既報）',
+        '表現形式の異なる作品を同じ基準で比較しない設計は、応募者の安心感につながりうる',
+        '部門別グランプリは「競う」より「讃える」に軸足を置いた評価のあり方ではないか、というのが編集部の見立て',
+      ],
+      body: [
+        '【論点】刺繍アートフェスティバル2026は、壁掛け作品部門と立体作品部門にそれぞれグランプリを設け、2作品を選出した（本紙1面既報）。1つの公募展で最優秀を1点に絞らず、部門を分けて評価する設計には、どんな狙いがあるのか。編集部の論点はここにある。',
+        '【背景】壁掛け作品と立体作品は、そもそも制作工程も鑑賞のされ方も異なる。壁掛けは平面構成や配色のバランスが問われ、立体は素材の扱いや構造の工夫が問われる。両者を同じ基準で比較して1位を決めるのは、本来無理のある話ともいえる。',
+        '【出展者への影響】部門を分けることで、平面表現を得意とする作家と立体表現を得意とする作家が、互いの土俵を侵さずに評価される。応募する側からみれば、自分の得意な表現形式で正当に評価されるという安心感につながる。',
+        '【業界への影響】評価軸を一本化しない審査設計は、多様な技法・表現が併存する刺繍というジャンルの懐の深さを、コンテストの制度面で体現しているとも読める。',
+        '【編集部の見解（現時点での推測）】部門別グランプリという設計は、「competing（競う）」よりも「celebrating（讃える）」に軸足を置いた評価のあり方の一つではないか、というのが編集部の見立てである。ただしこれは審査基準の公式な説明に基づくものではなく、結果からの推測にとどまる。',
+        '【今後の注目点】各部門の受賞作の傾向、企業賞との重複の有無など、審査結果の詳細を今後の取材で確認していきたい。',
+      ],
+      relatedArticles: [
+        { title: '刺繍アートフェスティバル、グランプリ発表', url: 'front-lead-kumiko' },
+      ],
+      image: null, imageCaption: null, featured: true, priority: 1, status: 'published',
+    },
+    {
+      id: 'feature-001', slug: 'vogue-ga-tsutaeta-beads-boom', articleType: 'FEATURE',
+      title: 'VOGUEが伝えた「ビーズブーム」——なぜ今、世界は再びビーズに魅了されるのか',
+      subtitle: '今週の特集',
+      lead: '2026年のファッションシーンで存在感を高めるビーズネックレス。英国版VOGUEが伝えたトレンドを、手芸業界の立場から読み解く。',
+      category: '特集', tags: ['特集', 'ビーズ', 'ファッション'],
+      author: '編集部', authorRole: '編集部（特集班）',
+      publishedAt: '2026-07-23T10:30:00+09:00', updatedAt: '2026-07-23T10:30:00+09:00',
+      sourceName: '英国版VOGUE', sourceUrl: 'https://www.vogue.co.jp/article/boho-necklace-2026-spring-summer-trend',
+      sourcePublishedAt: null, factOrOpinion: 'opinion',
+      editorNote: '本特集は英国版VOGUEの報道を手がかりに、編集部が手芸業界の視点から分析・構成したものです。ファッショントレンドの解説部分は同誌の報道に基づき、業界への影響分析は編集部の見立てです。',
+      keyPoints: [
+        '英国版VOGUEが2026年春夏の注目アクセサリーとしてビーズネックレスを紹介、「ボーホースタイルの再来」と位置づけ',
+        '技術を見せる細密なビーズ細工から、異素材ミックスで個性を表現するスタイルへと価値観が変化している',
+        '日本のビーズメーカーの素材・技術力が、世界的なブームの追い風を受ける可能性がある',
+      ],
+      body: [
+        '2026年のファッションシーンで、静かに、しかし確実に存在感を高めているものがある。それが「ビーズネックレス」だ。英国版VOGUEは、この春夏の注目アクセサリーとしてビーズネックレスを取り上げ、「ボーホースタイルの再来」を象徴するアイテムとして紹介した。クロエをはじめとするブランドが提案した現代的なボーホースタイルを背景に、カラフルなビーズや天然素材を使ったネックレスが、ランウェイだけでなく街のファッションへも広がりを見せている。',
+        'しかし、この流れを手芸業界の立場から見ると、「流行」という一言では片付けられない、もっと大きな意味が見えてくる。',
+        '日本では1990年代後半から2000年代初頭にかけて、ビーズアクセサリーが大ブームとなった。丸小ビーズやチェコビーズ、スワロフスキー®・クリスタルを使った作品が数多く生まれ、多くの手芸店には専門コーナーが設けられた。当時は「きれいに編む」「細かく作る」ことが技術の象徴だった。ところが、現在のトレンドは少し違う。大小さまざまなビーズを自由に組み合わせ、木、ガラス、シェル、天然石、レジン、コードなど異素材をミックスするスタイルが主流になっている。色も形も揃え過ぎず、「少し不揃い」であることが魅力として受け入れられている。つまり、「技術を見せるアクセサリー」から、「個性を表現するアクセサリー」へと価値観が変化しているのだ。',
+        'ビーズアクセサリーは、大量生産が難しい分野である。同じ材料を使っても、色の並び方や配置、組み合わせによって印象は大きく変わる。だからこそ、ハンドメイドとの相性が非常に良い素材と言える。近年は「一点もの」や「自分だけの色」を求める消費者が増えており、その流れの中で、作り手自身が素材を選び、物語を込めて制作できるビーズアクセサリーは、まさに現代のニーズに合ったクラフトなのだ。',
+        'VOGUEの記事でも紹介されているように、今年のビーズネックレスは一本で完成させるのではなく、何本も重ねて身に着けるスタイルが特徴だ。天然石、シェル、コード、チャームなど異なる素材を自由に組み合わせることで、自分らしいコーディネートを楽しむ提案が広がっている。これはハンドメイド作家にとっても大きなチャンスだ。一本ずつ選べるシリーズ、季節ごとのカラー展開、チャームを交換できるデザインなど、組み合わせを楽しめる商品づくりが期待できる。',
+        '日本には世界的にも高い評価を受けるビーズメーカーがある。精密な品質を誇るシードビーズ、美しい発色のガラスビーズ、豊富な副資材など、日本のものづくりは海外デザイナーからも高く評価されている。世界的なビーズブームが続けば、日本の素材や技術が再び注目される可能性も十分にある。流行は海外から始まることが多い一方で、その流れを支える素材や技術には、日本企業が重要な役割を果たしてきた。',
+      ],
+      relatedArticles: [
+        { title: 'ビーズ刺繍ジュエリー、通信講座で学ぶ人が増加', url: '#sn-beads' },
+        { title: '一粒ずつ、自分だけの一本を作る時間（編集長コラム）', url: 'col-chief-editor-001' },
+      ],
+      image: null, imageCaption: null, featured: true, priority: 1, status: 'published',
+    },
+    {
+      id: 'market-001', slug: 'oshikatsu-shijou-shugei', articleType: 'MARKET',
+      title: '推し活市場は手芸業界の新しい入口になるか',
+      subtitle: null,
+      lead: 'うちわデコ、ぬい服、レジンアクセサリー——「推し活」グッズの手作りは、裁縫・ビーズ・レジンなど複数分野の技術を横断する。',
+      category: '市場・ビジネス', tags: ['市場', '推し活', '若年層'],
+      author: '編集部', authorRole: '編集部（市場分析）',
+      publishedAt: '2026-07-18T10:45:00+09:00', updatedAt: '2026-07-18T10:45:00+09:00',
+      sourceName: null, sourceUrl: null, sourcePublishedAt: null, factOrOpinion: 'opinion',
+      editorNote: '本稿は編集部の観察・推測を含む記事です。市場規模等の具体的な統計は本稿時点で未確認のため、今後確認が必要です。',
+      keyPoints: [
+        '推し活グッズの手作りは裁縫・ビーズ・レジンなど複数分野の技術を横断する',
+        '既存の手芸資材メーカーにとって新しい顧客接点になりうる（編集部の見方）',
+        '市場規模・年齢層等の具体的データは本稿執筆時点で未確認',
+      ],
+      body: [
+        '【何が起きているか】SNS上では、うちわのデコレーションやぬいぐるみ用の「ぬい服」、レジンを使ったアクセサリーなど、「推し活」向けの手作りグッズが数多く見られる。',
+        '【背景】推し活文化そのものの広がりに加え、SNSで作品を共有する文化が、こうした手作りグッズの需要を後押ししていると見られる。',
+        '【手芸業界への影響】ビーズ、レジン、生地、フェルトといった既存の手芸資材メーカーにとって、推し活層は新しい顧客接点になりうる。裁縫やアクセサリー作りの入門者が、推し活をきっかけに手芸全般へ関心を広げる可能性もある。',
+        '【編集部の見方（現時点での推測）】若年層が推し活をきっかけに手芸に入り、そこから他分野の手芸に関心を広げていくという流れがあるのではないか、というのが編集部の仮説である。ただし実際の年齢層構成や市場規模を示すデータは、本稿執筆時点では確認できていない。',
+        '【今後確認すべきこと】推し活関連の手芸資材の販売動向、年齢層データ、関連イベントの開催状況など。今後の取材で裏付けを進めたい。',
+      ],
+      relatedArticles: [ { title: '日本の手工芸品市場、CAGR10.17％で成長へ', url: '#p5' } ],
+      image: null, imageCaption: null, featured: false, priority: 2, status: 'published',
+    },
+    {
+      id: 'business-001', slug: 'sakuhin-wo-yasuku-uri-sugiru-sakka', articleType: 'BUSINESS',
+      title: '作品を安く売りすぎる作家たち',
+      subtitle: null,
+      lead: '材料費だけを積み上げて価格をつけ、自分の作業時間をゼロ円で計算してしまう——作家のあいだでよく語られる悩みを、編集部なりに考えてみた。',
+      category: '作家・クリエイター', tags: ['作家ビジネス', '価格設定'],
+      author: '編集部', authorRole: '編集部（作家ビジネス）',
+      publishedAt: '2026-07-18T11:00:00+09:00', updatedAt: '2026-07-18T11:00:00+09:00',
+      sourceName: null, sourceUrl: null, sourcePublishedAt: null, factOrOpinion: 'opinion',
+      editorNote: '本稿は編集部の意見記事です。特定の企業・個人を対象にしたものではありません。',
+      keyPoints: [
+        '材料費のみで価格を決め、制作時間を計算に入れない作家が多いとされる（業界内でよく指摘される傾向）',
+        '価格競争の激化は作り手自身の持続性を損ないうる',
+        '具体的な統計は本稿時点で未確認',
+      ],
+      body: [
+        '【何が起きているか】ハンドメイド作家の間では、「作品を安く売りすぎている」という悩みがしばしば語られる。材料費だけを積み上げて価格を決め、自分の作業時間や技術習得にかけた時間をゼロ円で計算してしまうケースが多いと、業界内でよく指摘される。',
+        '【業界全体への問い】なぜ作家自身が、自分の時間の価値を安く見積もってしまうのか。趣味の延長という意識が抜けきらないことや、周囲の作家との価格競争が背景にあるとの見方もある。',
+        '【編集部の見解】価格を下げる競争が続けば、作り手自身の生活が成り立たなくなり、結果として業界全体の担い手が減ってしまいかねない。これは編集部としての意見であり、断定的な事実として述べているものではない。',
+        '【読者への提言】本紙を読んでいる作家のみなさんには、材料費だけでなく、自分の作業時間・技術・道具にかけたコストを価格に反映できているか、一度立ち止まって見直してみてほしい。',
+      ],
+      relatedArticles: [ { title: '手芸は「暇な人の趣味」ではない（編集長コラム）', url: 'col-chief-editor-001' } ],
+      image: null, imageCaption: null, featured: false, priority: 2, status: 'published',
+    },
+    {
+      id: 'culture-001', slug: 'hitotsubu-no-beads-kara-miru-sekai-no-kouekishi', articleType: 'CULTURE',
+      title: '一粒のビーズから見る世界の交易史',
+      subtitle: null,
+      lead: '小さなガラス玉ひとつが、大陸を越えて人と物を結びつけてきた。ビーズは古くから交易の通貨としても使われた、手芸素材の中でもとりわけ歴史の長い存在だ。',
+      category: '文化・歴史', tags: ['文化', 'ビーズ', '交易史'],
+      author: '編集部', authorRole: '編集部（文化面）',
+      publishedAt: '2026-07-18T11:15:00+09:00', updatedAt: '2026-07-18T11:15:00+09:00',
+      sourceName: null, sourceUrl: null, sourcePublishedAt: null, factOrOpinion: 'opinion',
+      editorNote: '本稿は文化的背景を紹介するサンプル原稿です。詳細な年代・地域・数量データは今後の取材で確認・補強します。',
+      keyPoints: [
+        'ビーズは古くから交易品としても用いられてきた素材とされる',
+        'ヴェネチアングラスビーズやアフリカのトレードビーズ、日本のとんぼ玉など、地域ごとに固有のガラス玉文化がある',
+        '詳細な年代・数量等は今後の追加取材で補強予定',
+      ],
+      body: [
+        'ビーズは、単なる手芸素材である以前に、世界各地で交易品として用いられてきた長い歴史を持つとされる。ヴェネツィアで作られたガラスビーズは、大航海時代以降の交易においてアフリカなど各地に運ばれ、現地の文化と結びついていったことが知られている。',
+        'アフリカには独自の「トレードビーズ」の文化が根づき、日本にも「とんぼ玉」と呼ばれる伝統的なガラス玉工芸が受け継がれてきた。地域ごとに固有のガラス玉文化が育まれてきたことは、ビーズという素材そのものが持つ交易の歴史を物語っている。',
+        '現代の手芸店で何気なく手に取るビーズ一粒の背景にも、こうした長い交易史が横たわっている。素材の背景を知ることで、手芸そのものの見え方が少し変わるのではないか、というのが編集部の所感である。',
+      ],
+      relatedArticles: [],
+      image: null, imageCaption: null, featured: false, priority: 3, status: 'published',
+    },
+    {
+      id: 'short-001', slug: 'short-industry-brief', articleType: 'SHORTS', boxSlot: 'industry-brief',
+      title: '業界短信', subtitle: null, lead: null, category: '短信', tags: ['短信'],
+      author: '編集部', authorRole: '編集部',
+      publishedAt: '2026-07-21T06:30:00+09:00', updatedAt: '2026-07-21T06:30:00+09:00',
+      sourceName: '本紙既報（1〜9面）', sourceUrl: null, sourcePublishedAt: null, factOrOpinion: 'fact', editorNote: null, keyPoints: [],
+      body: ['本号では刺繍アートフェスティバルの閉幕、キャラクターコラボのキルト・刺繍アイテム、夏休み向けの手芸教室企画など、全国各地の動きを多数お届けした。詳しくは1〜9面の各記事をご覧いただきたい。次号でも各地の動きを追う。'],
+      relatedArticles: [], image: null, imageCaption: null, featured: false, priority: 5, status: 'published',
+    },
+    {
+      id: 'short-002', slug: 'short-new-product-memo', articleType: 'SHORTS', boxSlot: 'new-product-memo',
+      title: '新商品メモ', subtitle: null, lead: null, category: '短信', tags: ['短信', '新商品'],
+      author: '編集部', authorRole: '編集部',
+      publishedAt: '2026-07-21T06:30:00+09:00', updatedAt: '2026-07-21T06:30:00+09:00',
+      sourceName: null, sourceUrl: null, sourcePublishedAt: null, factOrOpinion: 'fact', editorNote: '本欄は今後、新商品情報を短信形式で追記していく予定のコーナーです。現時点ではサンプル表示です。', keyPoints: [],
+      body: ['新商品情報を短信形式でお伝えする欄です。現時点ではサンプル表示のみとなります。メーカー各社の発表をもとに、判明次第、発売日・価格・取扱店舗などを含めてこの欄でも随時お伝えする予定です。'],
+      relatedArticles: [], image: null, imageCaption: null, featured: false, priority: 5, status: 'published',
+    },
+    {
+      id: 'short-003', slug: 'short-keyword-of-the-week', articleType: 'SHORTS', boxSlot: 'keyword-of-week',
+      title: '今週のキーワード', subtitle: null, lead: null, category: '短信', tags: ['短信', 'キーワード'],
+      author: '編集部', authorRole: '編集部',
+      publishedAt: '2026-07-21T06:30:00+09:00', updatedAt: '2026-07-21T06:30:00+09:00',
+      sourceName: '本紙1面既報', sourceUrl: null, sourcePublishedAt: null, factOrOpinion: 'fact', editorNote: null, keyPoints: [],
+      body: ['今週のキーワードは「つなぐ」。本日閉幕する刺繍アートフェスティバルは「"競い合う"のではなく、広げ、応援し、つなぐ」ことを掲げる公募展だ。キャラクターコラボが手芸の語彙を一般消費者に届ける動きも、広い意味では作り手と生活者を「つなぐ」試みといえる。'],
+      relatedArticles: [], image: null, imageCaption: null, featured: false, priority: 5, status: 'published',
+    },
+    {
+      id: 'short-004', slug: 'short-sns-watch', articleType: 'SHORTS', boxSlot: 'sns-watch',
+      title: 'SNS定点観測', subtitle: null, lead: null, category: '短信', tags: ['短信', 'SNS'],
+      author: '編集部', authorRole: '編集部',
+      publishedAt: '2026-07-21T06:30:00+09:00', updatedAt: '2026-07-21T06:30:00+09:00',
+      sourceName: null, sourceUrl: null, sourcePublishedAt: null, factOrOpinion: 'fact', editorNote: '実データへの接続はまだなく、サンプル表示です。実装にはSNS APIとの連携が必要です。', keyPoints: [],
+      body: ['本欄は将来的にSNS上の話題を定点観測する枠として構想しています。ハッシュタグの投稿数や話題の作品傾向などを想定していますが、現時点では実データへの接続はなく、サンプル表示です。実装にはSNS各社のAPIとの連携、および利用規約の確認が必要になります。'],
+      relatedArticles: [], image: null, imageCaption: null, featured: false, priority: 5, status: 'published',
+    },
+    {
+      id: 'short-005', slug: 'short-world-digest', articleType: 'SHORTS', boxSlot: 'world-digest',
+      title: '海外拾い読み', subtitle: null, lead: null, category: '短信', tags: ['短信', '海外'],
+      author: '編集部', authorRole: '編集部',
+      publishedAt: '2026-07-21T06:30:00+09:00', updatedAt: '2026-07-21T06:30:00+09:00',
+      sourceName: 'IMARC Group調査（gii.co.jp）', sourceUrl: 'https://www.gii.co.jp/report/imarc1941228-handicrafts-market-report-by-product-type.html', sourcePublishedAt: null, factOrOpinion: 'fact', editorNote: null, keyPoints: [],
+      body: ['IMARC Groupの推計では、世界の手工芸品市場は2025年の986.9億ドルから2034年に2,038.0億ドル規模へ拡大する見通し（詳細5面既報）。木工品・織物・刺繍・ジュエリーなど10カテゴリーに分類され、流通チャネルも量販店から専門店・オンラインストアまで多様化しているという。海外レポートの拾い読みは今後もこの欄で続けたい。'],
+      relatedArticles: [], image: null, imageCaption: null, featured: false, priority: 5, status: 'published',
+    },
+    {
+      id: 'short-006', slug: 'short-editor-qa', articleType: 'SHORTS', boxSlot: 'editor-qa',
+      title: '編集部への質問', subtitle: null, lead: null, category: '短信', tags: ['短信', '読者対応'],
+      author: '編集部', authorRole: '編集部',
+      publishedAt: '2026-07-21T06:30:00+09:00', updatedAt: '2026-07-21T06:30:00+09:00',
+      sourceName: null, sourceUrl: null, sourcePublishedAt: null, factOrOpinion: 'fact', editorNote: null, keyPoints: [],
+      body: ['本紙の内容や紙面についてのご質問・ご感想は、<a href="https://chatgpt.com/g/g-6a5dbec4971481919d12695b6ee3df51-shou-yun-xin-wen-bian-ji-chang" target="_blank" rel="noopener">手芸新聞編集長（AI）</a>にお尋ねください。編集長はChatGPTのカスタムGPTとして構築された人格で、実在の人物ではありません。'],
+      relatedArticles: [], image: null, imageCaption: null, featured: false, priority: 5, status: 'published',
+    },
+  ];
+  const articlesById = {};
+  articles.forEach((a) => { articlesById[a.id] = a; });
+
+  /* ============================================================
+     特集・連載欄
+     編集方針：発行のたびに、編集部がその時々で最も注目すべき話題を
+     選定し、紙面のメインテーマとして構成します（曜日による固定割当は
+     行いません）。ここにその号の特集・連載テーマを1件設定してください。
+     ============================================================ */
+  const ISSUE_DATE = new Date('2026-07-23T00:00:00+09:00'); // 本号の発行日
+  const ISSUE_FEATURE = { label: '今週の特集', title: 'VOGUEが伝えた「ビーズブーム」——なぜ今、世界は再びビーズに魅了されるのか', page: '2面' };
+
+  function renderWeekdaySerial() {
+    const el = document.getElementById('weekday-serial');
+    if (!el) return;
+    el.innerHTML = '<span class="feature-label">特集・連載</span><span class="wd today">' +
+      ISSUE_FEATURE.label + '：' + ISSUE_FEATURE.title + '（' + ISSUE_FEATURE.page + '）</span>';
+  }
+
+  function renderHeadlineBand() {
+    const el = document.getElementById('headline-band');
+    if (!el) return;
+    const items = [
+      { type: 'NEWS', text: '長野キルトフェスティバル、今年で10周年', href: '#p1' },
+      { type: 'NEWS', text: 'TOKYOハンドメイド祭、2026年通期日程を発表', href: '#sn-hansai' },
+      { type: 'NEWS', text: 'ユザワヤ芸術学院、8月55分指導講習の中身', href: '#sn-gakuin' },
+      { type: 'MARKET', text: '世界の手工芸品市場、2035年に1596億ドルへ', href: '#p5' },
+      { type: 'NEWS', text: '伝統工芸の「体験」ビジネス化、JTBが支援事業', href: '#p6' },
+      { type: 'CHIEF_EDITOR', text: '編集長コラム「10年続いた催事が教えてくれること」', href: 'col-chief-editor-001' },
+      { type: 'EDITORIAL', text: '世界市場、なぜ推計はこんなに違うのか', href: 'editorial-001' },
+    ];
+    el.innerHTML = items.map((it) =>
+      '<a href="' + (it.href.startsWith('#') ? it.href : '#') + '" ' +
+      (it.href.startsWith('#') ? 'onclick="jumpToArticle(event,\'' + it.href.slice(1) + '\')"' : 'onclick="event.preventDefault();openArticleDialog(\'' + it.href + '\')"') + '>' +
+      '<span class="hb-badge">[' + ARTICLE_TYPE_LABELS[it.type] + ']</span>' + it.text + '</a>'
+    ).join('');
+  }
+
+  function renderShorts() {
+    articles.filter((a) => a.articleType === 'SHORTS').forEach((a) => {
+      const box = document.querySelector('[data-short-slot="' + a.boxSlot + '"]');
+      if (!box) return;
+      box.innerHTML = '<h5>' + a.title + '</h5><p>' + a.body[0] + '</p>';
+    });
+  }
+
+  /* ============================================================
+     編集長コラム・論説・特集の自動表示
+     articles配列に displaySlot（表示先コンテナのid）を指定した
+     記事は、この関数がop-box（横組みの囲み記事）を自動生成して
+     該当ページに挿入します。HTML/CSSの編集は不要です。
+     ============================================================ */
+  function renderAutoOpArticles() {
+    articles
+      .filter((a) => a.displaySlot && a.status === 'published')
+      .forEach((a) => {
+        const container = document.getElementById(a.displaySlot);
+        if (!container) return;
+        const box = document.createElement('div');
+        box.className = 'op-box' + (a.articleType === 'FEATURE' ? ' feature-box' : '');
+        const excerptParts = [a.lead].concat((a.body || []).slice(0, 2)).filter(Boolean);
+        box.innerHTML =
+          '<div class="col-title-row"><span class="type-badge" data-type="' + a.articleType + '">' + ARTICLE_TYPE_LABELS[a.articleType] + '</span></div>' +
+          '<div class="col-title">' + a.title + (a.subtitle ? '<br><span class="col-subtitle">' + a.subtitle + '</span>' : '') + '</div>' +
+          '<div class="col-byline">' + (a.author || '編集部') + (a.authorRole ? '（' + a.authorRole + '）' : '') + '</div>' +
+          '<div class="col-excerpt">' + excerptParts.map((p) => '<p>' + p + '</p>').join('') + '</div>' +
+          '<button type="button" class="read-more" data-article-id="' + a.id + '">続きを読む（全文）</button>';
+        container.appendChild(box);
+      });
+  }
+
+  /* ============================================================
+     記事詳細ダイアログ
+     ============================================================ */
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
+  function fmtDate(iso) {
+    if (!iso) return '不明';
+    const d = new Date(iso);
+    if (isNaN(d.getTime())) return iso;
+    return d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日' +
+      (iso.includes('T') ? '　' + String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0') : '');
+  }
+  function openArticleDialog(id) {
+    const a = articlesById[id];
+    const dialog = document.getElementById('article-dialog');
+    const inner = document.getElementById('article-dialog-inner');
+    if (!a || !dialog || !inner) return;
+    const banner = bannerFor(a.articleType);
+    const factLabel = a.factOrOpinion === 'opinion' ? '意見・分析記事' : '事実記事';
+    const toc = a.body && a.body.length > 2
+      ? '<div class="ad-toc"><strong>目次：</strong>' + a.body.map((_, i) => '<a href="#ad-body-' + i + '">段落' + (i + 1) + '</a>').join('　') + '</div>'
+      : '';
+    inner.innerHTML =
+      '<button type="button" class="ad-close" aria-label="閉じる" onclick="document.getElementById(\'article-dialog\').close()">×</button>' +
+      '<div class="ad-badges"><span class="type-badge" data-type="' + a.articleType + '">' + ARTICLE_TYPE_LABELS[a.articleType] + '</span>' +
+      '<span class="ad-cat">' + escapeHtml(a.category || '') + '</span><span class="ad-cat">' + factLabel + '</span></div>' +
+      (banner ? '<p class="opinion-flag">' + banner + '</p>' : '') +
+      '<h2>' + escapeHtml(a.title) + '</h2>' +
+      (a.subtitle ? '<p class="ad-subtitle">' + escapeHtml(a.subtitle) + '</p>' : '') +
+      (a.lead ? '<p class="ad-lead">' + escapeHtml(a.lead) + '</p>' : '') +
+      '<div class="ad-meta"><span>著者：' + escapeHtml(a.author || '編集部') + (a.authorRole ? '（' + escapeHtml(a.authorRole) + '）' : '') + '</span>' +
+      '<span>公開：' + fmtDate(a.publishedAt) + '</span><span>更新：' + fmtDate(a.updatedAt) + '</span></div>' +
+      toc +
+      (a.keyPoints && a.keyPoints.length ? '<div class="ad-keypoints"><h3>要点</h3><ul>' + a.keyPoints.map((k) => '<li>' + escapeHtml(k) + '</li>').join('') + '</ul></div>' : '') +
+      '<div class="ad-body">' + (a.body || []).map((p, i) => '<p id="ad-body-' + i + '">' + escapeHtml(p) + '</p>').join('') + '</div>' +
+      (a.editorNote ? '<div class="ad-editor-note"><h3>編集部注</h3>' + a.editorNote + '</div>' : '') +
+      '<div class="ad-source">出典：' + (a.sourceUrl ? '<a href="' + a.sourceUrl + '" target="_blank" rel="noopener">' + escapeHtml(a.sourceName || a.sourceUrl) + '</a>' : escapeHtml(a.sourceName || '本紙独自（一次情報なし）')) +
+      '　／　発表日：' + (a.sourcePublishedAt ? escapeHtml(a.sourcePublishedAt) : '不明') + '　／　情報取得日：2026-07-20</div>' +
+      (a.tags && a.tags.length ? '<div class="ad-tags">' + a.tags.map((t) => '<span>#' + escapeHtml(t) + '</span>').join('') + '</div>' : '') +
+      (a.relatedArticles && a.relatedArticles.length ? '<div class="ad-related"><h3>関連記事</h3><ul>' + a.relatedArticles.map((r) =>
+        '<li><a href="#" onclick="event.preventDefault();' + (r.url.startsWith('#') ? 'jumpToArticle(event,\'' + r.url.slice(1) + '\');' : 'openArticleDialog(\'' + r.url + '\');') + 'document.getElementById(\'article-dialog\').close();">' + escapeHtml(r.title) + '</a></li>'
+      ).join('') + '</ul></div>' : '') +
+      '<div class="ad-share"><button type="button" onclick="navigator.share ? navigator.share({title:' + JSON.stringify(a.title) + ',url:location.href}) : navigator.clipboard.writeText(location.href).then(()=>alert(\'URLをコピーしました\'))">共有</button></div>';
+    dialog.showModal();
+  }
+  function jumpToArticle(evt, targetId) {
+    if (evt) evt.preventDefault();
+    const el = document.getElementById(targetId);
+    const pageEl = el ? el.closest('.page') : document.getElementById(targetId);
+    if (!pageEl) return;
+    const pageId = pageEl.id;
+    const btn = document.querySelector('.tab[data-target="' + pageId + '"]');
+    if (btn) btn.click();
+    if (el && el !== pageEl) {
+      setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60);
+    }
+  }
+
+  /* ============================================================
+     読者投稿・追加記事コーナー
+     ここに記事オブジェクトを追加すると、指定した面に自動的に
+     記事が挿入されます（HTMLやCSSを直接編集する必要はありません）。
+
+     page        : 挿入先の面ID（"p1"〜"p11"）
+     tier        : "lead"（大）| "secondary"（中）| "brief"（小）
+     kicker      : 見出し上の【カテゴリ】文字列
+     headline    : 見出し文
+     paragraphs  : 本文（配列。要素ごとに改行されます）
+     sourceLabel : 出典として表示する文字列（任意）
+     sourceUrl   : 出典リンク先URL（任意。省略するとリンクなしで表示）
+     ============================================================ */
+  const userSubmissions = [
+    // ここに記事オブジェクトを追加してください
+  ];
+
+  function renderUserSubmissions() {
+    userSubmissions.forEach((item) => {
+      const pageEl = document.getElementById(item.page);
+      const body = pageEl && pageEl.querySelector('.page-body');
+      if (!body) return;
+      const row = document.createElement('div');
+      row.className = 'news-row';
+      const article = document.createElement('article');
+      article.className = 'story';
+      const paragraphsHtml = (item.paragraphs || []).map((p) => '<p>' + p + '</p>').join('');
+      const sourceHtml = item.sourceLabel
+        ? '<p class="source-line">出典：' +
+          (item.sourceUrl
+            ? '<a href="' + item.sourceUrl + '" target="_blank" rel="noopener">' + item.sourceLabel + '</a>'
+            : item.sourceLabel) +
+          '</p>'
+        : '';
+      article.innerHTML =
+        '<div class="kicker">【' + (item.kicker || '投稿') + '】</div>' +
+        '<h2>' + (item.headline || '') + '</h2>' +
+        '<div class="body">' + paragraphsHtml + sourceHtml + '</div>';
+      row.appendChild(article);
+      body.appendChild(row);
+    });
+  }
+  renderUserSubmissions();
+
+  /* ============================================================
+     既存記事への記事種別バッジの遡及付与
+     （HTMLに手動でバッジを付けていない既存記事には、既定で
+     NEWSバッジを自動挿入します。既存の見出し文言は一切変更しません）
+     ============================================================ */
+  function addDefaultTypeBadges() {
+    document.querySelectorAll('.headline-col').forEach((col) => {
+      if (col.querySelector('.type-badge')) return;
+      const badge = document.createElement('span');
+      badge.className = 'type-badge';
+      badge.dataset.type = 'NEWS';
+      badge.textContent = 'NEWS';
+      col.insertBefore(badge, col.firstChild);
+    });
+  }
+  addDefaultTypeBadges();
+
+  renderHeadlineBand();
+  renderWeekdaySerial();
+  renderShorts();
+  renderAutoOpArticles();
+
+  document.body.addEventListener('click', (evt) => {
+    const btn = evt.target.closest('[data-article-id]');
+    if (btn) { openArticleDialog(btn.dataset.articleId); }
+  });
+
+  /* ============================================================
+     広告枠
+     ads配列に広告情報を追加すると、対応する slot の
+     プレースホルダーが自動的に広告表示に切り替わります。
+     何も追加しなければ、これまで通りプレースホルダー表示のままです。
+
+     slot        : 差し込み先。紙面上の data-ad-slot 属性値と一致させる
+                   （現在の掲載可能枠：p1-1 / p6-1 / p7-1 / p9-1）
+     advertiser  : 広告主名
+     copy        : 紹介文（40〜60字目安）
+     url         : リンク先URL
+     linkLabel   : ボタン文言（省略時「詳しくはこちら」）
+     startDate   : 掲載開始日 'YYYY-MM-DD'（省略可）
+     endDate     : 掲載終了日 'YYYY-MM-DD'（省略可）
+     status      : 'active' 以外を指定すると掲載停止
+     ============================================================ */
+  const ads = [
+    {
+      slot: 'p9-1',
+      advertiser: 'トーホー株式会社',
+      copy: '高品質なシードビーズで世界に選ばれる、広島発のビーズメーカー。',
+      url: 'http://www.toho-beads.co.jp/',
+      linkLabel: '詳しくはこちら',
+      status: 'active',
+    },
+    // {
+    //   slot: 'p7-1',
+    //   advertiser: '株式会社サンプル手芸資材',
+    //   copy: '全国の手芸店・作家様へ。糸・生地の卸売なら当社まで。',
+    //   url: 'https://example.com',
+    //   linkLabel: '詳しくはこちら',
+    //   startDate: '2026-08-01',
+    //   endDate: '2026-08-31',
+    //   status: 'active',
+    // },
+  ];
+
+  function isAdActive(ad) {
+    if (ad.status && ad.status !== 'active') return false;
+    const today = new Date().toISOString().slice(0, 10);
+    if (ad.startDate && today < ad.startDate) return false;
+    if (ad.endDate && today > ad.endDate) return false;
+    return true;
+  }
+
+  function renderAds() {
+    document.querySelectorAll('[data-ad-slot]').forEach((slotEl) => {
+      const ad = ads.find((a) => a.slot === slotEl.dataset.adSlot && isAdActive(a));
+      if (!ad) return;
+      slotEl.classList.add('filled');
+      slotEl.removeAttribute('aria-hidden');
+      slotEl.innerHTML =
+        '<span class="ad-label">広告</span>' +
+        '<div class="ad-name">' + escapeHtml(ad.advertiser) + '</div>' +
+        '<p class="ad-copy">' + escapeHtml(ad.copy) + '</p>' +
+        '<a class="ad-cta" href="' + ad.url + '" target="_blank" rel="noopener sponsored">' + escapeHtml(ad.linkLabel || '詳しくはこちら') + '</a>';
+    });
+  }
+  renderAds();
+
+  const tabs = document.querySelectorAll('.tab');
+  const pageIds = ['p1','p2','p3','p4','p5','p6','p7','p8','p9','p10','p11','p12'];
+  const pages = {};
+  pageIds.forEach((id) => { pages[id] = document.getElementById(id); });
+  tabs.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      tabs.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      pageIds.forEach((key) => {
+        pages[key].hidden = key !== btn.dataset.target;
+      });
+    });
+  });
+
+</script>
