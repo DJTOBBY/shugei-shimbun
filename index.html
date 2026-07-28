@@ -37,6 +37,7 @@
   .masthead h1 { font-family: var(--font-mincho); font-weight: 700; font-size: clamp(2.4rem, 7vw, 3.4rem); letter-spacing: 0.1em; margin: 0; }
   .masthead .sub { font-size: 0.64rem; letter-spacing: 0.3em; color: var(--ink-soft); text-transform: uppercase; margin-top: 0.4em; }
   .masthead .tagline { font-family: var(--font-mincho); font-size: 0.86rem; letter-spacing: 0.2em; color: var(--ink-soft); margin: 0.5em 0 0; }
+  .masthead .about-lede { font-size: 0.82rem; color: var(--ink-soft); line-height: 1.8; max-width: 520px; margin: 0.9em auto 0; }
   .rule { border-top: 4px solid var(--rule); border-bottom: 1px solid var(--rule); height: 6px; margin: 0.9rem 0 1.8rem; }
 
   .latest-callout { border: 2px solid var(--ink); margin-bottom: 1.8rem; transition: border-color 0.15s; }
@@ -53,7 +54,13 @@
   .top-nav a { display: block; text-decoration: none; color: inherit; padding: 0.9em 0.1em; }
   .top-nav a:hover { color: var(--link); }
 
-  h2 { font-family: var(--font-mincho); font-size: 1.05rem; border-bottom: 3px double var(--ink); padding-bottom: 0.3em; margin: 0 0 1.2rem; }
+  h2 { font-family: var(--font-mincho); font-size: 1.05rem; border-bottom: 3px double var(--ink); padding-bottom: 0.3em; margin: 2.2rem 0 1.2rem; }
+  h2:first-of-type { margin-top: 0; }
+  .lede { font-size: 0.86rem; color: var(--ink-soft); line-height: 1.8; margin: -0.6rem 0 1.2rem; }
+  .editor-box { border: 1px solid var(--rule-soft); border-left: 3px solid var(--shu); padding: 1.1rem 1.3rem; margin-bottom: 2rem; font-size: 0.86rem; line-height: 1.8; }
+  .editor-box .editor-role { font-family: var(--font-mincho); font-weight: 700; font-size: 0.95rem; margin: 0 0 0.5em; }
+  .editor-box .editor-link { margin: 0.7em 0 0; font-size: 0.82rem; }
+  .editor-box .editor-link a { font-weight: 700; }
   .subscribe-box { border: 1px solid var(--rule-soft); padding: 1.1rem 1.3rem; margin-bottom: 2rem; font-size: 0.86rem; line-height: 1.8; }
   .subscribe-box .feed-url { font-family: monospace; font-size: 0.8rem; background: rgba(0,0,0,0.04); padding: 0.5em 0.7em; word-break: break-all; }
   .subscribe-box .subscribe-links { display: flex; gap: 1.2em; flex-wrap: wrap; }
@@ -75,6 +82,7 @@
     <h1>手芸新聞</h1>
     <p class="sub">SHUGEI SHIMBUN</p>
     <p class="tagline">つくる・つなぐ・広がる</p>
+    <p class="about-lede">全国のハンドメイド・手芸メーカー、イベント、トレンドを届ける、個人運営の業界紙形式デジタル新聞です。</p>
   </div>
   <div class="rule"></div>
 
@@ -93,6 +101,14 @@
     <li><a href="archive.html">記事を横断検索する／編集長コラムの連載一覧を見る →</a></li>
   </ul>
 
+  <h2>手芸新聞とは</h2>
+  <p class="lede">全国のハンドメイド・手芸業界のニュースに加えて、市場動向、素材研究、技法解説、作家インタビュー、世界の手芸事情、文化・歴史、販売・マーケティングなど、幅広いテーマを特集・連載として発行ごとにお届けします。実在の刊行物・法人ではなく、個人が試作しているデジタル新聞です。各号の内容は公開情報を編集部が要約・構成したものです。</p>
+  <div class="editor-box">
+    <p class="editor-role">編集長について</p>
+    <p>本紙の編集長は、<a href="https://chatgpt.com/g/g-6a5dbec4971481919d12695b6ee3df51-shou-yun-xin-wen-bian-ji-chang" target="_blank" rel="noopener">ChatGPTのカスタムGPTとして構築されたAI人格</a>です。実在の人物ではありませんが、毎号「編集長コラム」を執筆し、業界の出来事について所感を綴っています。紙面へのご質問・ご感想は、編集長本人に直接お尋ねいただくこともできます。</p>
+    <p class="editor-link"><a href="archive.html">編集長コラムの連載一覧を見る →</a></p>
+  </div>
+
   <h2>新号のお知らせを受け取る</h2>
   <div class="subscribe-box">
     <p>新しい号が出るたびにお知らせを受け取りたい場合は、以下のRSSフィードのURLを、無料のメール通知サービスに登録してください。メールアドレスの登録・配信はすべてサービス側が行うため、こちらでは個人情報を一切お預かりしません。</p>
@@ -104,5 +120,5 @@
     <p class="hint">どちらも、上記フィードURLを貼り付けてメールアドレスを入力するだけで、新号公開時に自動でメールが届くようになります。RSSリーダー（Feedlyなど）でも同じURLを使って購読できます。</p>
   </div>
 
-  <footer>手芸新聞は個人が試作しているデジタル新聞です。実在の刊行物・法人ではありません。各号の内容は公開情報を編集部が要約・構成したものです。編集長は<a href="https://chatgpt.com/g/g-6a5dbec4971481919d12695b6ee3df51-shou-yun-xin-wen-bian-ji-chang" target="_blank" rel="noopener">ChatGPTのカスタムGPTとして構築されたAI人格</a>で、実在の人物ではありません。新しい号を作成した際は、この最新号カードを差し替え、<a href="backnumbers.html">バックナンバー一覧</a>にもリンクを追加してください。</footer>
+  <footer>新しい号を作成した際は、この最新号カードを差し替え、<a href="backnumbers.html">バックナンバー一覧</a>にもリンクを追加してください。</footer>
 </div>
