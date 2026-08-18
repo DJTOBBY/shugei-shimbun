@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <title>手芸新聞 — 2026年7月22日号（試作第4号）</title>
 <meta name="description" content="全国のハンドメイド・手芸メーカー、イベント、トレンドを毎日お届けする手芸新聞。全12面の業界紙形式で構成した試作号。">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -752,6 +753,40 @@
     .masthead-grid { grid-template-columns: 56px 1fr 56px; }
     .corner-box { font-size: 0.62rem; height: 108px; }
     .back-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---- スマホ表示の最適化（タブの横スクロール化・題字・タップ領域） ---- */
+  @media (max-width: 720px) {
+    /* タブを1行の横スクロールにして画面占有を抑え、スクロール中も面を切り替えられるようにする */
+    .toolbar {
+      position: sticky; top: 0; z-index: 50;
+      background: var(--paper);
+      padding: 0.5rem 0.6rem 0.4rem;
+      border-bottom: 1px solid var(--rule-soft);
+    }
+    .tabs {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: 0.3rem;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tabs button {
+      flex: 0 0 auto;
+      min-height: 44px;          /* タップ領域を確保 */
+      padding: 0.5em 0.85em;
+      font-size: 0.78rem;
+      white-space: nowrap;
+    }
+    /* 題字を1行に収める */
+    .nameplate .wordmark { white-space: nowrap; text-wrap: nowrap; font-size: clamp(1.6rem, 7.6vw, 2.6rem); }
+    /* 横に溢れうる表は、その中だけ横スクロールさせる */
+    .event-table { display: block; overflow-x: auto; white-space: nowrap; }
+    /* 「本日のことば」欄は横並びをやめて縦に積む */
+    .index-line { flex-direction: column; gap: 0.35em; }
+    /* 本文の行間をスマホ向けに少し広げる */
+    .body p, .col-excerpt p { line-height: 1.95; }
   }
 </style>
 

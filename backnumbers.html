@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <title>手芸新聞 — バックナンバー</title>
 <meta name="description" content="手芸新聞のバックナンバー一覧。">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -56,6 +57,40 @@
   .issue-card .issue-top { font-size: 0.9rem; line-height: 1.7; }
   .issue-card .issue-top .badge { font-size: 0.62rem; letter-spacing: 0.05em; border: 1px solid var(--ink-soft); color: var(--ink-soft); padding: 0.1em 0.5em; margin-right: 0.5em; }
   footer { margin-top: 2rem; font-size: 0.72rem; color: var(--ink-soft); border-top: 1px solid var(--rule-soft); padding-top: 0.8em; }
+
+  /* ---- スマホ表示の最適化（タブの横スクロール化・題字・タップ領域） ---- */
+  @media (max-width: 720px) {
+    /* タブを1行の横スクロールにして画面占有を抑え、スクロール中も面を切り替えられるようにする */
+    .toolbar {
+      position: sticky; top: 0; z-index: 50;
+      background: var(--paper);
+      padding: 0.5rem 0.6rem 0.4rem;
+      border-bottom: 1px solid var(--rule-soft);
+    }
+    .tabs {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: 0.3rem;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tabs button {
+      flex: 0 0 auto;
+      min-height: 44px;          /* タップ領域を確保 */
+      padding: 0.5em 0.85em;
+      font-size: 0.78rem;
+      white-space: nowrap;
+    }
+    /* 題字を1行に収める */
+    .nameplate .wordmark { white-space: nowrap; text-wrap: nowrap; font-size: clamp(1.6rem, 7.6vw, 2.6rem); }
+    /* 横に溢れうる表は、その中だけ横スクロールさせる */
+    .event-table { display: block; overflow-x: auto; white-space: nowrap; }
+    /* 「本日のことば」欄は横並びをやめて縦に積む */
+    .index-line { flex-direction: column; gap: 0.35em; }
+    /* 本文の行間をスマホ向けに少し広げる */
+    .body p, .col-excerpt p { line-height: 1.95; }
+  }
 </style>
 
 <div class="wrap">
