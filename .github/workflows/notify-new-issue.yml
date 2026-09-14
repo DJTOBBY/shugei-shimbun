@@ -1,0 +1,85 @@
+name: 新号のプッシュ通知
+
+# issues/ に新しいHTMLが追加されたときだけ発火する。
+# 既存号の修正（同じファイルの変更）では通知しない。
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'issues/**.html'
+  workflow_dispatch:        # 手動実行も可能（テスト用）
+    inputs:
+      dry_run:
+        description: 'true なら送信せずペイロードだけ表示'
+        required: false
+        default: 'true'
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2    # 直前のコミットと比較するため
+
+      - name: 新規追加された号を検出
+        id: detect
+        run: |
+          # このpushで「追加（A）」された issues/*.html を拾う
+          ADDED=$(git diff --name-only --diff-filter=A HEAD~1 HEAD -- 'issues/*.html' | head -1)
+          if [ -z "$ADDED" ]; then
+            echo "新規の号はありません（既存号の修正のみ）"
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "found=true" >> "$GITHUB_OUTPUT"
+          echo "file=$ADDED" >> "$GITHUB_OUTPUT"
+          echo "検出: $ADDED"
+
+      - name: ペイロードを組み立てる
+        id: payload
+        if: steps.detect.outputs.found == 'true'
+        run: |
+          FILE="${{ steps.detect.outputs.file }}"
+          SLUG=$(basename "$FILE" .html)                    # 2026-09-14
+          URL="https://djtobby.github.io/shugei-shimbun/issues/${SLUG}.html"
+
+          # <title> から号数を取る（例: 生涯学習新聞 — 2026年9月14日号（第5号））
+          TITLE=$(grep -o '<title>[^<]*</title>' "$FILE" | head -1 | sed 's/<[^>]*>//g')
+          # og:description を通知本文に使う（長い場合は120字に切る）
+          DESC=$(grep -o 'property="og:description" content="[^"]*"' "$FILE" | head -1 \
+                 | sed 's/.*content="//; s/"$//')
+          BODY=$(printf '%s' "$DESC" | cut -c1-360)
+
+          python3 - "$TITLE" "$BODY" "$URL" "$SLUG" > payload.json <<'PY'
+          import json, sys
+          title, body, url, slug = sys.argv[1:5]
+          json.dump({
+              "title": title or "手芸新聞",
+              "body": body,
+              "url": url,
+              "tag": f"shugei-{slug}",       # 同じ号の通知が二重に出ないようにする
+              "paper": "shugei-shimbun",
+              "issue": slug,
+          }, sys.stdout, ensure_ascii=False)
+          PY
+          echo "--- payload ---"; cat payload.json; echo
+
+      - name: 通知先へPOST
+        if: steps.detect.outputs.found == 'true' && github.event.inputs.dry_run != 'true'
+        env:
+          ENDPOINT: ${{ secrets.PUSH_NOTIFY_ENDPOINT }}
+          TOKEN: ${{ secrets.PUSH_NOTIFY_TOKEN }}
+        run: |
+          if [ -z "$ENDPOINT" ]; then
+            echo "::warning::PUSH_NOTIFY_ENDPOINT が未設定のため送信をスキップしました"
+            echo "リポジトリの Settings → Secrets and variables → Actions で設定してください"
+            exit 0
+          fi
+          CODE=$(curl -s -o resp.txt -w '%{http_code}' -X POST "$ENDPOINT" \
+            -H 'Content-Type: application/json' \
+            ${TOKEN:+-H "Authorization: Bearer $TOKEN"} \
+            --data @payload.json)
+          echo "HTTP $CODE"; cat resp.txt
+          # 2xx 以外は失敗扱い（通知が届かなかったことに気づけるように）
+          case "$CODE" in 2*) echo "✓ 送信成功" ;; *) echo "::error::通知の送信に失敗しました (HTTP $CODE)"; exit 1 ;; esac

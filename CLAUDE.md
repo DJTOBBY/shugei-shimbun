@@ -29,7 +29,34 @@ notes/news-pool.md  ネタ帳（紙面ではない内部メモ）
 
 2026年7月28日にサイト構造が変わり、`index.html` は号一覧ではなく**トップ／ランディングページ**になった。旧`index.html`の号一覧は `backnumbers.html` に分離されている。
 
-## 新号を発行する手順（7点セット）
+## 新号を発行する手順
+
+### ステップ0（最重要）：着手前に必ず `git fetch` する
+
+**新号を1文字でも書き始める前に、これを実行すること。**
+
+```bash
+git fetch -q origin
+git log --oneline HEAD..origin/main     # リモートにある未取得のコミット
+ls issues/                              # 発行済みの号
+date "+%Y-%m-%d"                        # 今日の日付
+```
+
+`HEAD..origin/main` に差分があれば、**先に `git merge --ff-only origin/main` で取り込む**。
+そのうえで `issues/` を見て、**作ろうとしている日付の号がすでに存在しないか**を確かめる。
+
+**2026年8月16日、これを怠って実際に事故が起きた。** ローカルが古いまま新号を書き始め、
+全12面を書き上げてからpushしようとして、同じ日付・同じ1面トップの号がすでに公開済みだと
+判明した（別のセッションが数時間前に発行していた）。数時間分の作業が丸ごと重複になった。
+
+同じ日にもう一つ、`git fetch` をしていれば防げた別の事故も起きている。CLAUDE.mdをpushしようと
+したところ、リモートに10日分の「ネタ帳更新」コミットが溜まっていてpushが弾かれた。
+
+**リモートが先に進んでいた場合、絶対に force push しないこと。** 公開済みの号が消える。
+自分の作業をブランチに退避（`git branch backup/作業名`）してから `git reset --hard origin/main`
+で合わせ、その後どう統合するかをユーザーに確認する。
+
+### 7点セット
 
 **この7つを全て更新すること。1つでも漏れるとリンク切れや情報の不整合になる。**
 
@@ -79,6 +106,19 @@ open('/tmp/og-src.html','w').write(s)"
 **`--user-data-dir` を必ず付けること。** 2026年8月5日、姉妹紙の作業でこれを省略して起動した結果、ユーザーの通常のChromeで印刷ダイアログが繰り返し開くという副作用が起きた。
 
 （Chromeが無い環境で作業する場合は、OGP画像だけ後回しにして他の6点を先に仕上げてよい。）
+
+## 新号のプッシュ通知
+
+新号を push すると、GitHub Actions（`.github/workflows/notify-new-issue.yml`）が
+`issues/*.html` の**追加**を検知し、`<title>` と `og:description` からペイロードを組んで
+`PUSH_NOTIFY_ENDPOINT` へPOSTする。app.tohobeads.jp の Service Worker が受信して通知を出す。
+
+- **既存号の修正では通知は飛ばない**（追加＝`--diff-filter=A` のときだけ発火する）
+- Secrets（`PUSH_NOTIFY_ENDPOINT` / `PUSH_NOTIFY_TOKEN`）が未設定なら、警告を出してスキップする
+- 手動実行（workflow_dispatch）では `dry_run=true` で送信せずペイロードだけ確認できる
+
+**設計・サーバー側の実装例・VAPID鍵の作り方は [`docs/push-notification.md`](docs/push-notification.md) を参照。**
+サーバー側（`/api/subscribe`・`/api/notify`）は2026年9月14日時点で未実装。
 
 ## 面構成（全12面）
 
